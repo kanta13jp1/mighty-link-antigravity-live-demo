@@ -1,5 +1,5 @@
 /**
- * AI Agent Learning Hub - Application Logic (7 Products & Pricing Matrix)
+ * AI Agent Learning Hub - Application Logic (9 Products, Exhaustive Pricing & Quotas)
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
@@ -153,17 +153,20 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedProductIds.forEach(id => {
       const card = document.getElementById(id);
       const name = card.querySelector('.product-name').textContent.trim();
+      const docLink = card.querySelector('.official-doc-link').outerHTML;
       const work = card.querySelector('.card-text-work').textContent.trim();
       const features = card.querySelectorAll('.card-text')[1].textContent.trim();
       const price = card.querySelector('.card-text-price').textContent.trim();
-      const firstTry = card.querySelectorAll('.card-text')[3].textContent.trim();
+      const quota = card.querySelector('.card-text-quota').textContent.trim();
+      const firstTry = card.querySelectorAll('.card-text')[4].textContent.trim();
 
       html += `
         <div class="modal-col">
-          <h4>${name}</h4>
+          <h4>${name} ${docLink}</h4>
           <div><strong>🎯 向いている仕事:</strong><p>${work}</p></div>
           <div><strong>⚙️ 主な機能:</strong><p>${features}</p></div>
-          <div><strong>💳 料金モデル:</strong><p>${price}</p></div>
+          <div><strong>💳 全料金プラン:</strong><p>${price}</p></div>
+          <div><strong>⏱️ クォータ・制限詳細:</strong><p>${quota}</p></div>
           <div><strong>🚀 最初に試すこと:</strong><p>${firstTry}</p></div>
         </div>
       `;

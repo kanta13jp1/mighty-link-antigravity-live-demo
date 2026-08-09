@@ -1,4 +1,4 @@
-/* AI Agent Learning Hub - Refined Stylesheet (7 Products & Pricing Matrix) */
+/* AI Agent Learning Hub - Refined Stylesheet (9 Products, Links, Exhaustive Pricing & Quotas) */
 :root {
   --bg-page: #0F172A;
   --bg-header: linear-gradient(135deg, #0B2545 0%, #00A5E3 100%);
@@ -10,6 +10,7 @@
   --brand-orange: #EF7E00;
   --brand-green: #10B981;
   --brand-purple: #8B5CF6;
+  --brand-pink: #EC4899;
   --brand-white: #FFFFFF;
   --text-dark: #0F172A;
   
@@ -105,7 +106,7 @@ body {
 .hero-description {
   font-size: 0.95rem;
   color: #E2E8F0;
-  max-width: 840px;
+  max-width: 860px;
 }
 
 .hero-image-wrapper {
@@ -215,10 +216,10 @@ body {
   display: flex;
 }
 
-/* Product Cards Grid */
+/* Product Cards Grid (9 Products) */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 22px;
 }
 
@@ -265,9 +266,35 @@ body {
   gap: 8px;
 }
 
+.product-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .product-name {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
+  color: var(--brand-white);
+}
+
+.official-doc-link {
+  color: var(--brand-blue);
+  font-size: 0.78rem;
+  text-decoration: none;
+  background: rgba(0, 165, 227, 0.1);
+  border: 1px solid rgba(0, 165, 227, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.official-doc-link:hover {
+  background: var(--brand-blue);
   color: var(--brand-white);
 }
 
@@ -331,10 +358,11 @@ body {
 .label-work { color: var(--brand-blue); }
 .label-features { color: var(--brand-orange); }
 .label-price { color: var(--brand-purple); }
+.label-quota { color: var(--brand-pink); }
 .label-first { color: var(--brand-green); }
 
 .card-text {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   background-color: rgba(15, 23, 42, 0.6);
   padding: 10px 12px;
@@ -347,7 +375,12 @@ body {
   font-weight: 600;
 }
 
-/* Capability Matrix Section (7 Products) */
+.card-text-quota {
+  color: #FBCFE8;
+  font-size: 0.86rem;
+}
+
+/* Capability & Cost Matrix Section (9 Products) */
 .matrix-section {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -383,12 +416,12 @@ body {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
-  font-size: 0.86rem;
-  min-width: 800px;
+  font-size: 0.84rem;
+  min-width: 1080px;
 }
 
 .matrix-table th, .matrix-table td {
-  padding: 12px 10px;
+  padding: 12px 8px;
   border: 1px solid var(--border-color);
 }
 
@@ -413,7 +446,12 @@ body {
 .matrix-table td.cell-price {
   font-weight: 600;
   color: #C4B5FD;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+}
+
+.matrix-table td.cell-quota {
+  color: #FBCFE8;
+  font-size: 0.78rem;
 }
 
 .check-icon {
@@ -568,7 +606,7 @@ body {
   background-color: var(--bg-card);
   border: 1px solid var(--brand-blue);
   border-radius: 16px;
-  max-width: 840px;
+  max-width: 860px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
