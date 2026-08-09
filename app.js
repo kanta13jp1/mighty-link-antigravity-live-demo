@@ -25,73 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoFrameContainer = document.getElementById('video-frame-container');
   const closeVideoModalBtn = document.getElementById('btn-close-video-modal');
 
-  // Nano Banana Presets & Status
-  const nanoStatusBox = document.getElementById('nano-banana-status');
-  const nanoButtons = document.querySelectorAll('.btn-nano-preset');
-
-  nanoButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const themeKey = btn.getAttribute('data-nano-preset');
-      const themeLabel = btn.textContent.trim();
-      
-      document.documentElement.setAttribute('data-nano-theme', themeKey);
-      
-      if (nanoStatusBox) {
-        nanoStatusBox.innerHTML = `🍌 <strong>Nano Banana 適用完了:</strong> [${themeLabel}] テーマがリアルタイム反映されました！`;
+  // Theme Switcher (Header Toggle)
+  const themeToggleBtn = document.getElementById('btn-theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'cyber-neon') {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggleBtn.innerHTML = '⚡ ネオン (Cyberpunk)';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'cyber-neon');
+        themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
       }
-    });
-  });
-
-  // Visual Feedback Interactive Pinning Logic
-  const feedbackCanvasBox = document.getElementById('feedback-canvas-box');
-  const clearPinsBtn = document.getElementById('btn-clear-pins');
-  let pinCount = 0;
-
-  if (feedbackCanvasBox) {
-    feedbackCanvasBox.addEventListener('click', (e) => {
-      // Don't spawn if clicking inside existing pin or button
-      if (e.target.closest('.feedback-pin-item') || e.target.tagName === 'BUTTON') return;
-
-      const rect = feedbackCanvasBox.getBoundingClientRect();
-      const xPercent = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-      const yPercent = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-
-      const defaultComment = pinCount === 0 ? "Connect this to Google Calendar" : "カレンダー連携ボタンを追加";
-      const userText = prompt("💬 画面フィードバックコメントを入力してください (例: Googleカレンダーと連携してください):", defaultComment);
-
-      if (!userText || !userText.trim()) return;
-
-      pinCount++;
-      const pinItem = document.createElement('div');
-      pinItem.className = 'feedback-pin-item';
-      pinItem.style.left = `${xPercent}%`;
-      pinItem.style.top = `${yPercent}%`;
-
-      pinItem.innerHTML = `
-        <div class="feedback-pin-badge">
-          📌 #${pinCount}: "${escapeHtml(userText.trim())}"
-        </div>
-        <div class="feedback-agent-reply">
-          🤖 Antigravity: 指示を受信しました。修正コードを即座に起草します。
-        </div>
-      `;
-
-      feedbackCanvasBox.appendChild(pinItem);
-    });
-  }
-
-  if (clearPinsBtn) {
-    clearPinsBtn.addEventListener('click', () => {
-      if (!feedbackCanvasBox) return;
-      const pins = feedbackCanvasBox.querySelectorAll('.feedback-pin-item');
-      pins.forEach(pin => pin.remove());
-      pinCount = 0;
-    });
-  }
-
-  function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, function(m) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
     });
   }
 

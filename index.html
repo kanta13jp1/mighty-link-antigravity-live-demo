@@ -28,66 +28,21 @@
         <h1>仕事・コスト・制限に合わせて、最適AIエージェントを選ぶ。</h1>
         <p class="hero-subtitle">主要9エージェントの能力・Visual Feedback・Nano Banana・全料金プラン比較</p>
         <p class="hero-description">
-          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。Antigravityの画面コメントフィードバック（Visual Feedback）機能も直接体験できます。
+          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。
         </p>
       </div>
 
       <!-- Hero Image -->
       <div class="hero-image-wrapper">
-        <img src="assets/workshop-hero.png" alt="AI Agent Learning Hub ヒーロー画像">
+        <img src="assets/agent-workflow-hero.png" alt="社内研修で非エンジニアと開発者が共にAIエージェントの画面を確認している風景">
       </div>
     </header>
 
-    <!-- Section 01: Visual Feedback Mode Simulator -->
-    <section class="studio-section visual-feedback-section">
-      <div class="studio-section-header">
-        <div>
-          <div class="studio-eyebrow">01 / VISUAL FEEDBACK SIMULATOR</div>
-          <h2>💬 Visual Feedback (画面コメント指示)</h2>
-          <p>「画面の特定位置をクリックして直感的に修正指示コメントを残す」機能を体感できます。</p>
-        </div>
-        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity ↗</a>
-      </div>
-
-      <div id="feedback-canvas-box" class="feedback-canvas-box" title="キャンバス上の任意の場所をクリックして修正ピンを追加">
-        <span class="feedback-canvas-hint">📍 キャンバス領域の任意の場所をクリックして、修正指示コメント（例: Connect this to Google Calendar）ピンを追加してください</span>
-      </div>
-
-      <div class="feedback-controls-row">
-        <span style="font-size: 0.85rem; color: #C4B5FD;">🤖 Antigravity エージェントが画面位置指定コメントを自動解析し、コード修正・再生成を行います。</span>
-        <button type="button" id="btn-clear-pins" class="btn-clear-pins">ピン指定をリセット</button>
-      </div>
-    </section>
-
-    <!-- Section 02: Nano Banana AI Asset Simulator -->
-    <section class="studio-section nano-banana-section">
-      <div class="studio-section-header">
-        <div>
-          <div class="studio-eyebrow">02 / NANO BANANA ASSET GENERATOR</div>
-          <h2>🍌 Nano Banana AIアセット・デザインテーマシミュレーター</h2>
-          <p>Antigravityのマルチモデル画像/UIアセット生成モジュール「Nano Banana」によるカラー・デザインの即時調整をシミュレーションします。</p>
-        </div>
-        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity ↗</a>
-      </div>
-
-      <div class="nano-banana-controls">
-        <span style="font-size: 0.88rem; font-weight: 700; color: var(--brand-yellow);">Nano Banana プリセット切替:</span>
-        <button type="button" class="btn-nano-preset" data-nano-preset="banana-gold">🍌 バナナゴールド</button>
-        <button type="button" class="btn-nano-preset" data-nano-preset="cyber-neon">⚡ サイバーネオン</button>
-        <button type="button" class="btn-nano-preset" data-nano-preset="emerald-matrix">エメラルドマトリックス</button>
-        <button type="button" class="btn-nano-preset" data-nano-preset="sunset-flare">🌅 サンセットフレア</button>
-      </div>
-
-      <div id="nano-banana-status" class="nano-banana-status">
-        🍌 <strong>Nano Banana 状態:</strong> プリセットボタンを押すと、Nano Banana がリアルタイムでテーマカラーとアクセントスタイルを動的再適用します。
-      </div>
-    </section>
-
-    <!-- Section 03: Official Video Theater -->
+    <!-- Section 01: Official Video Theater -->
     <section class="studio-section video-theater-section">
       <div class="studio-section-header">
         <div>
-          <div class="studio-eyebrow">03 / OFFICIAL DEMO THEATER</div>
+          <div class="studio-eyebrow">01 / OFFICIAL DEMO THEATER</div>
           <h2>🎥 公式動画・ライブデモシアター</h2>
           <p>開発元公式の製品発表デモやキーノート動画をサイト上で直接視聴・リンク確認できます。</p>
         </div>
@@ -98,7 +53,7 @@
         <!-- 1. Antigravity Video Card -->
         <div class="video-card">
           <div class="video-card-header">
-            <div class="video-title">Google Antigravity</div>
+            <div class="video-title"><img src="assets/icons/antigravity-icon.png" class="agent-icon-img" alt="Antigravity"> Google Antigravity</div>
             <span class="video-tag">公式解説動画</span>
           </div>
           <p class="video-desc">Google Antigravity & Visual Feedback の解説動画 (YouTube: SVCBA-pBgt0)</p>
@@ -108,7 +63,7 @@
         <!-- 2. Claude Code Video Card -->
         <div class="video-card">
           <div class="video-card-header">
-            <div class="video-title">Claude Code</div>
+            <div class="video-title"><img src="assets/icons/claude-code-icon.svg" class="agent-icon-img" alt="Claude Code"> Claude Code</div>
             <span class="video-tag">開発実演デモ</span>
           </div>
           <p class="video-desc">ターミナル自律操作、Git連携、複数ファイルリファクタリングのライブ操作。</p>
@@ -118,7 +73,7 @@
         <!-- 3. Devin Video Card -->
         <div class="video-card">
           <div class="video-card-header">
-            <div class="video-title">Devin (Cognition)</div>
+            <div class="video-title"><img src="assets/icons/devin-icon.svg" class="agent-icon-img" alt="Devin"> Devin (Cognition)</div>
             <span class="video-tag">自律開発デモ</span>
           </div>
           <p class="video-desc">Issueから完全自律でコード変更、シェル実行、ブラウザテストを完遂する実演。</p>
@@ -128,7 +83,7 @@
         <!-- 4. Cursor Agent Video Card -->
         <div class="video-card">
           <div class="video-card-header">
-            <div class="video-title">Cursor Composer</div>
+            <div class="video-title"><img src="assets/icons/cursor-icon.svg" class="agent-icon-img" alt="Cursor"> Cursor Composer</div>
             <span class="video-tag">IDE一括生成</span>
           </div>
           <p class="video-desc">Composerによる複数ファイル跨ぎのコード一括生成と高速補完フロー。</p>
@@ -137,11 +92,11 @@
       </div>
     </section>
 
-    <!-- Section 04: AI Agent Recommender Widget -->
+    <!-- Section 02: AI Agent Recommender Widget -->
     <section class="studio-section recommender-section">
       <div class="studio-section-header">
         <div>
-          <div class="studio-eyebrow">04 / DECISION ENGINE</div>
+          <div class="studio-eyebrow">02 / DECISION ENGINE</div>
           <h2>🎯 リアルタイムAIエージェント診断シミュレーター</h2>
           <p>あなたの課題・コスト選好・重視機能を選ぶと、全9製品から最適なAIエージェントを判定します。</p>
         </div>
@@ -211,9 +166,9 @@
       <div id="limit-warning-toast" class="limit-warning-toast" role="alert" aria-live="assertive"></div>
     </section>
 
-    <!-- Section 05: Product Directory (9 Products) -->
+    <!-- Section 03: Product Directory (9 Products) -->
     <main>
-      <div class="studio-eyebrow" style="margin-bottom: 12px;">05 / PRODUCT DIRECTORY (9 PRODUCTS)</div>
+      <div class="studio-eyebrow" style="margin-bottom: 12px;">03 / PRODUCT DIRECTORY (9 PRODUCTS)</div>
       <div class="product-grid" id="product-grid">
 
         <!-- 1. Codex -->
@@ -221,7 +176,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Codex</h2>
+                <h2 class="product-name"><img src="assets/icons/codex-icon.svg" class="agent-icon-img" alt="Codex"> Codex</h2>
                 <a href="https://developers.openai.com/codex" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
               </div>
               <div class="tag-list">
@@ -263,7 +218,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Claude Code</h2>
+                <h2 class="product-name"><img src="assets/icons/claude-code-icon.svg" class="agent-icon-img" alt="Claude Code"> Claude Code</h2>
                 <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
                 <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
               </div>
@@ -306,7 +261,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Claude Cowork</h2>
+                <h2 class="product-name"><img src="assets/icons/claude-cowork-icon.svg" class="agent-icon-img" alt="Claude Cowork"> Claude Cowork</h2>
                 <a href="https://www.anthropic.com/claude" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
               </div>
               <div class="tag-list">
@@ -348,7 +303,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Kiro</h2>
+                <h2 class="product-name"><img src="assets/icons/kiro-icon.svg" class="agent-icon-img" alt="Kiro"> Kiro</h2>
                 <a href="https://kiro.dev/docs" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
               </div>
               <div class="tag-list">
@@ -390,7 +345,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Antigravity</h2>
+                <h2 class="product-name"><img src="assets/icons/antigravity-icon.png" class="agent-icon-img" alt="Antigravity"> Antigravity</h2>
                 <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link">公式サイト ↗</a>
                 <button type="button" class="btn-watch-video official-video-btn" data-video-title="Google Antigravity 公式動画" data-video-embed="https://www.youtube-nocookie.com/embed/SVCBA-pBgt0" data-video-url="https://www.youtube.com/watch?v=SVCBA-pBgt0">🎬 公式動画再生</button>
               </div>
@@ -433,7 +388,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Devin</h2>
+                <h2 class="product-name"><img src="assets/icons/devin-icon.svg" class="agent-icon-img" alt="Devin"> Devin</h2>
                 <a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
                 <a href="https://cognition.ai/" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
               </div>
@@ -476,7 +431,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Cursor Agent</h2>
+                <h2 class="product-name"><img src="assets/icons/cursor-icon.svg" class="agent-icon-img" alt="Cursor Agent"> Cursor Agent</h2>
                 <a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
                 <a href="https://cursor.com/" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
               </div>
@@ -519,7 +474,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Windsurf</h2>
+                <h2 class="product-name"><img src="assets/icons/windsurf-icon.svg" class="agent-icon-img" alt="Windsurf"> Windsurf</h2>
                 <a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
               </div>
               <div class="tag-list">
@@ -561,7 +516,7 @@
           <div class="card-header">
             <div class="header-left">
               <div class="product-title-row">
-                <h2 class="product-name">Copilot Workspace</h2>
+                <h2 class="product-name"><img src="assets/icons/copilot-icon.svg" class="agent-icon-img" alt="Copilot Workspace"> Copilot Workspace</h2>
                 <a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
               </div>
               <div class="tag-list">
@@ -601,11 +556,11 @@
       </div>
     </main>
 
-    <!-- Section 06: Capability & Pricing Matrix -->
+    <!-- Section 04: Capability & Pricing Matrix -->
     <section class="studio-section matrix-section">
       <div class="matrix-header-row">
         <div class="matrix-header">
-          <div class="studio-eyebrow">06 / CAPABILITY & PRICING MATRIX</div>
+          <div class="studio-eyebrow">04 / CAPABILITY & PRICING MATRIX</div>
           <h2>⚡ 9大AIエージェント機能・全料金・クォータ網羅マトリックス</h2>
           <p>公式ドキュメントリンク・料金プラン（Max/Pro+/Ultra等）・具体的クォータ制限の比較一覧 (2026年要約)</p>
         </div>
@@ -621,15 +576,15 @@
           <thead>
             <tr>
               <th class="col-feature">機能 / 料金・制限</th>
-              <th><a href="https://developers.openai.com/codex" target="_blank" rel="noopener" class="official-doc-link">Codex ↗</a></th>
-              <th><a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link">Claude Code ↗</a></th>
-              <th><a href="https://www.anthropic.com/claude" target="_blank" rel="noopener" class="official-doc-link">Claude Cowork ↗</a></th>
-              <th><a href="https://kiro.dev/docs" target="_blank" rel="noopener" class="official-doc-link">Kiro ↗</a></th>
-              <th><a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link">Antigravity ↗</a></th>
-              <th><a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link">Devin ↗</a></th>
-              <th><a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link">Cursor Agent ↗</a></th>
-              <th><a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="official-doc-link">Windsurf ↗</a></th>
-              <th><a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="official-doc-link">Copilot WS ↗</a></th>
+              <th><a href="https://developers.openai.com/codex" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/codex-icon.svg" class="agent-icon-img" alt="Codex"> Codex ↗</a></th>
+              <th><a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/claude-code-icon.svg" class="agent-icon-img" alt="Claude Code"> Claude Code ↗</a></th>
+              <th><a href="https://www.anthropic.com/claude" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/claude-cowork-icon.svg" class="agent-icon-img" alt="Claude Cowork"> Claude Cowork ↗</a></th>
+              <th><a href="https://kiro.dev/docs" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/kiro-icon.svg" class="agent-icon-img" alt="Kiro"> Kiro ↗</a></th>
+              <th><a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/antigravity-icon.png" class="agent-icon-img" alt="Antigravity"> Antigravity ↗</a></th>
+              <th><a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/devin-icon.svg" class="agent-icon-img" alt="Devin"> Devin ↗</a></th>
+              <th><a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/cursor-icon.svg" class="agent-icon-img" alt="Cursor Agent"> Cursor Agent ↗</a></th>
+              <th><a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/windsurf-icon.svg" class="agent-icon-img" alt="Windsurf"> Windsurf ↗</a></th>
+              <th><a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="official-doc-link"><img src="assets/icons/copilot-icon.svg" class="agent-icon-img" alt="Copilot WS"> Copilot WS ↗</a></th>
             </tr>
           </thead>
           <tbody>

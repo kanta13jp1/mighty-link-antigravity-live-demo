@@ -34,6 +34,6 @@ SYNTHETIC_DATA_ONLY
 
 ## 用語・データ境界
 
-- `Visual Feedback` はGoogle Antigravityが持つ「画面キャプチャ・録画上の位置ピン＆直接コメント修正指示機能」として表示する。
+- 全9製品 (Codex, Claude Code, Claude Cowork, Kiro, Antigravity, Devin, Cursor Agent, Windsurf, Copilot Workspace) の名称横に `assets/icons/` から公式ブランドアイコンを表示する。
 - 全製品の料金・クォータ情報欄および公式動画シアターには, `target="_blank"` で公式リンクを設置する。
-- 画像は `assets/workshop-hero.png` だけを使用する。
+- 画像は `assets/agent-workflow-hero.png` をヒーロー画像として使用する。
