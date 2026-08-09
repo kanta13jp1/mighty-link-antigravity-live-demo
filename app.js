@@ -1,6 +1,6 @@
 /**
- * AI Agent Learning Hub - Finale Edition
- * Real-time Search, CSV/JSON Data Export, AI Recommender & Cyberpunk Theme
+ * AI Agent Learning Hub - Video Theater Edition
+ * Real-time Search, CSV/JSON Data Export, AI Recommender, Official Video Modal & Cyberpunk Theme
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalOverlay = document.getElementById('modal-overlay');
   const modalBodyGrid = document.getElementById('modal-body-grid');
   
+  // Video Modal Elements
+  const videoModalOverlay = document.getElementById('video-modal-overlay');
+  const videoModalTitle = document.getElementById('video-modal-title');
+  const videoFrameContainer = document.getElementById('video-frame-container');
+  const closeVideoModalBtn = document.getElementById('btn-close-video-modal');
+
   // Theme Switcher
   const themeToggleBtn = document.getElementById('btn-theme-toggle');
   if (themeToggleBtn) {
@@ -32,6 +38,47 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
       }
     });
+  }
+
+  // Video Modal Handlers
+  document.querySelectorAll('.btn-watch-video').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const videoTitle = btn.getAttribute('data-video-title') || '公式デモ動画';
+      const videoEmbed = btn.getAttribute('data-video-embed');
+      const directUrl = btn.getAttribute('data-video-url') || btn.getAttribute('href');
+
+      if (videoEmbed && videoModalOverlay) {
+        e.preventDefault();
+        videoModalTitle.textContent = `▶ ${videoTitle}`;
+        videoFrameContainer.innerHTML = `
+          <div class="video-player-container">
+            <iframe src="${videoEmbed}" title="${videoTitle}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div style="margin-top: 12px; text-align: center;">
+            <a href="${directUrl}" target="_blank" rel="noopener" class="official-doc-link" style="font-size: 0.9rem; padding: 6px 16px;">公式サイトで見る ↗</a>
+          </div>
+        `;
+        videoModalOverlay.classList.add('show');
+        videoModalOverlay.setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+
+  if (closeVideoModalBtn) {
+    closeVideoModalBtn.addEventListener('click', closeVideoModal);
+  }
+
+  if (videoModalOverlay) {
+    videoModalOverlay.addEventListener('click', (e) => {
+      if (e.target === videoModalOverlay) closeVideoModal();
+    });
+  }
+
+  function closeVideoModal() {
+    if (!videoModalOverlay) return;
+    videoModalOverlay.classList.remove('show');
+    videoModalOverlay.setAttribute('aria-hidden', 'true');
+    if (videoFrameContainer) videoFrameContainer.innerHTML = '';
   }
 
   // 1. Real-time Search & Filter Combination
@@ -94,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (exportCsvBtn) {
     exportCsvBtn.addEventListener('click', () => {
       const data = getProductsData();
-      let csvContent = '\uFEFF'; // UTF-8 BOM
+      let csvContent = '\uFEFF';
       csvContent += '製品名,タグ,向いている仕事,主な機能,全料金プラン (2026),クォータ・制限詳細,最初に試すこと,公式ドキュメントURL\n';
 
       data.forEach(p => {
@@ -304,8 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('show')) {
-      closeModal();
+    if (e.key === 'Escape') {
+      if (modalOverlay && modalOverlay.classList.contains('show')) closeModal();
+      if (videoModalOverlay && videoModalOverlay.classList.contains('show')) closeVideoModal();
     }
   });
 

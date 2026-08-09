@@ -1,4 +1,4 @@
-/* AI Agent Learning Hub - Refined Stylesheet (Finale Edition with Search & Export) */
+/* AI Agent Learning Hub - Refined Stylesheet (Official Video Theater Edition) */
 :root {
   --bg-page: #0F172A;
   --bg-header: linear-gradient(135deg, #0B2545 0%, #00A5E3 100%);
@@ -11,6 +11,7 @@
   --brand-green: #10B981;
   --brand-purple: #8B5CF6;
   --brand-pink: #EC4899;
+  --brand-red: #EF4444;
   --brand-white: #FFFFFF;
   --text-dark: #0F172A;
   
@@ -38,6 +39,7 @@
   --brand-green: #00FF66;
   --brand-purple: #B026FF;
   --brand-pink: #FF00AA;
+  --brand-red: #FF3366;
   
   --border-color: #1E3A8A;
   --border-highlight: #00F0FF;
@@ -180,6 +182,113 @@ body {
   max-height: 320px;
   object-fit: cover;
   display: block;
+}
+
+/* Official Video Theater Section */
+.video-theater-section {
+  background-color: var(--bg-card);
+  border: 1px solid var(--brand-red);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(239, 68, 68, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.video-theater-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.video-theater-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.video-theater-header p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.video-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.video-card {
+  background-color: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.video-card:hover {
+  border-color: var(--brand-red);
+  transform: translateY(-2px);
+}
+
+.video-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.video-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brand-white);
+}
+
+.video-tag {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--brand-red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.video-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.btn-watch-video {
+  background-color: var(--brand-red);
+  color: var(--brand-white);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-watch-video:hover {
+  background-color: #DC2626;
+  color: var(--brand-white);
 }
 
 /* AI Agent Recommender Widget */
@@ -486,6 +595,25 @@ body {
   color: var(--text-dark);
 }
 
+.official-video-btn {
+  color: var(--brand-red);
+  font-size: 0.78rem;
+  text-decoration: none;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.official-video-btn:hover {
+  background: var(--brand-red);
+  color: var(--brand-white);
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -568,7 +696,7 @@ body {
   font-size: 0.86rem;
 }
 
-/* Capability & Cost Matrix Section (9 Products & Export Buttons) */
+/* Capability & Cost Matrix Section (9 Products & Export) */
 .matrix-section {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -797,7 +925,7 @@ body {
   padding: 6px;
 }
 
-/* Modal Dialog */
+/* Modal Dialog (Comparison & Video) */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -881,6 +1009,26 @@ body {
   color: var(--brand-blue);
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 8px;
+}
+
+/* Video Player Container Inside Modal */
+.video-player-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+.video-player-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* Footer */
@@ -981,6 +1129,10 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
   }
 
   .modal-body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .video-card-grid {
     grid-template-columns: 1fr;
   }
 }

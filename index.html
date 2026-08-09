@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式リンク完全比較</title>
+  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式動画デモ・リンク完全比較</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -25,9 +25,9 @@
 
       <div class="hero-content">
         <h1>仕事・コスト・制限に合わせて、最適AIエージェントを選ぶ。</h1>
-        <p class="hero-subtitle">AI Agent Learning Hub (主要9エージェント・全料金・公式リンク完全網羅)</p>
+        <p class="hero-subtitle">AI Agent Learning Hub (主要9エージェント・公式動画・全料金・公式リンク完全網羅)</p>
         <p class="hero-description">
-          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンクから読み比べる研修用サンプルです。仕事の目的に応じて製品を選び、指示・Skill・MCP・人間の確認を組み合わせて活用する流れを学べます。
+          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。仕事の目的に応じて製品を選び、指示・Skill・MCP・人間の確認を組み合わせて活用する流れを学べます。
         </p>
       </div>
 
@@ -37,7 +37,60 @@
       </div>
     </header>
 
-    <!-- AI Agent Recommender Widget (Finale Edition) -->
+    <!-- Official Video Theater Section (New Feature) -->
+    <section class="video-theater-section">
+      <div class="video-theater-header">
+        <div>
+          <h2>🎥 公式動画・ライブデモシアター</h2>
+          <p>開発元公式の製品発表デモやキーノート動画をサイト上で直接視聴・リンク確認できます。</p>
+        </div>
+        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity 公式サイト ↗</a>
+      </div>
+
+      <div class="video-card-grid">
+        <!-- 1. Antigravity Video Card -->
+        <div class="video-card">
+          <div class="video-card-header">
+            <div class="video-title">Google Antigravity</div>
+            <span class="video-tag">公式ローンチデモ</span>
+          </div>
+          <p class="video-desc">Agentic Platform の実演、ブラウザ自律検証、Artifact計画フローの全貌。</p>
+          <button type="button" class="btn-watch-video" data-video-title="Google Antigravity 公式ローンチデモ" data-video-embed="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" data-video-url="https://antigravity.google/">▶ 公式デモを再生</button>
+        </div>
+
+        <!-- 2. Claude Code Video Card -->
+        <div class="video-card">
+          <div class="video-card-header">
+            <div class="video-title">Claude Code</div>
+            <span class="video-tag">開発実演デモ</span>
+          </div>
+          <p class="video-desc">ターミナル自律操作、Git連携、複数ファイルリファクタリングのライブ操作。</p>
+          <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="btn-watch-video">▶ 公式実演動画を見る ↗</a>
+        </div>
+
+        <!-- 3. Devin Video Card -->
+        <div class="video-card">
+          <div class="video-card-header">
+            <div class="video-title">Devin (Cognition)</div>
+            <span class="video-tag">自律開発デモ</span>
+          </div>
+          <p class="video-desc">Issueから完全自律でコード変更、シェル実行、ブラウザテストを完遂する実演。</p>
+          <a href="https://cognition.ai/" target="_blank" rel="noopener" class="btn-watch-video">▶ 公式自律デモを見る ↗</a>
+        </div>
+
+        <!-- 4. Cursor Agent Video Card -->
+        <div class="video-card">
+          <div class="video-card-header">
+            <div class="video-title">Cursor Composer</div>
+            <span class="video-tag">IDE一括生成</span>
+          </div>
+          <p class="video-desc">Composerによる複数ファイル跨ぎのコード一括生成と高速補完フロー。</p>
+          <a href="https://cursor.com/" target="_blank" rel="noopener" class="btn-watch-video">▶ 公式Composerデモを見る ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Agent Recommender Widget -->
     <section class="recommender-section">
       <div class="recommender-header">
         <h2>🎯 リアルタイムAIエージェント診断シミュレーター</h2>
@@ -84,7 +137,7 @@
     <section class="controls-wrapper">
       <div class="search-and-filters">
         <div class="search-box">
-          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: 制限, 補完, Issue, Artifact)..." aria-label="リアルタイムキーワード検索">
+          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: 制限, 補完, Issue, Artifact, 動画)..." aria-label="リアルタイムキーワード検索">
         </div>
 
         <div class="filter-group" role="toolbar" aria-label="製品フィルター">
@@ -161,6 +214,7 @@
               <div class="product-title-row">
                 <h2 class="product-name">Claude Code</h2>
                 <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
+                <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
               </div>
               <div class="tag-list">
                 <span class="tag-badge">開発</span>
@@ -286,7 +340,8 @@
             <div class="header-left">
               <div class="product-title-row">
                 <h2 class="product-name">Antigravity</h2>
-                <a href="https://antigravity.google/docs" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
+                <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link">公式サイト ↗</a>
+                <button type="button" class="btn-watch-video official-video-btn" data-video-title="Google Antigravity 公式デモ" data-video-embed="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" data-video-url="https://antigravity.google/">🎬 公式動画</button>
               </div>
               <div class="tag-list">
                 <span class="tag-badge">開発</span>
@@ -329,6 +384,7 @@
               <div class="product-title-row">
                 <h2 class="product-name">Devin</h2>
                 <a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
+                <a href="https://cognition.ai/" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
               </div>
               <div class="tag-list">
                 <span class="tag-badge">開発</span>
@@ -371,6 +427,7 @@
               <div class="product-title-row">
                 <h2 class="product-name">Cursor Agent</h2>
                 <a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
+                <a href="https://cursor.com/" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
               </div>
               <div class="tag-list">
                 <span class="tag-badge">開発</span>
@@ -516,7 +573,7 @@
               <th><a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link">Claude Code ↗</a></th>
               <th><a href="https://www.anthropic.com/claude" target="_blank" rel="noopener" class="official-doc-link">Claude Cowork ↗</a></th>
               <th><a href="https://kiro.dev/docs" target="_blank" rel="noopener" class="official-doc-link">Kiro ↗</a></th>
-              <th><a href="https://antigravity.google/docs" target="_blank" rel="noopener" class="official-doc-link">Antigravity ↗</a></th>
+              <th><a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link">Antigravity ↗</a></th>
               <th><a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link">Devin ↗</a></th>
               <th><a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link">Cursor Agent ↗</a></th>
               <th><a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="official-doc-link">Windsurf ↗</a></th>
@@ -653,6 +710,19 @@
           <button type="button" id="btn-close-modal" class="btn-close-modal" aria-label="閉じる">&times;</button>
         </div>
         <div id="modal-body-grid" class="modal-body-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Dialog for Official Video Player -->
+    <div id="video-modal-overlay" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-box" style="max-width: 800px;">
+        <div class="modal-header">
+          <h3 id="video-modal-title">▶ 公式動画再生</h3>
+          <button type="button" id="btn-close-video-modal" class="btn-close-modal" aria-label="閉じる">&times;</button>
+        </div>
+        <div id="video-frame-container" style="padding: 10px 0;">
           <!-- Dynamically populated by app.js -->
         </div>
       </div>
