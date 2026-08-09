@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <!-- Interactive Controls (Filters & Toast) -->
+    <!-- Controls (Filter Toolbar & Toast Alert) -->
     <section class="controls-wrapper">
       <div class="filter-group" role="toolbar" aria-label="製品フィルター">
         <span class="filter-label">用途で絞り込み:</span>
@@ -206,14 +206,98 @@
       </div>
     </main>
 
-    <!-- Sticky Bottom Comparison Summary Bar (aria-live="polite") -->
+    <!-- Interactive Capability Matrix (Added for High-Impact Polish) -->
+    <section class="matrix-section">
+      <div class="matrix-header">
+        <h2>⚡ 5大AIエージェント機能網羅マトリックス (Capability Matrix)</h2>
+        <p>指示定義・Skill拡張・MCP連携・サブエージェント・視覚検証機能の搭載状況一覧</p>
+      </div>
+
+      <div class="table-responsive-wrapper">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th class="col-feature">機能 / 仕様項目</th>
+              <th>Codex</th>
+              <th>Claude Code</th>
+              <th>Claude Cowork</th>
+              <th>Kiro</th>
+              <th>Antigravity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-feature">指示ファイル / コンテキスト定義</td>
+              <td>AGENTS.md</td>
+              <td>CLAUDE.md</td>
+              <td>Projects</td>
+              <td>Steering</td>
+              <td>Rules</td>
+            </tr>
+            <tr>
+              <td class="cell-feature">Agent Skills / プラグイン拡張</td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+            <tr>
+              <td class="cell-feature">MCP (Model Context Protocol) 連携</td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓ (Connectors)</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+            <tr>
+              <td class="cell-feature">並列サブエージェント (Subagents)</td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓ (Powers)</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+            <tr>
+              <td class="cell-feature">リアルタイム Artifact プレビュー</td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+            <tr>
+              <td class="cell-feature">ブラウザ自律検証 / 自動表示</td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+            <tr>
+              <td class="cell-feature">サンドボックス / 実行承認ルール</td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓ (Hooks)</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓ (Hooks)</span></td>
+              <td><span class="check-icon">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Sticky Bottom Comparison Summary Bar -->
     <aside id="comparison-summary" class="comparison-bar" aria-live="polite" aria-label="選択製品の比較サマリー">
       <div class="summary-header">
         <div class="summary-title">
           <span>⚖️ 比較サマリー</span>
           <span id="summary-count-badge" class="summary-count-badge">0 / 2</span>
         </div>
-        <button type="button" id="btn-clear-selection" class="btn-clear-selection" style="display: none;">選択をクリア</button>
+        <div class="summary-actions">
+          <button type="button" id="btn-open-modal" class="btn-open-modal">詳しく比べる 🔍</button>
+          <button type="button" id="btn-clear-selection" class="btn-clear-selection" style="display: none;">選択をクリア</button>
+        </div>
       </div>
 
       <div id="summary-content-box" class="summary-content">
@@ -222,6 +306,19 @@
         </div>
       </div>
     </aside>
+
+    <!-- Modal Dialog for Detailed Side-by-Side Comparison -->
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>選択製品の詳細比較</h3>
+          <button type="button" id="btn-close-modal" class="btn-close-modal" aria-label="閉じる">&times;</button>
+        </div>
+        <div id="modal-body-grid" class="modal-body-grid">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer>

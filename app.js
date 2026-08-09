@@ -1,24 +1,23 @@
 /**
  * AI Agent Learning Hub - Application Logic
- * Interactive Filtering, Product Comparison (Max 2), & Accessibility
+ * Interactive Filtering, Product Comparison (Max 2), Capability Matrix & Modal Dialog
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
-  const selectedProductIds = setOfSelectedProducts();
+  const selectedProductIds = new Set();
 
   // DOM Elements
   const filterButtons = document.querySelectorAll('.btn-filter');
   const productCards = document.querySelectorAll('.product-card');
   const compareButtons = document.querySelectorAll('.btn-compare');
-  const summaryPanel = document.getElementById('comparison-summary');
   const summaryCountBadge = document.getElementById('summary-count-badge');
   const summaryContentBox = document.getElementById('summary-content-box');
   const limitToast = document.getElementById('limit-warning-toast');
   const clearSelectionBtn = document.getElementById('btn-clear-selection');
-
-  function setOfSelectedProducts() {
-    return new Set();
-  }
+  const openModalBtn = document.getElementById('btn-open-modal');
+  const closeModalBtn = document.getElementById('btn-close-modal');
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalBodyGrid = document.getElementById('modal-body-grid');
 
   // -------------------------------------------------------------
   // 1. Filtering Logic
@@ -27,11 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const selectedCategory = btn.getAttribute('data-filter');
       
-      // Update aria-pressed states on filter buttons
       filterButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
       btn.setAttribute('aria-pressed', 'true');
 
-      // Filter product cards based on data-tags attribute
       productCards.forEach(card => {
         const cardTags = card.getAttribute('data-tags') || '';
         if (selectedCategory === 'すべて' || cardTags.includes(selectedCategory)) {
@@ -53,20 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const productId = card.id;
 
       if (selectedProductIds.has(productId)) {
-        // Deselect Product
         selectedProductIds.delete(productId);
         btn.setAttribute('aria-pressed', 'false');
         btn.textContent = '比較に追加';
         card.classList.remove('selected');
         hideToast();
       } else {
-        // Check Max Selection Limit
         if (selectedProductIds.size >= MAX_SELECTION) {
           showToast('比較できる製品は最大2件までです。1件解除してください。');
           return;
         }
 
-        // Select Product
         selectedProductIds.add(productId);
         btn.setAttribute('aria-pressed', 'true');
         btn.textContent = '選択中 (追加済み)';
@@ -93,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 3. Comparison Summary Panel Update (aria-live="polite")
+  // 3. Comparison Summary Panel Update
   // -------------------------------------------------------------
   function updateSummaryPanel() {
     const count = selectedProductIds.size;
@@ -106,10 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
       if (clearSelectionBtn) clearSelectionBtn.style.display = 'none';
+      if (openModalBtn) openModalBtn.style.display = 'none';
       return;
     }
 
     if (clearSelectionBtn) clearSelectionBtn.style.display = 'inline-block';
+    if (openModalBtn) openModalBtn.style.display = 'inline-block';
 
     let htmlContent = '';
     selectedProductIds.forEach(id => {
@@ -129,24 +125,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 4. Toast Notification Helpers
+  // 4. Modal Dialog Logic
   // -------------------------------------------------------------
-  let toastTimer = null;
+  if (openModalBtn) {
+    openModalBtn.addEventListener('click', () => {
+      renderModalContent();
+      modalOverlay.classList.add('show');
+      modalOverlay.setAttribute('aria-hidden', 'false');
+    });
+  }
 
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+  }
+
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('show')) {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove('show');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+  }
+
+  function renderModalContent() {
+    if (!modalBodyGrid) return;
+    let html = '';
+
+    selectedProductIds.forEach(id => {
+      const card = document.getElementById(id);
+      const name = card.querySelector('.product-name').textContent.trim();
+      const work = card.querySelector('.card-text-work').textContent.trim();
+      const features = card.querySelectorAll('.card-text')[1].textContent.trim();
+      const firstTry = card.querySelectorAll('.card-text')[2].textContent.trim();
+
+      html += `
+        <div class="modal-col">
+          <h4>${name}</h4>
+          <div><strong>🎯 向いている仕事:</strong><p>${work}</p></div>
+          <div><strong>⚙️ 主な機能:</strong><p>${features}</p></div>
+          <div><strong>🚀 最初に試すこと:</strong><p>${firstTry}</p></div>
+        </div>
+      `;
+    });
+
+    modalBodyGrid.innerHTML = html;
+  }
+
+  // Toast Helpers
+  let toastTimer = null;
   function showToast(message) {
     if (!limitToast) return;
     limitToast.textContent = `⚠️ ${message}`;
     limitToast.classList.add('show');
-
     if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      hideToast();
-    }, 4000);
+    toastTimer = setTimeout(hideToast, 4000);
   }
 
   function hideToast() {
     if (!limitToast) return;
     limitToast.classList.remove('show');
   }
-
 });
