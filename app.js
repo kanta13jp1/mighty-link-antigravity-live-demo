@@ -1,6 +1,6 @@
 /**
- * AI Agent Learning Hub - Nano Banana Edition
- * Real-time Search, CSV/JSON Data Export, AI Recommender, Official Video Modal & Nano Banana Presets
+ * AI Agent Learning Hub - Visual Feedback Edition
+ * Real-time Search, CSV/JSON Data Export, AI Recommender, Official Video Modal, Nano Banana & Visual Feedback
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
@@ -41,6 +41,59 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Visual Feedback Interactive Pinning Logic
+  const feedbackCanvasBox = document.getElementById('feedback-canvas-box');
+  const clearPinsBtn = document.getElementById('btn-clear-pins');
+  let pinCount = 0;
+
+  if (feedbackCanvasBox) {
+    feedbackCanvasBox.addEventListener('click', (e) => {
+      // Don't spawn if clicking inside existing pin or button
+      if (e.target.closest('.feedback-pin-item') || e.target.tagName === 'BUTTON') return;
+
+      const rect = feedbackCanvasBox.getBoundingClientRect();
+      const xPercent = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const yPercent = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+
+      const defaultComment = pinCount === 0 ? "Connect this to Google Calendar" : "カレンダー連携ボタンを追加";
+      const userText = prompt("💬 画面フィードバックコメントを入力してください (例: Googleカレンダーと連携してください):", defaultComment);
+
+      if (!userText || !userText.trim()) return;
+
+      pinCount++;
+      const pinItem = document.createElement('div');
+      pinItem.className = 'feedback-pin-item';
+      pinItem.style.left = `${xPercent}%`;
+      pinItem.style.top = `${yPercent}%`;
+
+      pinItem.innerHTML = `
+        <div class="feedback-pin-badge">
+          📌 #${pinCount}: "${escapeHtml(userText.trim())}"
+        </div>
+        <div class="feedback-agent-reply">
+          🤖 Antigravity: 指示を受信しました。修正コードを即座に起草します。
+        </div>
+      `;
+
+      feedbackCanvasBox.appendChild(pinItem);
+    });
+  }
+
+  if (clearPinsBtn) {
+    clearPinsBtn.addEventListener('click', () => {
+      if (!feedbackCanvasBox) return;
+      const pins = feedbackCanvasBox.querySelectorAll('.feedback-pin-item');
+      pins.forEach(pin => pin.remove());
+      pinCount = 0;
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, function(m) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+    });
+  }
 
   // Theme Switcher (Header Toggle)
   const themeToggleBtn = document.getElementById('btn-theme-toggle');
@@ -213,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let recId = 'product-antigravity';
     let matchScore = '98%';
-    let matchReason = 'ブラウザ自律検証、計画Artifacts、Nano Banana画像アセット生成機能の利用に最適です。';
+    let matchReason = 'ブラウザ自律検証、Visual Feedback画面コメント指示、計画Artifacts、Nano Banana画像アセット生成機能に最適です。';
 
     if (workVal === 'knowledge') {
       recId = 'product-claude-cowork';
@@ -226,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (featVal === 'browser') {
       recId = 'product-antigravity';
       matchScore = '99%';
-      matchReason = '計画Artifactsの生成からブラウザ自律表示・視覚検証までのWeb構築に最も適しています。';
+      matchReason = 'Visual Feedback指示とブラウザ自律表示・視覚検証までのWeb構築に最も適しています。';
     } else if (workVal === 'autonomous') {
       recId = 'product-devin';
       matchScore = '97%';

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式動画デモ・Nano Banana連携</title>
+  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式動画デモ・Visual Feedback</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -25,9 +25,9 @@
 
       <div class="hero-content">
         <h1>仕事・コスト・制限に合わせて、最適AIエージェントを選ぶ。</h1>
-        <p class="hero-subtitle">AI Agent Learning Hub (主要9エージェント・Nano Banana連携・公式動画・全料金・公式リンク)</p>
+        <p class="hero-subtitle">AI Agent Learning Hub (主要9エージェント・Visual Feedback・Nano Banana・公式動画)</p>
         <p class="hero-description">
-          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。AntigravityのマルチモデルUI/画像生成モジュール「Nano Banana」によるデザインテーマ調整も体験できます。
+          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。Antigravityの画面コメントフィードバック（Visual Feedback）機能も直接体験できます。
         </p>
       </div>
 
@@ -37,7 +37,27 @@
       </div>
     </header>
 
-    <!-- Nano Banana AI Asset Simulator Section (New Feature) -->
+    <!-- Visual Feedback Mode Simulator Section (New Feature) -->
+    <section class="visual-feedback-section">
+      <div class="feedback-header">
+        <div>
+          <h2>💬 Visual Feedback (画面コメント指示) シミュレーター</h2>
+          <p>動画で紹介されている「ブラウザ画面の特定位置をクリックして直感的に修正指示コメントを残す」機能を体感できます。</p>
+        </div>
+        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity ↗</a>
+      </div>
+
+      <div id="feedback-canvas-box" class="feedback-canvas-box" title="キャンバス上の任意の場所をクリックして修正ピンを追加">
+        <span class="feedback-canvas-hint">📍 キャンバス領域の任意の場所をクリックして、修正指示コメント（例: Connect this to Google Calendar）ピンを追加してください</span>
+      </div>
+
+      <div class="feedback-controls-row">
+        <span style="font-size: 0.85rem; color: #C4B5FD;">🤖 Antigravity エージェントが画面録画・位置指定コメントを自動解析し、コード修正・再生成を行います。</span>
+        <button type="button" id="btn-clear-pins" class="btn-clear-pins">ピン指定をリセット</button>
+      </div>
+    </section>
+
+    <!-- Nano Banana AI Asset Simulator Section -->
     <section class="nano-banana-section">
       <div class="nano-banana-header">
         <div>
@@ -77,7 +97,7 @@
             <div class="video-title">Google Antigravity</div>
             <span class="video-tag">公式解説動画</span>
           </div>
-          <p class="video-desc">Google Antigravity & Nano Banana の解説・デモ動画 (YouTube: SVCBA-pBgt0)</p>
+          <p class="video-desc">Google Antigravity & Visual Feedback の解説動画 (YouTube: SVCBA-pBgt0)</p>
           <button type="button" class="btn-watch-video" data-video-title="Google Antigravity 公式動画" data-video-embed="https://www.youtube-nocookie.com/embed/SVCBA-pBgt0" data-video-url="https://www.youtube.com/watch?v=SVCBA-pBgt0">▶ サイト上で動画再生</button>
         </div>
 
@@ -124,7 +144,7 @@
         <div class="recommender-field">
           <label for="rec-work">1. 主な用途・仕事</label>
           <select id="rec-work" class="recommender-select">
-            <option value="web">Web開発・Artifact計画＆ブラウザ自律検証</option>
+            <option value="web">Web開発・Visual Feedback＆ブラウザ自律検証</option>
             <option value="multi">マルチファイル一括生成・コード編集</option>
             <option value="spec">要件定義・設計分解からの仕様駆動開発</option>
             <option value="autonomous">GitHub Issue指定による完全自律修正</option>
@@ -145,7 +165,7 @@
         <div class="recommender-field">
           <label for="rec-feature">3. 重視する決定機能</label>
           <select id="rec-feature" class="recommender-select">
-            <option value="browser">ブラウザ自動表示 ＆ リアルタイムArtifact</option>
+            <option value="browser">画面コメント指示 ＆ リアルタイムArtifact</option>
             <option value="ide">IDE統合Fast Tab補完 ＆ Composer</option>
             <option value="github">GitHub Issue-to-PR 直結フロー</option>
             <option value="fast">Cascadeフロー超高速リファクタリング</option>
@@ -160,7 +180,7 @@
     <section class="controls-wrapper">
       <div class="search-and-filters">
         <div class="search-box">
-          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: Banana, 制限, 補完, Issue, Artifact, 動画)..." aria-label="リアルタイムキーワード検索">
+          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: Feedback, Comment, Banana, 制限, 補完)..." aria-label="リアルタイムキーワード検索">
         </div>
 
         <div class="filter-group" role="toolbar" aria-label="製品フィルター">
@@ -357,7 +377,7 @@
           </div>
         </article>
 
-        <!-- 5. Antigravity (Updated with Nano Banana in features) -->
+        <!-- 5. Antigravity (Updated with Visual Feedback in features) -->
         <article class="product-card" id="product-antigravity" data-tags="開発, 計画・自動化">
           <div class="card-header">
             <div class="header-left">
@@ -381,7 +401,7 @@
 
           <div class="card-section">
             <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Artifacts、Planning、Browser、Rules、Skills、MCP、Nano Banana</p>
+            <p class="card-text">Artifacts、Planning、Browser、Rules、Skills、MCP、Visual Feedback、Nano Banana</p>
           </div>
 
           <div class="card-section">
@@ -677,10 +697,10 @@
               <td><span class="check-icon">✓ (Workspace)</span></td>
             </tr>
             <tr>
-              <td class="cell-feature">リアルタイム Artifact プレビュー</td>
+              <td class="cell-feature">画面直接フィードバック指示 (Visual Feedback)</td>
               <td><span class="dash-icon">-</span></td>
               <td><span class="dash-icon">-</span></td>
-              <td><span class="check-icon">✓</span></td>
+              <td><span class="dash-icon">-</span></td>
               <td><span class="dash-icon">-</span></td>
               <td><span class="check-icon">✓</span></td>
               <td><span class="dash-icon">-</span></td>

@@ -1,4 +1,4 @@
-/* AI Agent Learning Hub - Refined Stylesheet (Nano Banana Edition) */
+/* AI Agent Learning Hub - Refined Stylesheet (Visual Feedback Edition) */
 :root {
   --bg-page: #0F172A;
   --bg-header: linear-gradient(135deg, #0B2545 0%, #00A5E3 100%);
@@ -199,7 +199,126 @@ body {
   display: block;
 }
 
-/* Nano Banana Section (New Feature) */
+/* Visual Feedback Mode Section (New Feature) */
+.visual-feedback-section {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 2px solid var(--brand-purple);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.feedback-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #DDD6FE;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feedback-header p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.feedback-canvas-box {
+  background-color: rgba(15, 23, 42, 0.8);
+  border: 2px dashed var(--brand-purple);
+  border-radius: 14px;
+  padding: 24px;
+  min-height: 240px;
+  position: relative;
+  cursor: crosshair;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.feedback-canvas-hint {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #C4B5FD;
+  background: rgba(139, 92, 246, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  pointer-events: none;
+}
+
+.feedback-pin-item {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transform: translate(-50%, -50%);
+}
+
+.feedback-pin-badge {
+  background-color: var(--brand-purple);
+  color: var(--brand-white);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.feedback-agent-reply {
+  background-color: rgba(16, 185, 129, 0.95);
+  color: #042F2E;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  max-width: 280px;
+}
+
+.feedback-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-clear-pins {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.btn-clear-pins:hover {
+  color: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+/* Nano Banana Section */
 .nano-banana-section {
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(15, 23, 42, 0.95) 100%);
   border: 2px solid var(--brand-yellow);
