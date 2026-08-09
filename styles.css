@@ -1,4 +1,4 @@
-/* AI Agent Learning Hub - Refined Stylesheet (9 Products, Links, Exhaustive Pricing & Quotas) */
+/* AI Agent Learning Hub - Refined Stylesheet (Finale Edition with Neon Theme & AI Recommender) */
 :root {
   --bg-page: #0F172A;
   --bg-header: linear-gradient(135deg, #0B2545 0%, #00A5E3 100%);
@@ -25,6 +25,29 @@
   --shadow-hover: 0 8px 24px rgba(0, 165, 227, 0.25);
 }
 
+/* Neon Cyberpunk Theme */
+[data-theme="neon"] {
+  --bg-page: #050B14;
+  --bg-header: linear-gradient(135deg, #0F051D 0%, #00F0FF 100%);
+  --bg-card: #0A1224;
+  --bg-card-hover: #121F3D;
+  --bg-panel: #0A1224;
+  
+  --brand-blue: #00F0FF;
+  --brand-orange: #FF007F;
+  --brand-green: #00FF66;
+  --brand-purple: #B026FF;
+  --brand-pink: #FF00AA;
+  
+  --border-color: #1E3A8A;
+  --border-highlight: #00F0FF;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0F2FE;
+  --shadow-card: 0 4px 20px rgba(0, 240, 255, 0.15);
+  --shadow-hover: 0 8px 30px rgba(0, 240, 255, 0.4);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -39,6 +62,7 @@ body {
   padding: 20px;
   padding-bottom: 140px;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .site-container {
@@ -60,6 +84,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  position: relative;
+}
+
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .notice-banner {
@@ -86,6 +119,26 @@ body {
   padding: 4px 10px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-theme-toggle {
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--brand-blue);
+  border: 1px solid var(--brand-blue);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-theme-toggle:hover {
+  background: var(--brand-blue);
+  color: var(--text-dark);
 }
 
 .hero-content h1 {
@@ -127,6 +180,108 @@ body {
   max-height: 320px;
   object-fit: cover;
   display: block;
+}
+
+/* AI Agent Recommender Widget (Finale High-Impact Addition) */
+.recommender-section {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 2px solid var(--brand-blue);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(0, 165, 227, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recommender-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recommender-header p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.recommender-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.recommender-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recommender-field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+}
+
+.recommender-select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.recommender-select:focus {
+  border-color: var(--brand-blue);
+}
+
+.recommender-result {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid var(--brand-green);
+  border-radius: 12px;
+  padding: 16px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.recommender-result.show {
+  display: flex;
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--brand-white);
+}
+
+.result-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.match-badge {
+  background-color: var(--brand-green);
+  color: var(--brand-white);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.95rem;
 }
 
 /* Control Bar (Filter Buttons) */
@@ -251,6 +406,11 @@ body {
   background-color: rgba(16, 185, 129, 0.05);
 }
 
+.product-card.recommended-highlight {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.4);
+}
+
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -295,7 +455,7 @@ body {
 
 .official-doc-link:hover {
   background: var(--brand-blue);
-  color: var(--brand-white);
+  color: var(--text-dark);
 }
 
 .tag-list {
@@ -330,7 +490,7 @@ body {
 
 .btn-compare:hover {
   background-color: var(--brand-blue);
-  color: var(--brand-white);
+  color: var(--text-dark);
 }
 
 .btn-compare[aria-pressed="true"] {
@@ -509,21 +669,21 @@ body {
 
 .summary-count-badge {
   background-color: var(--brand-blue);
-  color: var(--brand-white);
+  color: var(--text-dark);
   padding: 2px 10px;
   border-radius: 12px;
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .btn-open-modal {
   background-color: var(--brand-blue);
-  color: var(--brand-white);
+  color: var(--text-dark);
   border: none;
   padding: 6px 14px;
   border-radius: 6px;
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   display: none;
 }
@@ -682,7 +842,7 @@ footer {
 }
 
 /* Accessibility Focus States */
-button:focus-visible, a:focus-visible {
+button:focus-visible, a:focus-visible, select:focus-visible {
   outline: 2px solid var(--brand-blue);
   outline-offset: 2px;
 }

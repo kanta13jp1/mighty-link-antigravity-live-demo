@@ -1,5 +1,5 @@
 /**
- * AI Agent Learning Hub - Application Logic (9 Products, Exhaustive Pricing & Quotas)
+ * AI Agent Learning Hub - Finale Edition (9 Products, Theme Toggle, Recommender Widget)
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
@@ -16,6 +16,94 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeModalBtn = document.getElementById('btn-close-modal');
   const modalOverlay = document.getElementById('modal-overlay');
   const modalBodyGrid = document.getElementById('modal-body-grid');
+  
+  // Theme Switcher
+  const themeToggleBtn = document.getElementById('btn-theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'neon') {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggleBtn.innerHTML = '⚡ ネオン (Cyberpunk)';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'neon');
+        themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
+      }
+    });
+  }
+
+  // AI Recommender Logic
+  const recWork = document.getElementById('rec-work');
+  const recCost = document.getElementById('rec-cost');
+  const recFeature = document.getElementById('rec-feature');
+  const recommenderResult = document.getElementById('recommender-result');
+
+  function calculateRecommendation() {
+    if (!recWork || !recCost || !recFeature || !recommenderResult) return;
+    
+    const workVal = recWork.value;
+    const costVal = recCost.value;
+    const featVal = recFeature.value;
+
+    let recId = 'product-antigravity';
+    let matchScore = '98%';
+    let matchReason = 'ブラウザ自律検証、計画Artifacts、高度な統合開発環境を必要とする場合に最適です。';
+
+    if (workVal === 'knowledge') {
+      recId = 'product-claude-cowork';
+      matchScore = '96%';
+      matchReason = 'ナレッジワーク、定例レポート、チームでのデータ・資料整理に最適です。';
+    } else if (featVal === 'github') {
+      recId = 'product-copilot-workspace';
+      matchScore = '95%';
+      matchReason = 'GitHub Issueからの仕様策定・タスク分解・自動PR起草フローに最適です。';
+    } else if (featVal === 'browser') {
+      recId = 'product-antigravity';
+      matchScore = '99%';
+      matchReason = '計画Artifactsの生成からブラウザ自律表示・視覚検証までのWeb構築に最も適しています。';
+    } else if (workVal === 'autonomous') {
+      recId = 'product-devin';
+      matchScore = '97%';
+      matchReason = 'Issueを指定して完全自律でデバッグ・修正・テストを完遂させたい場合に最適です。';
+    } else if (featVal === 'fast') {
+      recId = 'product-windsurf';
+      matchScore = '96%';
+      matchReason = 'Cascadeフローによる超高速マルチファイルリファクタリングに最適です。';
+    } else if (workVal === 'spec') {
+      recId = 'product-kiro';
+      matchScore = '95%';
+      matchReason = 'Specs、Steering、Hooksによる明確な仕様駆動開発プロセスに最適です。';
+    } else if (featVal === 'ide') {
+      recId = 'product-cursor-agent';
+      matchScore = '96%';
+      matchReason = 'Composerによる複数ファイルの一括自動生成と高速コード補完に最適です。';
+    }
+
+    const recCard = document.getElementById(recId);
+    if (!recCard) return;
+
+    const recName = recCard.querySelector('.product-name').textContent.trim();
+    
+    recommenderResult.innerHTML = `
+      <div class="result-info">
+        <div class="result-title">🎯 診断結果: ${recName}</div>
+        <div class="result-desc">${matchReason}</div>
+      </div>
+      <div class="match-badge">適合度 ${matchScore}</div>
+    `;
+    recommenderResult.classList.add('show');
+
+    // Highlight card
+    productCards.forEach(c => c.classList.remove('recommended-highlight'));
+    recCard.classList.add('recommended-highlight');
+    recCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  if (recWork && recCost && recFeature) {
+    recWork.addEventListener('change', calculateRecommendation);
+    recCost.addEventListener('change', calculateRecommendation);
+    recFeature.addEventListener('change', calculateRecommendation);
+  }
 
   // 1. Filter Logic
   filterButtons.forEach(btn => {

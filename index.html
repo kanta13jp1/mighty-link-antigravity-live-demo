@@ -13,9 +13,14 @@
     
     <!-- Hero Header -->
     <header class="hero-header">
-      <div class="notice-banner">
-        <span class="badge-notice">研修用サンプル (SYNTHETIC DATA ONLY)</span>
-        <span class="date-notice">2026年8月9日時点の公式ドキュメント情報を要約</span>
+      <div class="header-top-row">
+        <div class="notice-banner">
+          <span class="badge-notice">研修用サンプル (SYNTHETIC DATA ONLY)</span>
+          <span class="date-notice">2026年8月9日時点の公式ドキュメント情報を要約</span>
+        </div>
+        <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" aria-label="テーマ切替">
+          ⚡ ネオン (Cyberpunk)
+        </button>
       </div>
 
       <div class="hero-content">
@@ -31,6 +36,49 @@
         <img src="assets/workshop-hero.png" alt="AI Agent Learning Hub ヒーロー画像">
       </div>
     </header>
+
+    <!-- AI Agent Recommender Widget (Finale Edition) -->
+    <section class="recommender-section">
+      <div class="recommender-header">
+        <h2>🎯 リアルタイムAIエージェント診断シミュレーター</h2>
+        <p>あなたの課題・コスト選好・重視機能を選ぶと、全9製品から最適なAIエージェントを判定します。</p>
+      </div>
+
+      <div class="recommender-grid">
+        <div class="recommender-field">
+          <label for="rec-work">1. 主な用途・仕事</label>
+          <select id="rec-work" class="recommender-select">
+            <option value="web">Web開発・Artifact計画＆ブラウザ自律検証</option>
+            <option value="multi">マルチファイル一括生成・コード編集</option>
+            <option value="spec">要件定義・設計分解からの仕様駆動開発</option>
+            <option value="autonomous">GitHub Issue指定による完全自律修正</option>
+            <option value="knowledge">調査・資料作成・ナレッジワーク</option>
+          </select>
+        </div>
+
+        <div class="recommender-field">
+          <label for="rec-cost">2. 予算・コスト構造</label>
+          <select id="rec-cost" class="recommender-select">
+            <option value="free">無料枠・OAuth試用クォータ優先</option>
+            <option value="flat">月$15〜$20 定額個人プラン</option>
+            <option value="power">定額 ＋ ACU/Token 従量上限OK</option>
+            <option value="team">Team / Business 組織アカウント</option>
+          </select>
+        </div>
+
+        <div class="recommender-field">
+          <label for="rec-feature">3. 重視する決定機能</label>
+          <select id="rec-feature" class="recommender-select">
+            <option value="browser">ブラウザ自動表示 ＆ リアルタイムArtifact</option>
+            <option value="ide">IDE統合Fast Tab補完 ＆ Composer</option>
+            <option value="github">GitHub Issue-to-PR 直結フロー</option>
+            <option value="fast">Cascadeフロー超高速リファクタリング</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="recommender-result" class="recommender-result"></div>
+    </section>
 
     <!-- Controls (Filter Toolbar & Toast Alert) -->
     <section class="controls-wrapper">
