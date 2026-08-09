@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Agent Learning Hub | 仕事に合うAIエージェントを読み比べる</title>
+  <title>AI Agent Learning Hub | 仕事とコストに合うAIエージェントを比較</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -19,10 +19,10 @@
       </div>
 
       <div class="hero-content">
-        <h1>仕事に合うAIエージェントを、まず一つ試す。</h1>
-        <p class="hero-subtitle">AI Agent Learning Hub</p>
+        <h1>仕事とコストに合うAIエージェントを、まず一つ試す。</h1>
+        <p class="hero-subtitle">AI Agent Learning Hub (主要7エージェント比較)</p>
         <p class="hero-description">
-          開発とナレッジワークの5製品を、用途と主な機能から読み比べる研修用サンプルです。仕事の目的に応じて製品を選び、指示・Skill・MCP・人間の確認を組み合わせて活用する流れを学べます。
+          開発とナレッジワークの7製品を、用途・主な機能・公式料金モデルから読み比べる研修用サンプルです。仕事の目的に応じて製品を選び、指示・Skill・MCP・人間の確認を組み合わせて活用する流れを学べます。
         </p>
       </div>
 
@@ -37,16 +37,16 @@
       <div class="filter-group" role="toolbar" aria-label="製品フィルター">
         <span class="filter-label">用途で絞り込み:</span>
         <button type="button" class="btn-filter" data-filter="すべて" aria-pressed="true">
-          すべて <span class="filter-count-badge">5</span>
+          すべて <span class="filter-count-badge">7</span>
         </button>
         <button type="button" class="btn-filter" data-filter="開発" aria-pressed="false">
-          開発 <span class="filter-count-badge">4</span>
+          開発 <span class="filter-count-badge">6</span>
         </button>
         <button type="button" class="btn-filter" data-filter="ナレッジワーク" aria-pressed="false">
           ナレッジワーク <span class="filter-count-badge">1</span>
         </button>
         <button type="button" class="btn-filter" data-filter="計画・自動化" aria-pressed="false">
-          計画・自動化 <span class="filter-count-badge">5</span>
+          計画・自動化 <span class="filter-count-badge">7</span>
         </button>
       </div>
 
@@ -54,7 +54,7 @@
       <div id="limit-warning-toast" class="limit-warning-toast" role="alert" aria-live="assertive"></div>
     </section>
 
-    <!-- Main Product Cards Grid -->
+    <!-- Main Product Cards Grid (7 Products) -->
     <main>
       <div class="product-grid" id="product-grid">
 
@@ -79,6 +79,11 @@
           <div class="card-section">
             <span class="section-label label-features">⚙️ 主な機能</span>
             <p class="card-text">AGENTS.md、Skills、Plugins、MCP、local/cloud、sandboxとapproval</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">Free (クォータ) / Pro ($20/月) / Enterprise</p>
           </div>
 
           <div class="card-section">
@@ -111,6 +116,11 @@
           </div>
 
           <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">Pro ($20/月) & API従量課金 (Tokens)</p>
+          </div>
+
+          <div class="card-section">
             <span class="section-label label-first">🚀 最初に試すこと</span>
             <p class="card-text">未テストの機能へテストを追加し、失敗を修正する</p>
           </div>
@@ -137,6 +147,11 @@
           <div class="card-section">
             <span class="section-label label-features">⚙️ 主な機能</span>
             <p class="card-text">Projects、Skills、Plugins、Connectors、sub-agents、scheduled tasks、live artifacts</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">Team ($30/人/月) / Enterprise</p>
           </div>
 
           <div class="card-section">
@@ -169,6 +184,11 @@
           </div>
 
           <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">Free (試用枠) / Pro ($20/月) / Power Units</p>
+          </div>
+
+          <div class="card-section">
             <span class="section-label label-first">🚀 最初に試すこと</span>
             <p class="card-text">新機能をrequirements、design、tasksへ分解する</p>
           </div>
@@ -198,34 +218,119 @@
           </div>
 
           <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">OAuth無料試用 / Pro / Ultra / 従量クォータ</p>
+          </div>
+
+          <div class="card-section">
             <span class="section-label label-first">🚀 最初に試すこと</span>
             <p class="card-text">1ページサイトを作り、desktopとmobileで確認する</p>
+          </div>
+        </article>
+
+        <!-- 6. Devin (Cognition) -->
+        <article class="product-card" id="product-devin" data-tags="開発, 計画・自動化">
+          <div class="card-header">
+            <div class="header-left">
+              <h2 class="product-name">Devin</h2>
+              <div class="tag-list">
+                <span class="tag-badge">開発</span>
+                <span class="tag-badge">計画・自動化</span>
+              </div>
+            </div>
+            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Devinを比較に追加">比較に追加</button>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-work">🎯 向いている仕事</span>
+            <p class="card-text card-text-work">自律的なソフトウェア開発、バグ修正、Issue自動化</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-features">⚙️ 主な機能</span>
+            <p class="card-text">ACU (Agent Compute Units)、Devin Desktop、Shell、Browser</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">Free / Pro ($20/月) / Max ($200/月) / ACU従量</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-first">🚀 最初に試すこと</span>
+            <p class="card-text">Issueを指定し、完全自律での修正・テスト完了を依頼する</p>
+          </div>
+        </article>
+
+        <!-- 7. Cursor Agent -->
+        <article class="product-card" id="product-cursor-agent" data-tags="開発, 計画・自動化">
+          <div class="card-header">
+            <div class="header-left">
+              <h2 class="product-name">Cursor Agent</h2>
+              <div class="tag-list">
+                <span class="tag-badge">開発</span>
+                <span class="tag-badge">計画・自動化</span>
+              </div>
+            </div>
+            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Cursor Agentを比較に追加">比較に追加</button>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-work">🎯 向いている仕事</span>
+            <p class="card-text card-text-work">IDE統合型のマルチファイル自動生成、高速コード補完</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-features">⚙️ 主な機能</span>
+            <p class="card-text">Composer、Fast Tab Completion、Context Indexing、.cursorrules</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-price">💳 料金モデル (2026)</span>
+            <p class="card-text card-text-price">Hobby (Free) / Pro ($20/月) / Ultra ($200/月)</p>
+          </div>
+
+          <div class="card-section">
+            <span class="section-label label-first">🚀 最初に試すこと</span>
+            <p class="card-text">Composerを起動し、複数ファイル跨ぎの実装を一括生成する</p>
           </div>
         </article>
 
       </div>
     </main>
 
-    <!-- Interactive Capability Matrix (Added for High-Impact Polish) -->
+    <!-- Interactive Capability Matrix (7 Products) -->
     <section class="matrix-section">
       <div class="matrix-header">
-        <h2>⚡ 5大AIエージェント機能網羅マトリックス (Capability Matrix)</h2>
-        <p>指示定義・Skill拡張・MCP連携・サブエージェント・視覚検証機能の搭載状況一覧</p>
+        <h2>⚡ 7大AIエージェント機能・コスト網羅マトリックス (Capability & Cost Matrix)</h2>
+        <p>指示定義・料金構造・Skill・MCP・サブエージェント・視覚検証の比較一覧 (2026年公式要約)</p>
       </div>
 
       <div class="table-responsive-wrapper">
         <table class="matrix-table">
           <thead>
             <tr>
-              <th class="col-feature">機能 / 仕様項目</th>
+              <th class="col-feature">機能 / 料金モデル</th>
               <th>Codex</th>
               <th>Claude Code</th>
               <th>Claude Cowork</th>
               <th>Kiro</th>
               <th>Antigravity</th>
+              <th>Devin</th>
+              <th>Cursor Agent</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td class="cell-feature">料金モデル (2026)</td>
+              <td class="cell-price">Free / Pro ($20)</td>
+              <td class="cell-price">Pro ($20) + Token</td>
+              <td class="cell-price">Team ($30/人)</td>
+              <td class="cell-price">Free / Pro ($20)</td>
+              <td class="cell-price">OAuth / Pro / Ultra</td>
+              <td class="cell-price">Free / Pro ($20) / ACU</td>
+              <td class="cell-price">Free / Pro ($20) / Ultra</td>
+            </tr>
             <tr>
               <td class="cell-feature">指示ファイル / コンテキスト定義</td>
               <td>AGENTS.md</td>
@@ -233,9 +338,13 @@
               <td>Projects</td>
               <td>Steering</td>
               <td>Rules</td>
+              <td>Desktop Shell</td>
+              <td>.cursorrules</td>
             </tr>
             <tr>
               <td class="cell-feature">Agent Skills / プラグイン拡張</td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
               <td><span class="check-icon">✓</span></td>
               <td><span class="check-icon">✓</span></td>
               <td><span class="check-icon">✓</span></td>
@@ -249,6 +358,8 @@
               <td><span class="check-icon">✓ (Connectors)</span></td>
               <td><span class="check-icon">✓</span></td>
               <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
             </tr>
             <tr>
               <td class="cell-feature">並列サブエージェント (Subagents)</td>
@@ -257,6 +368,8 @@
               <td><span class="check-icon">✓</span></td>
               <td><span class="check-icon">✓ (Powers)</span></td>
               <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓</span></td>
+              <td><span class="check-icon">✓ (Composer)</span></td>
             </tr>
             <tr>
               <td class="cell-feature">リアルタイム Artifact プレビュー</td>
@@ -265,6 +378,8 @@
               <td><span class="check-icon">✓</span></td>
               <td><span class="dash-icon">-</span></td>
               <td><span class="check-icon">✓</span></td>
+              <td><span class="dash-icon">-</span></td>
+              <td><span class="dash-icon">-</span></td>
             </tr>
             <tr>
               <td class="cell-feature">ブラウザ自律検証 / 自動表示</td>
@@ -273,14 +388,8 @@
               <td><span class="dash-icon">-</span></td>
               <td><span class="dash-icon">-</span></td>
               <td><span class="check-icon">✓</span></td>
-            </tr>
-            <tr>
-              <td class="cell-feature">サンドボックス / 実行承認ルール</td>
               <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓ (Hooks)</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓ (Hooks)</span></td>
-              <td><span class="check-icon">✓</span></td>
+              <td><span class="dash-icon">-</span></td>
             </tr>
           </tbody>
         </table>
@@ -311,7 +420,7 @@
     <div id="modal-overlay" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
       <div class="modal-box">
         <div class="modal-header">
-          <h3>選択製品の詳細比較</h3>
+          <h3>選択製品の詳細比較 (機能 & 料金モデル)</h3>
           <button type="button" id="btn-close-modal" class="btn-close-modal" aria-label="閉じる">&times;</button>
         </div>
         <div id="modal-body-grid" class="modal-body-grid">

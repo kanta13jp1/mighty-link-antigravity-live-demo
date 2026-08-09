@@ -1,12 +1,10 @@
 /**
- * AI Agent Learning Hub - Application Logic
- * Interactive Filtering, Product Comparison (Max 2), Capability Matrix & Modal Dialog
+ * AI Agent Learning Hub - Application Logic (7 Products & Pricing Matrix)
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
   const selectedProductIds = new Set();
 
-  // DOM Elements
   const filterButtons = document.querySelectorAll('.btn-filter');
   const productCards = document.querySelectorAll('.product-card');
   const compareButtons = document.querySelectorAll('.btn-compare');
@@ -19,9 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalOverlay = document.getElementById('modal-overlay');
   const modalBodyGrid = document.getElementById('modal-body-grid');
 
-  // -------------------------------------------------------------
-  // 1. Filtering Logic
-  // -------------------------------------------------------------
+  // 1. Filter Logic
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const selectedCategory = btn.getAttribute('data-filter');
@@ -40,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // -------------------------------------------------------------
-  // 2. Product Comparison Logic (Max 2 Items)
-  // -------------------------------------------------------------
+  // 2. Comparison Logic (Max 2)
   compareButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -72,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Clear Selection Button
   if (clearSelectionBtn) {
     clearSelectionBtn.addEventListener('click', () => {
       selectedProductIds.clear();
@@ -86,9 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // -------------------------------------------------------------
-  // 3. Comparison Summary Panel Update
-  // -------------------------------------------------------------
+  // 3. Summary Panel Update
   function updateSummaryPanel() {
     const count = selectedProductIds.size;
     summaryCountBadge.textContent = `${count} / ${MAX_SELECTION}`;
@@ -124,9 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     summaryContentBox.innerHTML = htmlContent;
   }
 
-  // -------------------------------------------------------------
   // 4. Modal Dialog Logic
-  // -------------------------------------------------------------
   if (openModalBtn) {
     openModalBtn.addEventListener('click', () => {
       renderModalContent();
@@ -166,13 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const name = card.querySelector('.product-name').textContent.trim();
       const work = card.querySelector('.card-text-work').textContent.trim();
       const features = card.querySelectorAll('.card-text')[1].textContent.trim();
-      const firstTry = card.querySelectorAll('.card-text')[2].textContent.trim();
+      const price = card.querySelector('.card-text-price').textContent.trim();
+      const firstTry = card.querySelectorAll('.card-text')[3].textContent.trim();
 
       html += `
         <div class="modal-col">
           <h4>${name}</h4>
           <div><strong>🎯 向いている仕事:</strong><p>${work}</p></div>
           <div><strong>⚙️ 主な機能:</strong><p>${features}</p></div>
+          <div><strong>💳 料金モデル:</strong><p>${price}</p></div>
           <div><strong>🚀 最初に試すこと:</strong><p>${firstTry}</p></div>
         </div>
       `;
