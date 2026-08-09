@@ -32,23 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       if (currentTheme === 'cyber-neon') {
         document.documentElement.removeAttribute('data-theme');
-        themeToggleBtn.innerHTML = '⚡ ネオン (Cyberpunk)';
-      } else {
-        document.documentElement.setAttribute('data-theme', 'cyber-neon');
-        themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
-      }
-    });
-  }
-
-  // Theme Switcher (Header Toggle)
-  const themeToggleBtn = document.getElementById('btn-theme-toggle');
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentNanoTheme = document.documentElement.getAttribute('data-nano-theme');
-      if (currentNanoTheme === 'cyber-neon') {
         document.documentElement.removeAttribute('data-nano-theme');
         themeToggleBtn.innerHTML = '⚡ ネオン (Cyberpunk)';
       } else {
+        document.documentElement.setAttribute('data-theme', 'cyber-neon');
         document.documentElement.setAttribute('data-nano-theme', 'cyber-neon');
         themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
       }
