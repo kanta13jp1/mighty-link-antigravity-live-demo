@@ -4,7 +4,8 @@ This public repository is used only for the August 26 Antigravity workshop demon
 
 - All content is synthetic.
 - No customer, employee, credential, or production data is permitted.
-- The live demo uses seven copy-and-paste prompts over 30 minutes.
+- The live demo uses seven IDE prompts plus read-only CLI and SDK audit prompts over 30 minutes.
+- The IDE creates and improves the site; the CLI and SDK inspect the same repository without modifying it.
 - `/grill-me` and `/find-skills` are baseline workspace Skills in `.agents/skills/`.
 - `anthropics/skills@frontend-design` is installed project-locally during the demo and removed after rehearsal.
 - GitHub MCP is read-only; if it is not already connected, the MCP step is skipped.
@@ -20,6 +21,10 @@ This public repository is used only for the August 26 Antigravity workshop demon
 5. `PROMPT_04_APPLY_SKILL.txt`
 6. `PROMPT_05_MCP_CHECK.txt`
 7. `PROMPT_06_PUBLISH.txt`
+8. `PROMPT_10_CLI_READONLY.txt`
+9. `PROMPT_11_SDK_READONLY.txt`
+
+`antigravity_sdk_readonly.py` runs the SDK audit with `BuiltinTools.read_only()`. Install `google-antigravity` in a disposable virtual environment and provide `GEMINI_API_KEY` only through the local environment. Never commit the key. For the CLI demo, use the interactive `agy` TUI, pre-approve reads for the four named files, and do not use `--dangerously-skip-permissions`.
 
 Definitions and the five-product comparison are in `DEMO_CONCEPTS.md`. `Steering` and `Powers` are Kiro feature names; Antigravity uses Rules, Workflows, Skills, MCP, and Artifacts.
 

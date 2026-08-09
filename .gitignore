@@ -5,3 +5,5 @@
 authorized_user.json
 client_secret.json
 credentials.json
+.venv-antigravity-sdk/
+__pycache__/
