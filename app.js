@@ -1,6 +1,6 @@
 /**
- * AI Agent Learning Hub - Video Theater Edition
- * Real-time Search, CSV/JSON Data Export, AI Recommender, Official Video Modal & Cyberpunk Theme
+ * AI Agent Learning Hub - Nano Banana Edition
+ * Real-time Search, CSV/JSON Data Export, AI Recommender, Official Video Modal & Nano Banana Presets
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
@@ -25,16 +25,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoFrameContainer = document.getElementById('video-frame-container');
   const closeVideoModalBtn = document.getElementById('btn-close-video-modal');
 
-  // Theme Switcher
+  // Nano Banana Presets & Status
+  const nanoStatusBox = document.getElementById('nano-banana-status');
+  const nanoButtons = document.querySelectorAll('.btn-nano-preset');
+
+  nanoButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const themeKey = btn.getAttribute('data-nano-preset');
+      const themeLabel = btn.textContent.trim();
+      
+      document.documentElement.setAttribute('data-nano-theme', themeKey);
+      
+      if (nanoStatusBox) {
+        nanoStatusBox.innerHTML = `🍌 <strong>Nano Banana 適用完了:</strong> [${themeLabel}] テーマがリアルタイム反映されました！`;
+      }
+    });
+  });
+
+  // Theme Switcher (Header Toggle)
   const themeToggleBtn = document.getElementById('btn-theme-toggle');
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme === 'neon') {
-        document.documentElement.removeAttribute('data-theme');
+      const currentNanoTheme = document.documentElement.getAttribute('data-nano-theme');
+      if (currentNanoTheme === 'cyber-neon') {
+        document.documentElement.removeAttribute('data-nano-theme');
         themeToggleBtn.innerHTML = '⚡ ネオン (Cyberpunk)';
       } else {
-        document.documentElement.setAttribute('data-theme', 'neon');
+        document.documentElement.setAttribute('data-nano-theme', 'cyber-neon');
         themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
       }
     });
@@ -55,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <iframe src="${videoEmbed}" title="${videoTitle}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div style="margin-top: 12px; text-align: center;">
-            <a href="${directUrl}" target="_blank" rel="noopener" class="official-doc-link" style="font-size: 0.9rem; padding: 6px 16px;">公式サイトで見る ↗</a>
+            <a href="${directUrl}" target="_blank" rel="noopener" class="official-doc-link" style="font-size: 0.9rem; padding: 6px 16px;">YouTubeで開く ↗</a>
           </div>
         `;
         videoModalOverlay.classList.add('show');
@@ -196,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let recId = 'product-antigravity';
     let matchScore = '98%';
-    let matchReason = 'ブラウザ自律検証、計画Artifacts、高度な統合開発環境を必要とする場合に最適です。';
+    let matchReason = 'ブラウザ自律検証、計画Artifacts、Nano Banana画像アセット生成機能の利用に最適です。';
 
     if (workVal === 'knowledge') {
       recId = 'product-claude-cowork';

@@ -1,4 +1,4 @@
-/* AI Agent Learning Hub - Refined Stylesheet (Official Video Theater Edition) */
+/* AI Agent Learning Hub - Refined Stylesheet (Nano Banana Edition) */
 :root {
   --bg-page: #0F172A;
   --bg-header: linear-gradient(135deg, #0B2545 0%, #00A5E3 100%);
@@ -12,6 +12,7 @@
   --brand-purple: #8B5CF6;
   --brand-pink: #EC4899;
   --brand-red: #EF4444;
+  --brand-yellow: #F59E0B;
   --brand-white: #FFFFFF;
   --text-dark: #0F172A;
   
@@ -26,28 +27,41 @@
   --shadow-hover: 0 8px 24px rgba(0, 165, 227, 0.25);
 }
 
-/* Neon Cyberpunk Theme */
-[data-theme="neon"] {
+/* Custom Dynamic Preset Themes via Nano Banana */
+[data-nano-theme="banana-gold"] {
+  --bg-page: #181503;
+  --bg-header: linear-gradient(135deg, #382A00 0%, #F59E0B 100%);
+  --bg-card: #262006;
+  --brand-blue: #FBBF24;
+  --border-color: #78350F;
+  --border-highlight: #F59E0B;
+}
+
+[data-nano-theme="cyber-neon"] {
   --bg-page: #050B14;
   --bg-header: linear-gradient(135deg, #0F051D 0%, #00F0FF 100%);
   --bg-card: #0A1224;
-  --bg-card-hover: #121F3D;
-  --bg-panel: #0A1224;
-  
   --brand-blue: #00F0FF;
-  --brand-orange: #FF007F;
-  --brand-green: #00FF66;
-  --brand-purple: #B026FF;
-  --brand-pink: #FF00AA;
-  --brand-red: #FF3366;
-  
   --border-color: #1E3A8A;
   --border-highlight: #00F0FF;
-  
-  --text-primary: #FFFFFF;
-  --text-secondary: #E0F2FE;
-  --shadow-card: 0 4px 20px rgba(0, 240, 255, 0.15);
-  --shadow-hover: 0 8px 30px rgba(0, 240, 255, 0.4);
+}
+
+[data-nano-theme="emerald-matrix"] {
+  --bg-page: #021C11;
+  --bg-header: linear-gradient(135deg, #064E3B 0%, #10B981 100%);
+  --bg-card: #062C1E;
+  --brand-blue: #34D399;
+  --border-color: #047857;
+  --border-highlight: #10B981;
+}
+
+[data-nano-theme="sunset-flare"] {
+  --bg-page: #1E0A10;
+  --bg-header: linear-gradient(135deg, #831843 0%, #F43F5E 100%);
+  --bg-card: #31101E;
+  --brand-blue: #FB7185;
+  --border-color: #9F1239;
+  --border-highlight: #F43F5E;
 }
 
 * {
@@ -64,7 +78,7 @@ body {
   padding: 20px;
   padding-bottom: 140px;
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .site-container {
@@ -87,6 +101,7 @@ body {
   flex-direction: column;
   gap: 16px;
   position: relative;
+  transition: background 0.4s ease;
 }
 
 .header-top-row {
@@ -182,6 +197,77 @@ body {
   max-height: 320px;
   object-fit: cover;
   display: block;
+}
+
+/* Nano Banana Section (New Feature) */
+.nano-banana-section {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 2px solid var(--brand-yellow);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nano-banana-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nano-banana-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--brand-yellow);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nano-banana-header p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.nano-banana-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-nano-preset {
+  background-color: rgba(15, 23, 42, 0.8);
+  color: var(--brand-yellow);
+  border: 1px solid var(--brand-yellow);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-nano-preset:hover {
+  background-color: var(--brand-yellow);
+  color: var(--text-dark);
+}
+
+.nano-banana-status {
+  background-color: rgba(245, 158, 11, 0.15);
+  border: 1px dashed var(--brand-yellow);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #FDE68A;
+  font-weight: 600;
 }
 
 /* Official Video Theater Section */

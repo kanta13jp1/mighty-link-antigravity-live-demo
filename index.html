@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式動画デモ・リンク完全比較</title>
+  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式動画デモ・Nano Banana連携</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -25,9 +25,9 @@
 
       <div class="hero-content">
         <h1>仕事・コスト・制限に合わせて、最適AIエージェントを選ぶ。</h1>
-        <p class="hero-subtitle">AI Agent Learning Hub (主要9エージェント・公式動画・全料金・公式リンク完全網羅)</p>
+        <p class="hero-subtitle">AI Agent Learning Hub (主要9エージェント・Nano Banana連携・公式動画・全料金・公式リンク)</p>
         <p class="hero-description">
-          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。仕事の目的に応じて製品を選び、指示・Skill・MCP・人間の確認を組み合わせて活用する流れを学べます。
+          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。AntigravityのマルチモデルUI/画像生成モジュール「Nano Banana」によるデザインテーマ調整も体験できます。
         </p>
       </div>
 
@@ -36,6 +36,29 @@
         <img src="assets/workshop-hero.png" alt="AI Agent Learning Hub ヒーロー画像">
       </div>
     </header>
+
+    <!-- Nano Banana AI Asset Simulator Section (New Feature) -->
+    <section class="nano-banana-section">
+      <div class="nano-banana-header">
+        <div>
+          <h2>🍌 Nano Banana AIアセット・デザインテーマシミュレーター</h2>
+          <p>動画で紹介されているAntigravityのマルチモデル画像/UIアセット生成モジュール「Nano Banana」によるカラー・デザインの即時調整をシミュレーションします。</p>
+        </div>
+        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity ↗</a>
+      </div>
+
+      <div class="nano-banana-controls">
+        <span style="font-size: 0.88rem; font-weight: 700; color: var(--brand-yellow);">Nano Banana プリセット切替:</span>
+        <button type="button" class="btn-nano-preset" data-nano-preset="banana-gold">🍌 バナナゴールド</button>
+        <button type="button" class="btn-nano-preset" data-nano-preset="cyber-neon">⚡ サイバーネオン</button>
+        <button type="button" class="btn-nano-preset" data-nano-preset="emerald-matrix">エメラルドマトリックス</button>
+        <button type="button" class="btn-nano-preset" data-nano-preset="sunset-flare">🌅 サンセットフレア</button>
+      </div>
+
+      <div id="nano-banana-status" class="nano-banana-status">
+        🍌 <strong>Nano Banana 状態:</strong> プリセットボタンを押すと、Nano Banana がリアルタイムでテーマカラーとアクセントスタイルを動的再適用します。
+      </div>
+    </section>
 
     <!-- Official Video Theater Section -->
     <section class="video-theater-section">
@@ -48,13 +71,13 @@
       </div>
 
       <div class="video-card-grid">
-        <!-- 1. Antigravity Video Card (Updated with exact YouTube video SVCBA-pBgt0) -->
+        <!-- 1. Antigravity Video Card -->
         <div class="video-card">
           <div class="video-card-header">
             <div class="video-title">Google Antigravity</div>
-            <span class="video-tag">公式実演動画</span>
+            <span class="video-tag">公式解説動画</span>
           </div>
-          <p class="video-desc">Google Antigravity の解説・デモ動画 (YouTube: SVCBA-pBgt0)</p>
+          <p class="video-desc">Google Antigravity & Nano Banana の解説・デモ動画 (YouTube: SVCBA-pBgt0)</p>
           <button type="button" class="btn-watch-video" data-video-title="Google Antigravity 公式動画" data-video-embed="https://www.youtube-nocookie.com/embed/SVCBA-pBgt0" data-video-url="https://www.youtube.com/watch?v=SVCBA-pBgt0">▶ サイト上で動画再生</button>
         </div>
 
@@ -137,7 +160,7 @@
     <section class="controls-wrapper">
       <div class="search-and-filters">
         <div class="search-box">
-          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: 制限, 補完, Issue, Artifact, 動画)..." aria-label="リアルタイムキーワード検索">
+          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: Banana, 制限, 補完, Issue, Artifact, 動画)..." aria-label="リアルタイムキーワード検索">
         </div>
 
         <div class="filter-group" role="toolbar" aria-label="製品フィルター">
@@ -334,7 +357,7 @@
           </div>
         </article>
 
-        <!-- 5. Antigravity (Updated with exact YouTube video SVCBA-pBgt0) -->
+        <!-- 5. Antigravity (Updated with Nano Banana in features) -->
         <article class="product-card" id="product-antigravity" data-tags="開発, 計画・自動化">
           <div class="card-header">
             <div class="header-left">
@@ -358,7 +381,7 @@
 
           <div class="card-section">
             <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Artifacts、Planning、Browser、Rules、Workflows、Skills、MCP</p>
+            <p class="card-text">Artifacts、Planning、Browser、Rules、Skills、MCP、Nano Banana</p>
           </div>
 
           <div class="card-section">
