@@ -80,22 +80,28 @@
       <div id="recommender-result" class="recommender-result"></div>
     </section>
 
-    <!-- Controls (Filter Toolbar & Toast Alert) -->
+    <!-- Controls (Search Bar & Filter Toolbar) -->
     <section class="controls-wrapper">
-      <div class="filter-group" role="toolbar" aria-label="製品フィルター">
-        <span class="filter-label">用途で絞り込み:</span>
-        <button type="button" class="btn-filter" data-filter="すべて" aria-pressed="true">
-          すべて <span class="filter-count-badge">9</span>
-        </button>
-        <button type="button" class="btn-filter" data-filter="開発" aria-pressed="false">
-          開発 <span class="filter-count-badge">8</span>
-        </button>
-        <button type="button" class="btn-filter" data-filter="ナレッジワーク" aria-pressed="false">
-          ナレッジワーク <span class="filter-count-badge">1</span>
-        </button>
-        <button type="button" class="btn-filter" data-filter="計画・自動化" aria-pressed="false">
-          計画・自動化 <span class="filter-count-badge">9</span>
-        </button>
+      <div class="search-and-filters">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: 制限, 補完, Issue, Artifact)..." aria-label="リアルタイムキーワード検索">
+        </div>
+
+        <div class="filter-group" role="toolbar" aria-label="製品フィルター">
+          <span class="filter-label">用途で絞り込み:</span>
+          <button type="button" class="btn-filter" data-filter="すべて" aria-pressed="true">
+            すべて <span class="filter-count-badge">9</span>
+          </button>
+          <button type="button" class="btn-filter" data-filter="開発" aria-pressed="false">
+            開発 <span class="filter-count-badge">8</span>
+          </button>
+          <button type="button" class="btn-filter" data-filter="ナレッジワーク" aria-pressed="false">
+            ナレッジワーク <span class="filter-count-badge">1</span>
+          </button>
+          <button type="button" class="btn-filter" data-filter="計画・自動化" aria-pressed="false">
+            計画・自動化 <span class="filter-count-badge">9</span>
+          </button>
+        </div>
       </div>
 
       <!-- Limit Alert Toast -->
@@ -487,11 +493,18 @@
       </div>
     </main>
 
-    <!-- Interactive Capability & Cost Matrix (9 Products) -->
+    <!-- Interactive Capability & Cost Matrix (9 Products & Export) -->
     <section class="matrix-section">
-      <div class="matrix-header">
-        <h2>⚡ 9大AIエージェント機能・全料金・クォータ網羅マトリックス (Capability & Pricing Matrix)</h2>
-        <p>公式ドキュメントリンク・料金プラン（Max/Pro+/Ultra等）・具体的クォータ制限の比較一覧 (2026年要約)</p>
+      <div class="matrix-header-row">
+        <div class="matrix-header">
+          <h2>⚡ 9大AIエージェント機能・全料金・クォータ網羅マトリックス (Capability & Pricing Matrix)</h2>
+          <p>公式ドキュメントリンク・料金プラン（Max/Pro+/Ultra等）・具体的クォータ制限の比較一覧 (2026年要約)</p>
+        </div>
+
+        <div class="export-actions">
+          <button type="button" id="btn-export-csv" class="btn-export">📥 CSVエクスポート</button>
+          <button type="button" id="btn-export-json" class="btn-export">📥 JSONエクスポート</button>
+        </div>
       </div>
 
       <div class="table-responsive-wrapper">

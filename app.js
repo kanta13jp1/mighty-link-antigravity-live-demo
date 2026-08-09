@@ -1,5 +1,6 @@
 /**
- * AI Agent Learning Hub - Finale Edition (9 Products, Theme Toggle, Recommender Widget)
+ * AI Agent Learning Hub - Finale Edition
+ * Real-time Search, CSV/JSON Data Export, AI Recommender & Cyberpunk Theme
  */
 document.addEventListener('DOMContentLoaded', () => {
   const MAX_SELECTION = 2;
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterButtons = document.querySelectorAll('.btn-filter');
   const productCards = document.querySelectorAll('.product-card');
   const compareButtons = document.querySelectorAll('.btn-compare');
+  const searchInput = document.getElementById('search-input');
   const summaryCountBadge = document.getElementById('summary-count-badge');
   const summaryContentBox = document.getElementById('summary-content-box');
   const limitToast = document.getElementById('limit-warning-toast');
@@ -32,7 +34,108 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // AI Recommender Logic
+  // 1. Real-time Search & Filter Combination
+  let currentFilter = 'すべて';
+  let searchQuery = '';
+
+  function applyFilterAndSearch() {
+    productCards.forEach(card => {
+      const cardTags = card.getAttribute('data-tags') || '';
+      const textContent = card.textContent.toLowerCase();
+
+      const matchesFilter = (currentFilter === 'すべて' || cardTags.includes(currentFilter));
+      const matchesSearch = (!searchQuery || textContent.includes(searchQuery.toLowerCase()));
+
+      if (matchesFilter && matchesSearch) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.getAttribute('data-filter');
+      filterButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      applyFilterAndSearch();
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      applyFilterAndSearch();
+    });
+  }
+
+  // 2. Data Export (CSV & JSON)
+  const exportCsvBtn = document.getElementById('btn-export-csv');
+  const exportJsonBtn = document.getElementById('btn-export-json');
+
+  function getProductsData() {
+    const products = [];
+    productCards.forEach(card => {
+      const name = card.querySelector('.product-name').textContent.trim();
+      const link = card.querySelector('.official-doc-link') ? card.querySelector('.official-doc-link').href : '';
+      const tags = card.getAttribute('data-tags') || '';
+      const work = card.querySelector('.card-text-work').textContent.trim();
+      const features = card.querySelectorAll('.card-text')[1].textContent.trim();
+      const price = card.querySelector('.card-text-price').textContent.trim();
+      const quota = card.querySelector('.card-text-quota').textContent.trim();
+      const firstTry = card.querySelectorAll('.card-text')[4].textContent.trim();
+
+      products.push({ name, tags, work, features, price, quota, firstTry, officialDocLink: link });
+    });
+    return products;
+  }
+
+  if (exportCsvBtn) {
+    exportCsvBtn.addEventListener('click', () => {
+      const data = getProductsData();
+      let csvContent = '\uFEFF'; // UTF-8 BOM
+      csvContent += '製品名,タグ,向いている仕事,主な機能,全料金プラン (2026),クォータ・制限詳細,最初に試すこと,公式ドキュメントURL\n';
+
+      data.forEach(p => {
+        const row = [
+          `"${p.name.replace(/"/g, '""')}"`,
+          `"${p.tags.replace(/"/g, '""')}"`,
+          `"${p.work.replace(/"/g, '""')}"`,
+          `"${p.features.replace(/"/g, '""')}"`,
+          `"${p.price.replace(/"/g, '""')}"`,
+          `"${p.quota.replace(/"/g, '""')}"`,
+          `"${p.firstTry.replace(/"/g, '""')}"`,
+          `"${p.officialDocLink.replace(/"/g, '""')}"`
+        ];
+        csvContent += row.join(',') + '\n';
+      });
+
+      downloadFile(csvContent, 'ai_agent_learning_hub_2026.csv', 'text/csv;charset=utf-8;');
+    });
+  }
+
+  if (exportJsonBtn) {
+    exportJsonBtn.addEventListener('click', () => {
+      const data = getProductsData();
+      const jsonContent = JSON.stringify(data, null, 2);
+      downloadFile(jsonContent, 'ai_agent_learning_hub_2026.json', 'application/json;');
+    });
+  }
+
+  function downloadFile(content, fileName, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // 3. AI Recommender Widget Logic
   const recWork = document.getElementById('rec-work');
   const recCost = document.getElementById('rec-cost');
   const recFeature = document.getElementById('rec-feature');
@@ -42,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!recWork || !recCost || !recFeature || !recommenderResult) return;
     
     const workVal = recWork.value;
-    const costVal = recCost.value;
     const featVal = recFeature.value;
 
     let recId = 'product-antigravity';
@@ -93,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     recommenderResult.classList.add('show');
 
-    // Highlight card
     productCards.forEach(c => c.classList.remove('recommended-highlight'));
     recCard.classList.add('recommended-highlight');
     recCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -105,26 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     recFeature.addEventListener('change', calculateRecommendation);
   }
 
-  // 1. Filter Logic
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const selectedCategory = btn.getAttribute('data-filter');
-      
-      filterButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-      btn.setAttribute('aria-pressed', 'true');
-
-      productCards.forEach(card => {
-        const cardTags = card.getAttribute('data-tags') || '';
-        if (selectedCategory === 'すべて' || cardTags.includes(selectedCategory)) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    });
-  });
-
-  // 2. Comparison Logic (Max 2)
+  // 4. Comparison Selection (Max 2)
   compareButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -167,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Summary Panel Update
   function updateSummaryPanel() {
     const count = selectedProductIds.size;
     summaryCountBadge.textContent = `${count} / ${MAX_SELECTION}`;
@@ -203,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     summaryContentBox.innerHTML = htmlContent;
   }
 
-  // 4. Modal Dialog Logic
+  // 5. Modal Dialog Logic
   if (openModalBtn) {
     openModalBtn.addEventListener('click', () => {
       renderModalContent();
@@ -241,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedProductIds.forEach(id => {
       const card = document.getElementById(id);
       const name = card.querySelector('.product-name').textContent.trim();
-      const docLink = card.querySelector('.official-doc-link').outerHTML;
+      const docLink = card.querySelector('.official-doc-link') ? card.querySelector('.official-doc-link').outerHTML : '';
       const work = card.querySelector('.card-text-work').textContent.trim();
       const features = card.querySelectorAll('.card-text')[1].textContent.trim();
       const price = card.querySelector('.card-text-price').textContent.trim();

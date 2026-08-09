@@ -1,4 +1,4 @@
-/* AI Agent Learning Hub - Refined Stylesheet (Finale Edition with Neon Theme & AI Recommender) */
+/* AI Agent Learning Hub - Refined Stylesheet (Finale Edition with Search & Export) */
 :root {
   --bg-page: #0F172A;
   --bg-header: linear-gradient(135deg, #0B2545 0%, #00A5E3 100%);
@@ -182,7 +182,7 @@ body {
   display: block;
 }
 
-/* AI Agent Recommender Widget (Finale High-Impact Addition) */
+/* AI Agent Recommender Widget */
 .recommender-section {
   background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
   border: 2px solid var(--brand-blue);
@@ -284,7 +284,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* Control Bar (Filter Buttons) */
+/* Control Bar (Search & Filter Buttons) */
 .controls-wrapper {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -296,6 +296,34 @@ body {
   flex-wrap: wrap;
   gap: 16px;
   box-shadow: var(--shadow-card);
+}
+
+.search-and-filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 12px;
+  flex: 1;
+  min-width: 260px;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
 }
 
 .filter-group {
@@ -540,7 +568,7 @@ body {
   font-size: 0.86rem;
 }
 
-/* Capability & Cost Matrix Section (9 Products) */
+/* Capability & Cost Matrix Section (9 Products & Export Buttons) */
 .matrix-section {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -550,11 +578,13 @@ body {
   margin-top: 10px;
 }
 
-.matrix-header {
-  margin-bottom: 20px;
+.matrix-header-row {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .matrix-header h2 {
@@ -566,6 +596,31 @@ body {
 .matrix-header p {
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+.export-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-export {
+  background-color: rgba(15, 23, 42, 0.8);
+  color: var(--brand-blue);
+  border: 1px solid var(--brand-blue);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-export:hover {
+  background-color: var(--brand-blue);
+  color: var(--text-dark);
 }
 
 .table-responsive-wrapper {
@@ -842,7 +897,7 @@ footer {
 }
 
 /* Accessibility Focus States */
-button:focus-visible, a:focus-visible, select:focus-visible {
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
   outline: 2px solid var(--brand-blue);
   outline-offset: 2px;
 }
@@ -878,6 +933,16 @@ button:focus-visible, a:focus-visible, select:focus-visible {
     padding: 14px 16px;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .search-and-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+    min-width: unset;
   }
 
   .filter-group {
