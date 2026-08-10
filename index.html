@@ -1,147 +1,240 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="5つのAIエージェントを用途と機能から比較する研修用サンプルサイト">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5つの主要AIエージェント製品（Codex, Claude Code, Claude Cowork, Kiro, Antigravity）を比較・学習するための研修用1ページWebサイト">
   <title>AI Agent Learning Hub</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <!-- SYNTHETIC_DATA_ONLY -->
+  <!-- ヘッダー -->
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="AI Agent Learning Hub ホーム">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>AI Agent Learning Hub</span>
-    </a>
-    <p class="sample-label">研修用サンプル</p>
+    <div class="container header-container">
+      <div class="header-logo-group">
+        <span class="header-logo-icon">🤖</span>
+        <h1 class="site-logo">AI Agent Learning Hub</h1>
+      </div>
+      <span class="header-badge">研修用サンプル</span>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <img src="assets/workshop-hero.png" alt="オフィスでAIエージェントの使い方を学ぶ参加者">
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <p class="eyebrow">Five agents, one starting point</p>
-        <h1 id="hero-title">仕事に合うAIエージェントを、まず一つ試す。</h1>
-        <p>開発とナレッジワークの5製品を、用途と主な機能から読み比べる研修用サンプルです。</p>
-        <a class="hero-link" href="#agents">5製品を比べる</a>
-      </div>
-    </section>
-
-    <section class="learning-flow" aria-labelledby="flow-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">How to start</p>
-          <h2 id="flow-title">製品名より、任せたい仕事から選ぶ</h2>
-        </div>
-        <p>1つ選ぶ → 小さく任せる → 結果を人が確認する</p>
-      </div>
-      <ol class="flow-list">
-        <li><span>01</span><strong>目的を決める</strong><small>開発か、資料・調査か</small></li>
-        <li><span>02</span><strong>必要な力を足す</strong><small>指示、Skill、MCP</small></li>
-        <li><span>03</span><strong>証拠を確認する</strong><small>差分、テスト、公開URL</small></li>
-      </ol>
-    </section>
-
-    <section class="agent-section" id="agents" aria-labelledby="agents-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Choose by work</p>
-          <h2 id="agents-title">5つのAIエージェントを比較する</h2>
-        </div>
-        <p id="result-count" class="result-count" aria-live="polite">5件表示</p>
-      </div>
-
-      <div class="filter-group" role="group" aria-label="仕事の種類">
-        <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">すべて</button>
-        <button type="button" class="filter-button" data-filter="coding" aria-pressed="false">開発</button>
-        <button type="button" class="filter-button" data-filter="knowledge" aria-pressed="false">ナレッジワーク</button>
-        <button type="button" class="filter-button" data-filter="planning" aria-pressed="false">計画・自動化</button>
-      </div>
-
-      <div class="agent-grid">
-        <article class="agent-card" data-tags="coding planning" data-agent="Codex" data-fit="コード理解、実装、テスト、レビュー">
-          <div class="card-topline"><span>OpenAI</span><span>開発</span></div>
-          <h3><img src="assets/codex-icon.png" alt="" class="agent-title-icon">Codex</h3>
-          <p class="fit"><strong>向いている仕事</strong> コードベース理解、実装、修正、テスト、レビュー。</p>
-          <ul><li>AGENTS.md</li><li>Skills / Plugins</li><li>MCP / local・cloud</li></ul>
-          <p class="first-step">最初の一歩: 小さな不具合の調査からテストまで任せる。</p>
-          <button type="button" class="select-button" aria-pressed="false">比較に追加</button>
-        </article>
-
-        <article class="agent-card" data-tags="coding planning" data-agent="Claude Code" data-fit="複数ファイルの開発、Git操作、反復作業の自動化">
-          <div class="card-topline"><span>Anthropic</span><span>開発</span></div>
-          <h3><img src="assets/claude-code-icon.svg" alt="" class="agent-title-icon">Claude Code</h3>
-          <p class="fit"><strong>向いている仕事</strong> 複数ファイルの開発、Git操作、反復作業の自動化。</p>
-          <ul><li>CLAUDE.md / auto memory</li><li>Skills / Hooks</li><li>MCP / subagents / Routines</li></ul>
-          <p class="first-step">最初の一歩: 未テスト機能へテストを追加して直す。</p>
-          <button type="button" class="select-button" aria-pressed="false">比較に追加</button>
-        </article>
-
-        <article class="agent-card" data-tags="knowledge planning" data-agent="Claude Cowork" data-fit="調査、資料作成、表計算、ファイル整理、定期レポート">
-          <div class="card-topline"><span>Anthropic</span><span>ナレッジワーク</span></div>
-          <h3><img src="assets/claude-cowork-icon.svg" alt="" class="agent-title-icon">Claude Cowork</h3>
-          <p class="fit"><strong>向いている仕事</strong> 調査、資料作成、表計算、ファイル整理、定期レポート。</p>
-          <ul><li>Projects / local files</li><li>Skills / Plugins / Connectors</li><li>Scheduled tasks / live artifacts</li></ul>
-          <p class="first-step">最初の一歩: 複数資料からレビュー可能な文書を作る。</p>
-          <button type="button" class="select-button" aria-pressed="false">比較に追加</button>
-        </article>
-
-        <article class="agent-card" data-tags="coding planning" data-agent="Kiro" data-fit="要件、設計、タスクを明確にする仕様駆動開発">
-          <div class="card-topline"><span>AWS</span><span>仕様駆動開発</span></div>
-          <h3><img src="assets/kiro-icon.svg" alt="" class="agent-title-icon">Kiro</h3>
-          <p class="fit"><strong>向いている仕事</strong> 要件、設計、タスクを明確にする仕様駆動開発。</p>
-          <ul><li>Specs / Steering</li><li>Hooks / Agent Skills</li><li>Powers / MCP</li></ul>
-          <p class="first-step">最初の一歩: 新機能をrequirements、design、tasksへ分ける。</p>
-          <button type="button" class="select-button" aria-pressed="false">比較に追加</button>
-        </article>
-
-        <article class="agent-card" data-tags="coding planning" data-agent="Antigravity" data-fit="計画、実装、ブラウザ検証をArtifactで確認するWeb開発">
-          <div class="card-topline"><span>Google</span><span>開発</span></div>
-          <h3><img src="assets/antigravity-icon.svg" alt="" class="agent-title-icon">Antigravity</h3>
-          <p class="fit"><strong>向いている仕事</strong> 計画、実装、ブラウザ検証をArtifactで確認するWeb開発。</p>
-          <ul><li>Artifacts / Planning / Browser</li><li>Rules / Workflows / Skills</li><li>MCP / Permissions</li></ul>
-          <p class="first-step">最初の一歩: 1ページサイトを作り、2画面幅で確認する。</p>
-          <button type="button" class="select-button" aria-pressed="false">比較に追加</button>
-        </article>
-      </div>
-    </section>
-
-    <section class="comparison-summary" aria-labelledby="comparison-title">
-      <div>
-        <p class="eyebrow">Compare two</p>
-        <h2 id="comparison-title">比較候補 <span id="selection-count">0</span>/2</h2>
-      </div>
-      <div id="selection-names" class="selection-content" aria-live="polite">
-        <p>製品カードから2つまで選べます。</p>
-      </div>
-    </section>
-
-    <section class="concept-band" aria-labelledby="concept-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Shared and product-specific</p>
-          <h2 id="concept-title">似た言葉ほど、製品ごとの意味を確認する</h2>
+  <!-- ヒーローセクション -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="hero-tag">AIエージェント製品比較</span>
+        <h2 class="hero-title">仕事の目的と構造に合わせて<br>最適AIエージェントを選ぶ。</h2>
+        <p class="hero-description">
+          開発・計画・ナレッジワークで活躍する5つの主要AIエージェントの特徴、機能、得意領域をコンパクトに整理。研修・導入検討のための実践的な比較ガイドです。
+        </p>
+        <div class="hero-notices">
+          <p class="notice-item">※ 本サイトは研修用のサンプルWebサイトです。</p>
+          <p class="notice-item">※ 2026年8月9日時点の公式情報に基づく概要情報を掲載しています。</p>
         </div>
       </div>
-      <dl class="concept-list">
-        <div><dt>Steering</dt><dd>Kiroの持続的なプロジェクト知識と規約。</dd></div>
-        <div><dt>Skills</dt><dd>手順、知識、任意のスクリプトを再利用する共通形式。</dd></div>
-        <div><dt>MCP</dt><dd>外部のToolとContextへ接続する標準。</dd></div>
-        <div><dt>Powers</dt><dd>KiroでMCP、知識、Workflowを必要時に束ねる機能。</dd></div>
-      </dl>
-    </section>
+      <div class="hero-image-wrapper">
+        <img src="assets/workshop-hero.png" alt="AI Agent Learning Hub ワークショップ ヒーロー画像" class="hero-image" width="600" height="360">
+      </div>
+    </div>
+  </section>
 
-    <section class="safety-note" aria-labelledby="safety-title">
-      <h2 id="safety-title">このサイトについて</h2>
-      <p>2026年8月9日時点の公式情報を研修向けに要約しています。機能や提供面は変更される可能性があります。選択内容は送信・保存されません。</p>
-    </section>
+  <!-- 比較サマリーセクション -->
+  <section class="comparison-summary-section" aria-labelledby="comparison-title">
+    <div class="container">
+      <div class="comparison-card">
+        <div class="comparison-header">
+          <div class="comparison-header-title-group">
+            <span class="comparison-icon">⚖️</span>
+            <h3 id="comparison-title" class="comparison-title">製品比較サマリー</h3>
+          </div>
+          <span class="comparison-count-badge"><span id="selection-count">0</span> / 2 選択中</span>
+        </div>
+        <div id="selection-names" class="comparison-body" aria-live="polite" aria-atomic="true">
+          <div class="selected-products-grid">
+            <p class="comparison-empty">製品カードの「比較に追加」ボタンを押すと、最大2件まで特徴を並べて比較できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ：フィルター＆5製品カード一覧 -->
+  <main class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">主要5製品の比較ガイド</h2>
+        <p class="section-subtitle">用途やプレイスタイルに応じた適切なツール選定をサポートします</p>
+      </div>
+
+      <!-- フィルターバー -->
+      <div class="filter-bar">
+        <div class="filter-buttons" role="toolbar" aria-label="製品フィルター">
+          <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">
+            すべて <span class="filter-count">5</span>
+          </button>
+          <button type="button" class="filter-button" data-filter="dev" aria-pressed="false">
+            開発 <span class="filter-count">4</span>
+          </button>
+          <button type="button" class="filter-button" data-filter="knowledge" aria-pressed="false">
+            ナレッジワーク <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="filter-button" data-filter="auto" aria-pressed="false">
+            計画・自動化 <span class="filter-count">5</span>
+          </button>
+        </div>
+        <div id="result-count" class="result-count" aria-live="polite">5件表示</div>
+      </div>
+
+      <div class="products-grid">
+        <!-- 1. Codex -->
+        <article class="product-card agent-card" data-agent="Codex" data-tags="dev auto" data-fit="コードベース理解、実装、修正、テスト作成、コードレビュー">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3 class="product-name">Codex</h3>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">コードベース理解、実装、修正、テスト作成、コードレビュー</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">AGENTS.md、Skills、Plugins、MCP、Sandbox環境</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">リポジトリルートにAGENTS.mdを配置し、コードベース理解とタスクの自動実行を指示してみる。</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Claude Code -->
+        <article class="product-card agent-card" data-agent="Claude Code" data-tags="dev auto" data-fit="複数ファイルにまたがる開発、Git操作、反復的開発タスクの自動化">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3 class="product-name">Claude Code</h3>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">複数ファイルにまたがる開発、Git操作、反復的開発タスクの自動化</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">CLAUDE.md、Skills、Hooks、MCP、Subagents構成</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">ターミナルCLIから対話を開始し、複数ファイルのリファクタリングやGit一連操作を委任してみる。</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Claude Cowork -->
+        <article class="product-card agent-card" data-agent="Claude Cowork" data-tags="knowledge auto" data-fit="調査分析、ドキュメント・資料作成、表計算、ファイル整理、定期レポート作成">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3 class="product-name">Claude Cowork</h3>
+              <span class="product-category">ナレッジワーク / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">調査分析、ドキュメント・資料作成、表計算、ファイル整理、定期レポート作成</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">Projects、Skills、Connectors、Scheduled tasks</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">プロジェクトスペースを作成し、ドキュメント整理やレポートの定期自動作成を試してみる。</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Kiro -->
+        <article class="product-card agent-card" data-agent="Kiro" data-tags="dev auto" data-fit="要件・設計・タスク分解を明確にして推進する仕様駆動開発">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3 class="product-name">Kiro</h3>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">要件・設計・タスク分解を明確にして推進する仕様駆動開発</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">Specs、Steering、Hooks、Agent Skills、Powers</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">仕様書（Specs）を先に記述し、設計主導で段階的にコード生成と検証を進めてみる。</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Antigravity -->
+        <article class="product-card agent-card card-featured" data-agent="Antigravity" data-tags="dev auto" data-fit="計画、実装、リアルタイムブラウザ検証をArtifactでリアルタイム確認するWeb開発">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-title-badge-row">
+                <h3 class="product-name">Antigravity</h3>
+                <span class="featured-badge">ライブデモ使用ツール</span>
+              </div>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">計画、実装、リアルタイムブラウザ検証をArtifactでリアルタイム確認するWeb開発</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">Artifacts、Planning、Browser、Rules、Skills、MCP、Visual Feedback、Nano Banana</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">プロンプトで画面仕様を指示し、Artifactとブラウザ検証 subagent で仕上がりを確認してみる。</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <p>AI Agent Learning Hub / SYNTHETIC_DATA_ONLY</p>
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <p class="footer-copy">&copy; 2026 AI Agent Learning Hub — 研修用サンプルWebサイト</p>
+      <p class="footer-note">※2026年8月9日時点の公式ドキュメント情報に基づく概要です。</p>
+    </div>
   </footer>
-  <script src="app.js"></script>
 </body>
 </html>
