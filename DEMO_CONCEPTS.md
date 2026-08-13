@@ -164,6 +164,18 @@ ArtifactsはAntigravityが生成する構造化された成果物です。Implem
 | | **Science (DeepMind Skills)** | `[x]` 網羅 | science プラグイン（AlphaFold, ChEMBL, PubChem, PubMed 等）の統合 |
 | | **AGY SDK Skills** | `[x]` 網羅 | Antigravity カスタマイズガイド（`agy-customizations`, `antigravity-guide`）のフル活用 |
 
+### 2. Overview Page (https://antigravity.google/docs/overview) 網羅チェック表
+
+| 公式ドキュメント機能・オーケストレーション | 本デモ網羅状況 | デモでの具体的実施・実演内容 |
+| --- | :---: | --- |
+| **Execute system commands** | `[x]` 網羅 | `run_command` による Node.js テスト実行、Git 操作、Sidecar テスト実行 |
+| **Perform file read/write operations** | `[x]` 網羅 | `view_file`, `replace_file_content`, `write_to_file` によるソースコード・設定ファイル精密編集 |
+| **Conduct web searches** | `[x]` 網羅 | `search_web` や `read_url_content` による一次情報ドキュメント・URL動的フェッチ |
+| **Integrate with external tools via skills and MCP servers** | `[x]` 網羅 | Agent Skills (`frontend-design` 等) 及び lazy-loaded MCP サーバー群の呼び出しと連携 |
+| **Manage subagents** | `[x]` 網羅 | `browser_subagent` による並列タスク委任、録画およびレポート生成 |
+| **Interact with Chrome** | `[x]` 網羅 | Chrome DevTools プラグイン、Autonomous Browser Research 及び E2E インタラクション |
+| **Create artifacts / implementation plans** | `[x]` 網羅 | `implementation_plan.md`, `walkthrough.md` などの計画・検証アーティファクト作成 |
+
 ---
 
 ## Google Antigravity 公式ドキュメント全機能項目一覧と本デモ網羅状況 (https://antigravity.google/docs)
