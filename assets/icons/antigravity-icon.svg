@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28">
+  <defs>
+    <linearGradient id="agGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="50%" stop-color="#EA4335"/>
+      <stop offset="100%" stop-color="#FBBC04"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#agGrad)" d="M12 2L2 19h4.5l5.5-10.5L17.5 19H22L12 2z"/>
+</svg>

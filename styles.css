@@ -31,6 +31,25 @@ body {
   background: var(--canvas);
   color: var(--ink);
   line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 540px;
+}
+
+.hero-notices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-amber);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+.notice-item {
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
 }
 
 button,
@@ -678,6 +697,41 @@ h1 {
 
 .comparison-empty {
   min-height: 150px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.doc-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all 150ms ease;
+}
+
+.doc-link-btn:hover {
+  background-color: var(--accent-primary-soft);
+  color: var(--accent-primary-hover);
+}
+
+.link-arrow {
+  font-size: 0.85rem;
+}
+
+/* 7. Footer Component */
+.site-footer {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 28px 0;
+  margin-top: 48px;
+}
+
+.footer-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
