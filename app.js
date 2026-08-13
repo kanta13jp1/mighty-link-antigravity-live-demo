@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderSelectedItems(selectedCards) {
     if (selectedCards.length === 0) {
-      return `<p class="comparison-empty">製品カードの「比較に追加」ボタンを押すと、最大2件まで特徴を並べて比較できます。</p>`;
+      return `<p class="comparison-empty">製品カードの「比較に追加」ボタンを押すと、最大2件まで特徴や料金プランを並べて比較できます。</p>`;
     }
 
     return selectedCards
@@ -40,9 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="selected-product-item">
           <div class="selected-product-header">
             <span class="selected-product-badge">選択中</span>
-            <h4 class="selected-product-name">${card.dataset.agent}</h4>
+            <div class="selected-product-title-group">
+              ${card.dataset.icon ? `<img src="${card.dataset.icon}" alt="" class="brand-icon-sm" width="18" height="18">` : ''}
+              <h4 class="selected-product-name">${card.dataset.agent}</h4>
+            </div>
           </div>
           <p class="selected-product-fit"><strong>向いている仕事:</strong> ${card.dataset.fit}</p>
+          ${card.dataset.pricing ? `<p class="selected-product-pricing"><strong>料金・制限:</strong> ${card.dataset.pricing}</p>` : ''}
         </div>
       `
       )

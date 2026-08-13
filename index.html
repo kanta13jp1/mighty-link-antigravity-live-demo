@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="5つの主要AIエージェント製品（Codex, Claude Code, Claude Cowork, Kiro, Antigravity）を比較・学習するための研修用1ページWebサイト">
+  <meta name="description" content="9つの主要AIエージェント製品（Codex, Claude Code, Claude Cowork, Kiro, Antigravity, Devin, Cursor, Windsurf, Copilot Workspace）を比較・学習するための研修用1ページWebサイト">
   <title>AI Agent Learning Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
@@ -16,7 +19,7 @@
         <span class="header-logo-icon">🤖</span>
         <h1 class="site-logo">AI Agent Learning Hub</h1>
       </div>
-      <span class="header-badge">研修用サンプル</span>
+      <span class="header-badge">研修用サンプル (2026年8月最新公式情報)</span>
     </div>
   </header>
 
@@ -24,18 +27,18 @@
   <section class="hero-section">
     <div class="container hero-container">
       <div class="hero-content">
-        <span class="hero-tag">AIエージェント製品比較</span>
-        <h2 class="hero-title">仕事の目的と構造に合わせて<br>最適AIエージェントを選ぶ。</h2>
+        <span class="hero-tag">全9主要AIエージェント徹底比較</span>
+        <h2 class="hero-title">仕事の目的と制限構造に合わせて<br>最適AIエージェントを選ぶ。</h2>
         <p class="hero-description">
-          開発・計画・ナレッジワークで活躍する5つの主要AIエージェントの特徴、機能、得意領域をコンパクトに整理。研修・導入検討のための実践的な比較ガイドです。
+          開発・計画・ナレッジワークで活躍する9つの主要AIエージェントの特徴、機能、公式料金プラン、クォータ制限、公式リンクを網羅。研修・導入検討のための実践的な比較ガイドです。
         </p>
         <div class="hero-notices">
           <p class="notice-item">※ 本サイトは研修用のサンプルWebサイトです。</p>
-          <p class="notice-item">※ 2026年8月9日時点の公式情報に基づく概要情報を掲載しています。</p>
+          <p class="notice-item">※ 2026年8月9日時点の各社公式ドキュメント情報に基づいています。</p>
         </div>
       </div>
       <div class="hero-image-wrapper">
-        <img src="assets/workshop-hero.png" alt="AI Agent Learning Hub ワークショップ ヒーロー画像" class="hero-image" width="600" height="360">
+        <img src="assets/agent-workflow-hero.png" alt="AI Agent Learning Hub ワークフロー ヒーロー画像" class="hero-image" width="600" height="360">
       </div>
     </div>
   </section>
@@ -53,46 +56,49 @@
         </div>
         <div id="selection-names" class="comparison-body" aria-live="polite" aria-atomic="true">
           <div class="selected-products-grid">
-            <p class="comparison-empty">製品カードの「比較に追加」ボタンを押すと、最大2件まで特徴を並べて比較できます。</p>
+            <p class="comparison-empty">製品カードの「比較に追加」ボタンを押すと、最大2件まで特徴や料金プランを並べて比較できます。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- メインコンテンツ：フィルター＆5製品カード一覧 -->
+  <!-- メインコンテンツ：フィルター＆9製品カード一覧 -->
   <main class="main-content">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">主要5製品の比較ガイド</h2>
-        <p class="section-subtitle">用途やプレイスタイルに応じた適切なツール選定をサポートします</p>
+        <h2 class="section-title">主要9製品の比較ガイド</h2>
+        <p class="section-subtitle">用途、特徴、料金・クォータ制限に応じた適切なツール選定をサポートします</p>
       </div>
 
       <!-- フィルターバー -->
       <div class="filter-bar">
         <div class="filter-buttons" role="toolbar" aria-label="製品フィルター">
           <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">
-            すべて <span class="filter-count">5</span>
+            すべて <span class="filter-count">9</span>
           </button>
           <button type="button" class="filter-button" data-filter="dev" aria-pressed="false">
-            開発 <span class="filter-count">4</span>
+            開発 <span class="filter-count">8</span>
           </button>
           <button type="button" class="filter-button" data-filter="knowledge" aria-pressed="false">
             ナレッジワーク <span class="filter-count">1</span>
           </button>
           <button type="button" class="filter-button" data-filter="auto" aria-pressed="false">
-            計画・自動化 <span class="filter-count">5</span>
+            計画・自動化 <span class="filter-count">9</span>
           </button>
         </div>
-        <div id="result-count" class="result-count" aria-live="polite">5件表示</div>
+        <div id="result-count" class="result-count" aria-live="polite">9件表示</div>
       </div>
 
       <div class="products-grid">
         <!-- 1. Codex -->
-        <article class="product-card agent-card" data-agent="Codex" data-tags="dev auto" data-fit="コードベース理解、実装、修正、テスト作成、コードレビュー">
+        <article class="product-card agent-card" data-agent="Codex" data-tags="dev auto" data-fit="コードベース理解、実装、修正、テスト作成、コードレビュー" data-pricing="Free (1日10回) / Pro ($20/月: 1日200回) / Enterprise" data-icon="assets/icons/codex-brand.png">
           <div class="card-header">
             <div class="card-title-group">
-              <h3 class="product-name">Codex</h3>
+              <div class="card-brand-title">
+                <img src="assets/icons/codex-brand.png" alt="Codex アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Codex</h3>
+              </div>
               <span class="product-category">開発 / 計画・自動化</span>
             </div>
             <button type="button" class="select-button" aria-pressed="false">
@@ -109,17 +115,29 @@
               <p class="info-text">AGENTS.md、Skills、Plugins、MCP、Sandbox環境</p>
             </div>
             <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Free (1日10回制限) / Pro ($20/月: 1日200回制限) / Enterprise</p>
+            </div>
+            <div class="info-group">
               <h4 class="info-label">最初に試すこと</h4>
               <p class="info-text">リポジトリルートにAGENTS.mdを配置し、コードベース理解とタスクの自動実行を指示してみる。</p>
             </div>
           </div>
+          <div class="card-footer">
+            <a href="https://learn.chatgpt.com/docs" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
         </article>
 
         <!-- 2. Claude Code -->
-        <article class="product-card agent-card" data-agent="Claude Code" data-tags="dev auto" data-fit="複数ファイルにまたがる開発、Git操作、反復的開発タスクの自動化">
+        <article class="product-card agent-card" data-agent="Claude Code" data-tags="dev auto" data-fit="複数ファイルにまたがる開発、Git操作、反復的開発タスクの自動化" data-pricing="Pro ($20/月: 5hあたり45〜450通) / Max ($100/月: 5倍クォータ)" data-icon="assets/icons/claude-brand.png">
           <div class="card-header">
             <div class="card-title-group">
-              <h3 class="product-name">Claude Code</h3>
+              <div class="card-brand-title">
+                <img src="assets/icons/claude-brand.png" alt="Claude Code アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Claude Code</h3>
+              </div>
               <span class="product-category">開発 / 計画・自動化</span>
             </div>
             <button type="button" class="select-button" aria-pressed="false">
@@ -136,17 +154,29 @@
               <p class="info-text">CLAUDE.md、Skills、Hooks、MCP、Subagents構成</p>
             </div>
             <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Pro ($20/月: 5hあたり45〜450通) / Max ($100/月: 5倍クォータ) / API</p>
+            </div>
+            <div class="info-group">
               <h4 class="info-label">最初に試すこと</h4>
               <p class="info-text">ターミナルCLIから対話を開始し、複数ファイルのリファクタリングやGit一連操作を委任してみる。</p>
             </div>
           </div>
+          <div class="card-footer">
+            <a href="https://code.claude.com/docs" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
         </article>
 
         <!-- 3. Claude Cowork -->
-        <article class="product-card agent-card" data-agent="Claude Cowork" data-tags="knowledge auto" data-fit="調査分析、ドキュメント・資料作成、表計算、ファイル整理、定期レポート作成">
+        <article class="product-card agent-card" data-agent="Claude Cowork" data-tags="knowledge auto" data-fit="調査分析、ドキュメント・資料作成、表計算、ファイル整理、定期レポート作成" data-pricing="Team ($30/人/月: Proの2倍) / Enterprise (カスタムSSO)" data-icon="assets/icons/claude-brand.png">
           <div class="card-header">
             <div class="card-title-group">
-              <h3 class="product-name">Claude Cowork</h3>
+              <div class="card-brand-title">
+                <img src="assets/icons/claude-brand.png" alt="Claude Cowork アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Claude Cowork</h3>
+              </div>
               <span class="product-category">ナレッジワーク / 計画・自動化</span>
             </div>
             <button type="button" class="select-button" aria-pressed="false">
@@ -163,17 +193,29 @@
               <p class="info-text">Projects、Skills、Connectors、Scheduled tasks</p>
             </div>
             <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Team ($30/人/月: Proの2倍クォータ) / Enterprise (カスタムSSO)</p>
+            </div>
+            <div class="info-group">
               <h4 class="info-label">最初に試すこと</h4>
               <p class="info-text">プロジェクトスペースを作成し、ドキュメント整理やレポートの定期自動作成を試してみる。</p>
             </div>
           </div>
+          <div class="card-footer">
+            <a href="https://claude.com/product/overview" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
         </article>
 
         <!-- 4. Kiro -->
-        <article class="product-card agent-card" data-agent="Kiro" data-tags="dev auto" data-fit="要件・設計・タスク分解を明確にして推進する仕様駆動開発">
+        <article class="product-card agent-card" data-agent="Kiro" data-tags="dev auto" data-fit="要件・設計・タスク分解を明確にして推進する仕様駆動開発" data-pricing="Free (月500 PU) / Pro ($20/月: 月3,000 PU) / Power Units従量" data-icon="assets/icons/kiro-brand.png">
           <div class="card-header">
             <div class="card-title-group">
-              <h3 class="product-name">Kiro</h3>
+              <div class="card-brand-title">
+                <img src="assets/icons/kiro-brand.png" alt="Kiro アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Kiro</h3>
+              </div>
               <span class="product-category">開発 / 計画・自動化</span>
             </div>
             <button type="button" class="select-button" aria-pressed="false">
@@ -190,18 +232,30 @@
               <p class="info-text">Specs、Steering、Hooks、Agent Skills、Powers</p>
             </div>
             <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Free (月500 PU) / Pro ($20/月: 月3,000 PU) / Power Units 従量</p>
+            </div>
+            <div class="info-group">
               <h4 class="info-label">最初に試すこと</h4>
               <p class="info-text">仕様書（Specs）を先に記述し、設計主導で段階的にコード生成と検証を進めてみる。</p>
             </div>
           </div>
+          <div class="card-footer">
+            <a href="https://kiro.dev/docs/" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
         </article>
 
         <!-- 5. Antigravity -->
-        <article class="product-card agent-card card-featured" data-agent="Antigravity" data-tags="dev auto" data-fit="計画、実装、リアルタイムブラウザ検証をArtifactでリアルタイム確認するWeb開発">
+        <article class="product-card agent-card card-featured" data-agent="Antigravity" data-tags="dev auto" data-fit="計画、実装、リアルタイムブラウザ検証をArtifactで確認するWeb開発" data-pricing="Free (1日100回) / Pro ($20/月: 1日1,000回) / Ultra ($200/月)" data-icon="assets/icons/antigravity-brand.png">
           <div class="card-header">
             <div class="card-title-group">
               <div class="card-title-badge-row">
-                <h3 class="product-name">Antigravity</h3>
+                <div class="card-brand-title">
+                  <img src="assets/icons/antigravity-brand.png" alt="Antigravity アイコン" class="brand-icon" width="24" height="24">
+                  <h3 class="product-name">Antigravity</h3>
+                </div>
                 <span class="featured-badge">ライブデモ使用ツール</span>
               </div>
               <span class="product-category">開発 / 計画・自動化</span>
@@ -220,9 +274,174 @@
               <p class="info-text">Artifacts、Planning、Browser、Rules、Skills、MCP、Visual Feedback、Nano Banana</p>
             </div>
             <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Free (1日100回) / Pro ($20/月: 1日1,000回) / Ultra ($200/月: 1日1万回)</p>
+            </div>
+            <div class="info-group">
               <h4 class="info-label">最初に試すこと</h4>
               <p class="info-text">プロンプトで画面仕様を指示し、Artifactとブラウザ検証 subagent で仕上がりを確認してみる。</p>
             </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 6. Devin -->
+        <article class="product-card agent-card" data-agent="Devin" data-tags="dev auto" data-fit="自律的なソフトウェア開発、バグ修正、Issue自動化" data-pricing="Free (月15 ACU) / Pro ($20/月: 月250 ACU) / Max ($200/月) / Teams" data-icon="assets/icons/devin-brand.png">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-brand-title">
+                <img src="assets/icons/devin-brand.png" alt="Devin アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Devin</h3>
+              </div>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">自律的なソフトウェア開発、バグ修正、Issue自動化</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">ACU (Compute Units)、Devin Desktop、Shell</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Free (月15 ACU) / Pro ($20/月: 月250 ACU) / Max ($200/月: 月3,000 ACU)</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">GitHub Issueと連携し、バグ修正や機能追加の自動ブランチ作成・PR起草を委任してみる。</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://devin.ai/desktop" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 7. Cursor Agent -->
+        <article class="product-card agent-card" data-agent="Cursor Agent" data-tags="dev auto" data-fit="IDE統合型のマルチファイル自動生成、高速コード補完" data-pricing="Hobby (Free: 50回Fast) / Pro ($20/月: 500回) / Ultra ($200/月)" data-icon="assets/icons/cursor-brand.png">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-brand-title">
+                <img src="assets/icons/cursor-brand.png" alt="Cursor アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Cursor Agent</h3>
+              </div>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">IDE統合型のマルチファイル自動生成、高速コード補完</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">Composer、Fast Completion、.cursorrules</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Hobby (Free: 50回Fast/月) / Pro ($20/月: 500回Fast) / Ultra ($200/月)</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">Composer機能を起動し、.cursorrulesの設定に沿って複数ファイルのエディタ内高速生成を試す。</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://cursor.com/pricing" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 8. Windsurf -->
+        <article class="product-card agent-card" data-agent="Windsurf" data-tags="dev auto" data-fit="Cascadeフローによる超高速マルチファイルリファクタリング" data-pricing="Free (月50回Cascade) / Pro ($15/月: 月500回) / Pro+ ($45/月)" data-icon="assets/icons/windsurf-brand.png">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-brand-title">
+                <img src="assets/icons/windsurf-brand.png" alt="Windsurf アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Windsurf</h3>
+              </div>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">Cascadeフローによる超高速マルチファイルリファクタリング</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">Cascade Flow、Supercomplete、.windsurfrules</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Free (月50回Cascade) / Pro ($15/月: 月500回) / Pro+ ($45/月: 月2千回)</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">Cascadeパネルでタスクを投入し、リアルタイムでのコンテキスト追従とコード編集フローを体験する。</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://codeium.com/windsurf" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 9. Copilot Workspace -->
+        <article class="product-card agent-card" data-agent="Copilot Workspace" data-tags="dev auto" data-fit="GitHub Issueからの仕様策定、タスク分解、自動PR起草" data-pricing="Individual ($10/月: 月300回) / Business ($19/席) / Enterprise" data-icon="assets/icons/copilot-brand.png">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="card-brand-title">
+                <img src="assets/icons/copilot-brand.png" alt="GitHub Copilot アイコン" class="brand-icon" width="24" height="24">
+                <h3 class="product-name">Copilot Workspace</h3>
+              </div>
+              <span class="product-category">開発 / 計画・自動化</span>
+            </div>
+            <button type="button" class="select-button" aria-pressed="false">
+              <span class="btn-text">比較に追加</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="info-group">
+              <h4 class="info-label">向いている仕事</h4>
+              <p class="info-text">GitHub Issueからの仕様策定、タスク分解、自動PR起草</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">主な機能</h4>
+              <p class="info-text">Issue-to-PR Flow、Task Plan Specs、Extensions</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">料金プラン &amp; クォータ制限 (2026)</h4>
+              <p class="info-text highlight-pricing">Individual ($10/月: 月300回Agent) / Business ($19/席) / Enterprise</p>
+            </div>
+            <div class="info-group">
+              <h4 class="info-label">最初に試すこと</h4>
+              <p class="info-text">GitHubリポジトリのIssueから「Open in Workspace」を開き、自動タスク分解とPR提案を試す。</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="doc-link-btn">
+              公式ドキュメント <span class="link-arrow">↗</span>
+            </a>
           </div>
         </article>
       </div>
@@ -233,7 +452,7 @@
   <footer class="site-footer">
     <div class="container footer-container">
       <p class="footer-copy">&copy; 2026 AI Agent Learning Hub — 研修用サンプルWebサイト</p>
-      <p class="footer-note">※2026年8月9日時点の公式ドキュメント情報に基づく概要です。</p>
+      <p class="footer-note">※ 2026年8月9日時点の各社公式ドキュメント情報に基づく概要です。</p>
     </div>
   </footer>
 </body>

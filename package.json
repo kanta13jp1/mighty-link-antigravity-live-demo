@@ -1,0 +1,27 @@
+{
+  "name": "mighty-link-antigravity-live-demo",
+  "version": "1.0.0",
+  "description": "This public repository is used only for the August 26 Antigravity workshop demonstration. The goal is to show how an AI agent can clarify requirements, add a reusable capability, build, improve, verify, and publish a polished result in a short session.",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/e2e.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanta13jp1/mighty-link-antigravity-live-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanta13jp1/mighty-link-antigravity-live-demo/issues"
+  },
+  "homepage": "https://github.com/kanta13jp1/mighty-link-antigravity-live-demo#readme",
+  "dependencies": {
+    "jsdom": "^29.1.1"
+  }
+}
