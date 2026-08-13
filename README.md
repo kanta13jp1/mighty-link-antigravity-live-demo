@@ -1,16 +1,26 @@
 # MightyLINK Antigravity Live Demo
 
-This public repository is used only for the August 26 Antigravity workshop demonstration. The goal is to show how an AI agent can clarify requirements, add a reusable capability, build, improve, verify, and publish a polished result in a short session.
+This public repository supports the August 26 Antigravity workshop. It demonstrates a test-first workflow: define acceptance criteria, build with an IDE agent, inspect the same workspace from CLI and SDK, verify in a browser, and publish to GitHub Pages.
 
-- All content is synthetic.
-- No customer, employee, credential, or production data is permitted.
-- The live demo uses seven IDE prompts plus read-only CLI and SDK audit prompts over 30 minutes.
-- The IDE creates and improves the site; the CLI and SDK inspect the same repository without modifying it.
+- All content is synthetic. Customer, employee, credential, and production data are prohibited.
+- The comparison covers only Codex, Claude Code, Claude Cowork, Kiro, and Antigravity.
+- Product facts were checked against official sources on 2026-08-13 JST.
+- Official icons are stored locally so they remain visible on GitHub Pages; `ICON_SOURCES.md` records provenance.
 - `/grill-me` and `/find-skills` are baseline workspace Skills in `.agents/skills/`.
 - `anthropics/skills@frontend-design` is installed project-locally during the demo and removed after rehearsal.
-- GitHub MCP is read-only; if it is not already connected, the MCP step is skipped.
-- Publishing starts only after the presenter says exactly `公開して`.
 - The production MightyLINK repository and Firebase Hosting are not used.
+
+## Test-first flow
+
+Read `TEST_SPEC.md` before implementation. Run the contract tests after every material change:
+
+```powershell
+python -m unittest discover -s tests -v
+node --check app.js
+node --check product-data.js
+```
+
+The tests prevent scope drift, missing official icons, undated updates, unofficial source domains, incomplete comparison axes, and the return of unverified fixed quota claims.
 
 ## Demo files
 
@@ -24,9 +34,7 @@ This public repository is used only for the August 26 Antigravity workshop demon
 8. `PROMPT_10_CLI_READONLY.txt`
 9. `PROMPT_11_SDK_READONLY.txt`
 
-`antigravity_sdk_readonly.py` runs the SDK audit with `BuiltinTools.read_only()`. Install `google-antigravity` in a disposable virtual environment and provide `GEMINI_API_KEY` only through the local environment. Never commit the key. For the CLI demo, use the interactive `agy` TUI, pre-approve reads for the four named files, and do not use `--dangerously-skip-permissions`.
-
-Definitions and the five-product comparison are in `DEMO_CONCEPTS.md`. `Steering` and `Powers` are Kiro feature names; Antigravity uses Rules, Workflows, Skills, MCP, and Artifacts.
+`SOURCE_AUDIT.md` records the official evidence behind each product card. `SELF_REVIEW.md` records ten distinct review passes and the resulting fixes. `antigravity_sdk_readonly.py` runs the SDK audit with `BuiltinTools.read_only()`.
 
 ## Rehearsal reset
 
@@ -46,5 +54,3 @@ npx skills list --json
 git revert --no-edit <rehearsal-publish-commit-sha>
 git push origin main
 ```
-
-The explicit folder check is required because a copied Skill and its generated `skills-lock.json` can remain after the CLI reports successful removal.

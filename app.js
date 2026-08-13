@@ -1,479 +1,326 @@
-/**
- * AI Agent Learning Hub - Visual Feedback Edition
- * Real-time Search, CSV/JSON Data Export, AI Recommender, Official Video Modal, Nano Banana & Visual Feedback
- */
-document.addEventListener('DOMContentLoaded', () => {
-  const MAX_SELECTION = 2;
-  const selectedProductIds = new Set();
+(() => {
+  "use strict";
 
-  const filterButtons = document.querySelectorAll('.btn-filter');
-  const productCards = document.querySelectorAll('.product-card');
-  const compareButtons = document.querySelectorAll('.btn-compare');
-  const searchInput = document.getElementById('search-input');
-  const summaryCountBadge = document.getElementById('summary-count-badge');
-  const summaryContentBox = document.getElementById('summary-content-box');
-  const limitToast = document.getElementById('limit-warning-toast');
-  const clearSelectionBtn = document.getElementById('btn-clear-selection');
-  const openModalBtn = document.getElementById('btn-open-modal');
-  const closeModalBtn = document.getElementById('btn-close-modal');
-  const modalOverlay = document.getElementById('modal-overlay');
-  const modalBodyGrid = document.getElementById('modal-body-grid');
-  
-  // Video Modal Elements
-  const videoModalOverlay = document.getElementById('video-modal-overlay');
-  const videoModalTitle = document.getElementById('video-modal-title');
-  const videoFrameContainer = document.getElementById('video-frame-container');
-  const closeVideoModalBtn = document.getElementById('btn-close-video-modal');
+  const products = Array.isArray(window.PRODUCT_DATA) ? window.PRODUCT_DATA : [];
+  const selectedIds = new Set();
+  let activeScenario = "all";
+  let searchQuery = "";
 
-  // Nano Banana Presets & Status
-  const nanoStatusBox = document.getElementById('nano-banana-status');
-  const nanoButtons = document.querySelectorAll('.btn-nano-preset');
+  const scenarios = {
+    all: {
+      ids: products.map((product) => product.id),
+      message: "5製品を表示しています。カードから最大2製品を詳細比較できます。"
+    },
+    code: {
+      ids: ["codex", "claude-code", "kiro", "antigravity"],
+      message: "コード実装は、横断的な開発ならCodex、CLI中心ならClaude Code、仕様駆動ならKiro、画面検証まで一体化するならAntigravityが候補です。"
+    },
+    knowledge: {
+      ids: ["claude-cowork"],
+      message: "資料、表計算、メール、カレンダー、定期レポートをまたぐ仕事はClaude Coworkが中心候補です。"
+    },
+    spec: {
+      ids: ["kiro", "codex", "claude-code"],
+      message: "仕様を正式な工程として残すならKiro。既存の設計書やテストを基準に実装するならCodexとClaude Codeも候補です。"
+    },
+    browser: {
+      ids: ["antigravity", "codex", "claude-cowork"],
+      message: "Web制作と画面証拠はAntigravity、アプリ内Browserを含む開発はCodex、業務Web操作はClaude Coworkが候補です。"
+    },
+    automation: {
+      ids: ["codex", "claude-code", "kiro", "antigravity", "claude-cowork"],
+      message: "SDK/CIはCodexとClaude Code、仕様とHooksはKiro、Browserを含むSDK実演はAntigravity、定期業務はClaude Coworkが向きます。"
+    }
+  };
 
-  nanoButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const themeKey = btn.getAttribute('data-nano-preset');
-      const themeLabel = btn.textContent.trim();
-      
-      document.documentElement.setAttribute('data-nano-theme', themeKey);
-      
-      if (nanoStatusBox) {
-        nanoStatusBox.innerHTML = `🍌 <strong>Nano Banana 適用完了:</strong> [${themeLabel}] テーマがリアルタイム反映されました！`;
-      }
-    });
-  });
+  const productGrid = document.getElementById("product-grid");
+  const emptyState = document.getElementById("empty-state");
+  const searchInput = document.getElementById("product-search");
+  const scenarioResult = document.getElementById("scenario-result");
+  const selectionCount = document.getElementById("selection-count");
+  const compareStatus = document.getElementById("compare-status");
+  const comparisonEmpty = document.getElementById("comparison-empty");
+  const comparisonTableWrap = document.getElementById("comparison-table-wrap");
+  const comparisonHead = document.getElementById("comparison-head");
+  const comparisonBody = document.getElementById("comparison-body");
+  const clearComparison = document.getElementById("clear-comparison");
+  const sourceLedger = document.getElementById("source-ledger");
+  const sourceCount = document.getElementById("source-count");
 
-  // Visual Feedback Interactive Pinning Logic
-  const feedbackCanvasBox = document.getElementById('feedback-canvas-box');
-  const clearPinsBtn = document.getElementById('btn-clear-pins');
-  let pinCount = 0;
-
-  if (feedbackCanvasBox) {
-    feedbackCanvasBox.addEventListener('click', (e) => {
-      // Don't spawn if clicking inside existing pin or button
-      if (e.target.closest('.feedback-pin-item') || e.target.tagName === 'BUTTON') return;
-
-      const rect = feedbackCanvasBox.getBoundingClientRect();
-      const xPercent = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-      const yPercent = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-
-      const defaultComment = pinCount === 0 ? "Connect this to Google Calendar" : "カレンダー連携ボタンを追加";
-      const userText = prompt("💬 画面フィードバックコメントを入力してください (例: Googleカレンダーと連携してください):", defaultComment);
-
-      if (!userText || !userText.trim()) return;
-
-      pinCount++;
-      const pinItem = document.createElement('div');
-      pinItem.className = 'feedback-pin-item';
-      pinItem.style.left = `${xPercent}%`;
-      pinItem.style.top = `${yPercent}%`;
-
-      pinItem.innerHTML = `
-        <div class="feedback-pin-badge">
-          📌 #${pinCount}: "${escapeHtml(userText.trim())}"
-        </div>
-        <div class="feedback-agent-reply">
-          🤖 Antigravity: 指示を受信しました。修正コードを即座に起草します。
-        </div>
-      `;
-
-      feedbackCanvasBox.appendChild(pinItem);
-    });
+  function element(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
 
-  if (clearPinsBtn) {
-    clearPinsBtn.addEventListener('click', () => {
-      if (!feedbackCanvasBox) return;
-      const pins = feedbackCanvasBox.querySelectorAll('.feedback-pin-item');
-      pins.forEach(pin => pin.remove());
-      pinCount = 0;
+  function externalLink(label, url, className) {
+    const link = element("a", className, label);
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    return link;
+  }
+
+  function createMediaLink(kind, item) {
+    const link = externalLink("", item.url, "media-link");
+    link.append(
+      element("span", "", kind),
+      element("strong", "", item.title),
+      element("small", "", `${item.date}${item.channel ? ` / ${item.channel}` : ""}`)
+    );
+    return link;
+  }
+
+  function createProductCard(product) {
+    const card = element("article", "product-card");
+    card.dataset.product = product.id;
+    card.dataset.search = [
+      product.name,
+      product.vendor,
+      product.oneLine,
+      product.bestFor,
+      product.notIdealFor,
+      ...product.tags,
+      ...Object.values(product.comparison)
+    ].join(" ").toLowerCase();
+
+    const head = element("div", "product-card-head");
+    const iconWrap = element("div", "product-icon-wrap");
+    const icon = element("img", "product-icon");
+    icon.src = product.icon;
+    icon.alt = `${product.name} 公式アイコン`;
+    icon.width = 42;
+    icon.height = 42;
+    icon.loading = "lazy";
+    iconWrap.append(icon);
+
+    const meta = element("div", "product-meta");
+    meta.append(element("p", "vendor", product.vendor), element("h3", "product-name", product.name));
+
+    const release = element("a", "release-badge");
+    release.href = product.release.url;
+    release.target = "_blank";
+    release.rel = "noopener noreferrer";
+    release.setAttribute("aria-label", `${product.name} ${product.release.version} の公式更新情報`);
+    release.append(
+      element("strong", "", product.release.version),
+      element("span", "", `${product.release.label} / ${product.release.date}`)
+    );
+    head.append(iconWrap, meta, release);
+
+    const summary = element("p", "product-summary", product.oneLine);
+
+    const fitGrid = element("div", "fit-grid");
+    const bestFit = element("div", "fit-item");
+    bestFit.append(element("span", "fit-label", "選ぶ理由"), element("p", "", product.bestFor));
+    const caution = element("div", "fit-item is-caution");
+    caution.append(element("span", "fit-label", "別候補も見る条件"), element("p", "", product.notIdealFor));
+    fitGrid.append(bestFit, caution);
+
+    const update = element("div", "update-block");
+    update.append(
+      element("span", "update-kicker", `LATEST UPDATE / ${product.latestUpdate.date}`),
+      element("h4", "", product.latestUpdate.title),
+      element("p", "", product.latestUpdate.summary)
+    );
+
+    const media = element("div", "media-grid");
+    media.append(
+      createMediaLink("最新公式動画", product.latestVideo),
+      createMediaLink("最新公式ブログ", product.latestBlog)
+    );
+
+    const details = element("details", "card-details");
+    details.append(element("summary", "", "実務比較の要点"));
+    const detailList = element("ul", "detail-list");
+    ["操作面", "持続指示", "能力拡張", "MCP・連携", "証拠とレビュー", "安全境界", "価格・利用枠"].forEach((field) => {
+      const item = element("li", "");
+      item.append(element("strong", "", field), element("span", "", product.comparison[field]));
+      detailList.append(item);
     });
+    details.append(detailList);
+
+    const actions = element("div", "card-actions");
+    const compareButton = element("button", "compare-button", "比較に追加");
+    compareButton.type = "button";
+    compareButton.dataset.productId = product.id;
+    compareButton.setAttribute("aria-pressed", "false");
+    compareButton.setAttribute("aria-label", `${product.name}を詳細比較に追加`);
+    compareButton.addEventListener("click", () => toggleSelection(product.id));
+
+    const links = element("div", "official-links");
+    links.append(
+      externalLink("公式Docs", product.sources[0].url),
+      externalLink("更新履歴", product.release.url)
+    );
+    actions.append(compareButton, links);
+
+    card.append(head, summary, fitGrid, update, media, details, actions);
+    return card;
   }
 
-  function escapeHtml(str) {
-    return str.replace(/[&<>"']/g, function(m) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+  function renderProducts() {
+    productGrid.replaceChildren(...products.map(createProductCard));
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const allowed = new Set(scenarios[activeScenario].ids);
+    let visibleCount = 0;
+
+    document.querySelectorAll(".product-card").forEach((card) => {
+      const matchesScenario = allowed.has(card.dataset.product);
+      const matchesSearch = !searchQuery || card.dataset.search.includes(searchQuery);
+      const visible = matchesScenario && matchesSearch;
+      card.hidden = !visible;
+      if (visible) visibleCount += 1;
     });
+
+    emptyState.hidden = visibleCount !== 0;
+    const baseMessage = scenarios[activeScenario].message;
+    scenarioResult.textContent = searchQuery
+      ? `${baseMessage} 検索結果は${visibleCount}製品です。`
+      : baseMessage;
   }
 
-  // Theme Switcher (Header Toggle)
-  const themeToggleBtn = document.getElementById('btn-theme-toggle');
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentNanoTheme = document.documentElement.getAttribute('data-nano-theme');
-      if (currentNanoTheme === 'cyber-neon') {
-        document.documentElement.removeAttribute('data-nano-theme');
-        themeToggleBtn.innerHTML = '⚡ ネオン (Cyberpunk)';
-      } else {
-        document.documentElement.setAttribute('data-nano-theme', 'cyber-neon');
-        themeToggleBtn.innerHTML = '🌙 ダーク (Slate)';
-      }
-    });
-  }
-
-  // Video Modal Handlers
-  document.querySelectorAll('.btn-watch-video').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const videoTitle = btn.getAttribute('data-video-title') || '公式デモ動画';
-      const videoEmbed = btn.getAttribute('data-video-embed');
-      const directUrl = btn.getAttribute('data-video-url') || btn.getAttribute('href');
-
-      if (videoEmbed && videoModalOverlay) {
-        e.preventDefault();
-        videoModalTitle.textContent = `▶ ${videoTitle}`;
-        videoFrameContainer.innerHTML = `
-          <div class="video-player-container">
-            <iframe src="${videoEmbed}" title="${videoTitle}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-          <div style="margin-top: 12px; text-align: center;">
-            <a href="${directUrl}" target="_blank" rel="noopener" class="official-doc-link" style="font-size: 0.9rem; padding: 6px 16px;">YouTubeで開く ↗</a>
-          </div>
-        `;
-        videoModalOverlay.classList.add('show');
-        videoModalOverlay.setAttribute('aria-hidden', 'false');
-      }
-    });
-  });
-
-  if (closeVideoModalBtn) {
-    closeVideoModalBtn.addEventListener('click', closeVideoModal);
-  }
-
-  if (videoModalOverlay) {
-    videoModalOverlay.addEventListener('click', (e) => {
-      if (e.target === videoModalOverlay) closeVideoModal();
-    });
-  }
-
-  function closeVideoModal() {
-    if (!videoModalOverlay) return;
-    videoModalOverlay.classList.remove('show');
-    videoModalOverlay.setAttribute('aria-hidden', 'true');
-    if (videoFrameContainer) videoFrameContainer.innerHTML = '';
-  }
-
-  // 1. Real-time Search & Filter Combination
-  let currentFilter = 'すべて';
-  let searchQuery = '';
-
-  function applyFilterAndSearch() {
-    productCards.forEach(card => {
-      const cardTags = card.getAttribute('data-tags') || '';
-      const textContent = card.textContent.toLowerCase();
-
-      const matchesFilter = (currentFilter === 'すべて' || cardTags.includes(currentFilter));
-      const matchesSearch = (!searchQuery || textContent.includes(searchQuery.toLowerCase()));
-
-      if (matchesFilter && matchesSearch) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  }
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      currentFilter = btn.getAttribute('data-filter');
-      filterButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
-      btn.setAttribute('aria-pressed', 'true');
-      applyFilterAndSearch();
-    });
-  });
-
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim();
-      applyFilterAndSearch();
-    });
-  }
-
-  // 2. Data Export (CSV & JSON)
-  const exportCsvBtn = document.getElementById('btn-export-csv');
-  const exportJsonBtn = document.getElementById('btn-export-json');
-
-  function getProductsData() {
-    const products = [];
-    productCards.forEach(card => {
-      const name = card.querySelector('.product-name').textContent.trim();
-      const link = card.querySelector('.official-doc-link') ? card.querySelector('.official-doc-link').href : '';
-      const tags = card.getAttribute('data-tags') || '';
-      const work = card.querySelector('.card-text-work').textContent.trim();
-      const features = card.querySelectorAll('.card-text')[1].textContent.trim();
-      const price = card.querySelector('.card-text-price').textContent.trim();
-      const quota = card.querySelector('.card-text-quota').textContent.trim();
-      const firstTry = card.querySelectorAll('.card-text')[4].textContent.trim();
-
-      products.push({ name, tags, work, features, price, quota, firstTry, officialDocLink: link });
-    });
-    return products;
-  }
-
-  if (exportCsvBtn) {
-    exportCsvBtn.addEventListener('click', () => {
-      const data = getProductsData();
-      let csvContent = '\uFEFF';
-      csvContent += '製品名,タグ,向いている仕事,主な機能,全料金プラン (2026),クォータ・制限詳細,最初に試すこと,公式ドキュメントURL\n';
-
-      data.forEach(p => {
-        const row = [
-          `"${p.name.replace(/"/g, '""')}"`,
-          `"${p.tags.replace(/"/g, '""')}"`,
-          `"${p.work.replace(/"/g, '""')}"`,
-          `"${p.features.replace(/"/g, '""')}"`,
-          `"${p.price.replace(/"/g, '""')}"`,
-          `"${p.quota.replace(/"/g, '""')}"`,
-          `"${p.firstTry.replace(/"/g, '""')}"`,
-          `"${p.officialDocLink.replace(/"/g, '""')}"`
-        ];
-        csvContent += row.join(',') + '\n';
-      });
-
-      downloadFile(csvContent, 'ai_agent_learning_hub_2026.csv', 'text/csv;charset=utf-8;');
-    });
-  }
-
-  if (exportJsonBtn) {
-    exportJsonBtn.addEventListener('click', () => {
-      const data = getProductsData();
-      const jsonContent = JSON.stringify(data, null, 2);
-      downloadFile(jsonContent, 'ai_agent_learning_hub_2026.json', 'application/json;');
-    });
-  }
-
-  function downloadFile(content, fileName, mimeType) {
-    const blob = new Blob([content], { type: mimeType });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  // 3. AI Recommender Widget Logic
-  const recWork = document.getElementById('rec-work');
-  const recCost = document.getElementById('rec-cost');
-  const recFeature = document.getElementById('rec-feature');
-  const recommenderResult = document.getElementById('recommender-result');
-
-  function calculateRecommendation() {
-    if (!recWork || !recCost || !recFeature || !recommenderResult) return;
-    
-    const workVal = recWork.value;
-    const featVal = recFeature.value;
-
-    let recId = 'product-antigravity';
-    let matchScore = '98%';
-    let matchReason = 'ブラウザ自律検証、Visual Feedback画面コメント指示、計画Artifacts、Nano Banana画像アセット生成機能に最適です。';
-
-    if (workVal === 'knowledge') {
-      recId = 'product-claude-cowork';
-      matchScore = '96%';
-      matchReason = 'ナレッジワーク、定例レポート、チームでのデータ・資料整理に最適です。';
-    } else if (featVal === 'github') {
-      recId = 'product-copilot-workspace';
-      matchScore = '95%';
-      matchReason = 'GitHub Issueからの仕様策定・タスク分解・自動PR起草フローに最適です。';
-    } else if (featVal === 'browser') {
-      recId = 'product-antigravity';
-      matchScore = '99%';
-      matchReason = 'Visual Feedback指示とブラウザ自律表示・視覚検証までのWeb構築に最も適しています。';
-    } else if (workVal === 'autonomous') {
-      recId = 'product-devin';
-      matchScore = '97%';
-      matchReason = 'Issueを指定して完全自律でデバッグ・修正・テストを完遂させたい場合に最適です。';
-    } else if (featVal === 'fast') {
-      recId = 'product-windsurf';
-      matchScore = '96%';
-      matchReason = 'Cascadeフローによる超高速マルチファイルリファクタリングに最適です。';
-    } else if (workVal === 'spec') {
-      recId = 'product-kiro';
-      matchScore = '95%';
-      matchReason = 'Specs、Steering、Hooksによる明確な仕様駆動開発プロセスに最適です。';
-    } else if (featVal === 'ide') {
-      recId = 'product-cursor-agent';
-      matchScore = '96%';
-      matchReason = 'Composerによる複数ファイルの一括自動生成と高速コード補完に最適です。';
+  function toggleSelection(productId) {
+    if (selectedIds.has(productId)) {
+      selectedIds.delete(productId);
+      compareStatus.textContent = "比較候補から外しました。";
+    } else if (selectedIds.size >= 2) {
+      const current = [...selectedIds].map((id) => products.find((product) => product.id === id).name);
+      compareStatus.textContent = `比較は最大2製品です。${current.join(" と ")}のどちらかを外してください。`;
+      return;
+    } else {
+      selectedIds.add(productId);
+      compareStatus.textContent = selectedIds.size === 1
+        ? "1製品を選択しました。もう1製品を追加すると横並びで比較できます。"
+        : "2製品を選択しました。13の実務軸で差を確認できます。";
     }
 
-    const recCard = document.getElementById(recId);
-    if (!recCard) return;
-
-    const recName = recCard.querySelector('.product-name').textContent.trim();
-    
-    recommenderResult.innerHTML = `
-      <div class="result-info">
-        <div class="result-title">🎯 診断結果: ${recName}</div>
-        <div class="result-desc">${matchReason}</div>
-      </div>
-      <div class="match-badge">適合度 ${matchScore}</div>
-    `;
-    recommenderResult.classList.add('show');
-
-    productCards.forEach(c => c.classList.remove('recommended-highlight'));
-    recCard.classList.add('recommended-highlight');
-    recCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    updateSelectionUi();
   }
 
-  if (recWork && recCost && recFeature) {
-    recWork.addEventListener('change', calculateRecommendation);
-    recCost.addEventListener('change', calculateRecommendation);
-    recFeature.addEventListener('change', calculateRecommendation);
-  }
-
-  // 4. Comparison Selection (Max 2)
-  compareButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const card = btn.closest('.product-card');
-      const productId = card.id;
-
-      if (selectedProductIds.has(productId)) {
-        selectedProductIds.delete(productId);
-        btn.setAttribute('aria-pressed', 'false');
-        btn.textContent = '比較に追加';
-        card.classList.remove('selected');
-        hideToast();
-      } else {
-        if (selectedProductIds.size >= MAX_SELECTION) {
-          showToast('比較できる製品は最大2件までです。1件解除してください。');
-          return;
-        }
-
-        selectedProductIds.add(productId);
-        btn.setAttribute('aria-pressed', 'true');
-        btn.textContent = '選択中 (追加済み)';
-        card.classList.add('selected');
-        hideToast();
-      }
-
-      updateSummaryPanel();
+  function updateSelectionUi() {
+    document.querySelectorAll(".product-card").forEach((card) => {
+      const selected = selectedIds.has(card.dataset.product);
+      card.classList.toggle("is-selected", selected);
+      const button = card.querySelector(".compare-button");
+      button.setAttribute("aria-pressed", String(selected));
+      button.textContent = selected ? "比較から外す" : "比較に追加";
     });
-  });
 
-  if (clearSelectionBtn) {
-    clearSelectionBtn.addEventListener('click', () => {
-      selectedProductIds.clear();
-      compareButtons.forEach(btn => {
-        btn.setAttribute('aria-pressed', 'false');
-        btn.textContent = '比較に追加';
-      });
-      productCards.forEach(card => card.classList.remove('selected'));
-      hideToast();
-      updateSummaryPanel();
-    });
+    selectionCount.textContent = String(selectedIds.size);
+    clearComparison.disabled = selectedIds.size === 0;
+    renderComparison();
   }
 
-  function updateSummaryPanel() {
-    const count = selectedProductIds.size;
-    summaryCountBadge.textContent = `${count} / ${MAX_SELECTION}`;
+  function renderComparison() {
+    const selected = [...selectedIds]
+      .map((id) => products.find((product) => product.id === id))
+      .filter(Boolean);
 
-    if (count === 0) {
-      summaryContentBox.innerHTML = `
-        <div class="summary-empty-msg">
-          「比較に追加」ボタンを押すと、最大2製品の比較サマリーがここに表示されます。
-        </div>
-      `;
-      if (clearSelectionBtn) clearSelectionBtn.style.display = 'none';
-      if (openModalBtn) openModalBtn.style.display = 'none';
+    if (selected.length === 0) {
+      comparisonEmpty.hidden = false;
+      comparisonTableWrap.hidden = true;
+      comparisonHead.replaceChildren();
+      comparisonBody.replaceChildren();
       return;
     }
 
-    if (clearSelectionBtn) clearSelectionBtn.style.display = 'inline-block';
-    if (openModalBtn) openModalBtn.style.display = 'inline-block';
+    comparisonEmpty.hidden = true;
+    comparisonTableWrap.hidden = false;
 
-    let htmlContent = '';
-    selectedProductIds.forEach(id => {
-      const card = document.getElementById(id);
-      const productName = card.querySelector('.product-name').textContent.trim();
-      const suitableWork = card.querySelector('.card-text-work').textContent.trim();
+    const headerRow = element("tr", "");
+    headerRow.append(element("th", "", "比較軸"));
+    selected.forEach((product) => {
+      const heading = element("th", "");
+      heading.scope = "col";
+      const wrapper = element("div", "comparison-product");
+      const icon = element("img", "");
+      icon.src = product.icon;
+      icon.alt = "";
+      icon.width = 32;
+      icon.height = 32;
+      wrapper.append(icon, element("span", "", product.name));
+      heading.append(wrapper);
+      headerRow.append(heading);
+    });
+    comparisonHead.replaceChildren(headerRow);
 
-      htmlContent += `
-        <div class="summary-item">
-          <div class="summary-item-name">📌 ${productName}</div>
-          <div class="summary-item-work"><strong>向いている仕事:</strong> ${suitableWork}</div>
-        </div>
-      `;
+    const fields = Object.keys(selected[0].comparison);
+    const rows = fields.map((field) => {
+      const row = element("tr", "");
+      const label = element("th", "", field);
+      label.scope = "row";
+      row.append(label);
+      selected.forEach((product) => row.append(element("td", "", product.comparison[field])));
+      return row;
+    });
+    comparisonBody.replaceChildren(...rows);
+  }
+
+  function renderSourceLedger() {
+    let total = 0;
+    const rows = products.map((product) => {
+      const row = element("article", "source-row");
+      const productBlock = element("div", "source-product");
+      const icon = element("img", "");
+      icon.src = product.icon;
+      icon.alt = "";
+      icon.width = 38;
+      icon.height = 38;
+      const text = element("div", "");
+      text.append(element("strong", "", product.name), element("span", "", `確認日 2026-08-13 / ${product.release.version}`));
+      productBlock.append(icon, text);
+
+      const links = element("div", "source-links");
+      const allSources = [
+        ...product.sources,
+        {label: "最新更新", url: product.latestUpdate.url},
+        {label: "最新動画", url: product.latestVideo.url},
+        {label: "最新ブログ", url: product.latestBlog.url},
+        {label: "アイコン配布元", url: product.iconSource}
+      ];
+      total += allSources.length;
+      allSources.forEach((source) => {
+        const link = externalLink(source.label, source.url);
+        link.setAttribute("aria-label", `${product.name}: ${source.label}を開く`);
+        links.append(link);
+      });
+      row.append(productBlock, links);
+      return row;
     });
 
-    summaryContentBox.innerHTML = htmlContent;
+    sourceLedger.replaceChildren(...rows);
+    sourceCount.textContent = `${total}件`;
   }
 
-  // 5. Modal Dialog Logic
-  if (openModalBtn) {
-    openModalBtn.addEventListener('click', () => {
-      renderModalContent();
-      modalOverlay.classList.add('show');
-      modalOverlay.setAttribute('aria-hidden', 'false');
+  document.querySelectorAll(".scenario-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeScenario = button.dataset.scenario;
+      document.querySelectorAll(".scenario-button").forEach((candidate) => {
+        const active = candidate === button;
+        candidate.classList.toggle("is-active", active);
+        candidate.setAttribute("aria-pressed", String(active));
+      });
+      applyFilters();
     });
-  }
-
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', closeModal);
-  }
-
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closeModal();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (modalOverlay && modalOverlay.classList.contains('show')) closeModal();
-      if (videoModalOverlay && videoModalOverlay.classList.contains('show')) closeVideoModal();
-    }
   });
 
-  function closeModal() {
-    if (!modalOverlay) return;
-    modalOverlay.classList.remove('show');
-    modalOverlay.setAttribute('aria-hidden', 'true');
-  }
+  searchInput.addEventListener("input", () => {
+    searchQuery = searchInput.value.trim().toLowerCase();
+    applyFilters();
+  });
 
-  function renderModalContent() {
-    if (!modalBodyGrid) return;
-    let html = '';
+  clearComparison.addEventListener("click", () => {
+    selectedIds.clear();
+    compareStatus.textContent = "比較候補をすべて解除しました。";
+    updateSelectionUi();
+  });
 
-    selectedProductIds.forEach(id => {
-      const card = document.getElementById(id);
-      const name = card.querySelector('.product-name').textContent.trim();
-      const docLink = card.querySelector('.official-doc-link') ? card.querySelector('.official-doc-link').outerHTML : '';
-      const work = card.querySelector('.card-text-work').textContent.trim();
-      const features = card.querySelectorAll('.card-text')[1].textContent.trim();
-      const price = card.querySelector('.card-text-price').textContent.trim();
-      const quota = card.querySelector('.card-text-quota').textContent.trim();
-      const firstTry = card.querySelectorAll('.card-text')[4].textContent.trim();
-
-      html += `
-        <div class="modal-col">
-          <h4>${name} ${docLink}</h4>
-          <div><strong>🎯 向いている仕事:</strong><p>${work}</p></div>
-          <div><strong>⚙️ 主な機能:</strong><p>${features}</p></div>
-          <div><strong>💳 全料金プラン:</strong><p>${price}</p></div>
-          <div><strong>⏱️ クォータ・制限詳細:</strong><p>${quota}</p></div>
-          <div><strong>🚀 最初に試すこと:</strong><p>${firstTry}</p></div>
-        </div>
-      `;
-    });
-
-    modalBodyGrid.innerHTML = html;
-  }
-
-  // Toast Helpers
-  let toastTimer = null;
-  function showToast(message) {
-    if (!limitToast) return;
-    limitToast.textContent = `⚠️ ${message}`;
-    limitToast.classList.add('show');
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(hideToast, 4000);
-  }
-
-  function hideToast() {
-    if (!limitToast) return;
-    limitToast.classList.remove('show');
-  }
-});
+  renderProducts();
+  renderSourceLedger();
+  updateSelectionUi();
+})();

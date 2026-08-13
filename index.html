@@ -1,792 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Agent Learning Hub | 全料金プラン・クォータ制限・公式動画デモ・Visual Feedback</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="公式情報を確認してCodex、Claude Code、Claude Cowork、Kiro、Antigravityを比較するAIエージェント選定サイト">
+  <title>AI Agent Decision Guide | 5製品の実務比較</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
 </head>
 <body>
-
-  <div class="site-container">
-    
-    <!-- Editorial Studio Header -->
-    <header class="hero-header">
-      <div class="header-top-row">
-        <div class="notice-banner">
-          <span class="badge-notice">研修用サンプル (SYNTHETIC DATA ONLY)</span>
-          <span class="date-notice">2026.08.09要約</span>
-        </div>
-        <button type="button" id="btn-theme-toggle" class="btn-theme-toggle" aria-label="テーマ切替">
-          ⚡ ネオン (Cyberpunk)
-        </button>
-      </div>
-
-      <div class="hero-content">
-        <div class="studio-eyebrow">00 / AI AGENT INTELLIGENCE HUB</div>
-        <h1>仕事・コスト・制限に合わせて、最適AIエージェントを選ぶ。</h1>
-        <p class="hero-subtitle">主要9エージェントの能力・Visual Feedback・Nano Banana・全料金プラン比較</p>
-        <p class="hero-description">
-          開発とナレッジワークの主要9製品を、用途・主な機能・全公式料金プラン・具体的クォータ制限・公式リンク・公式動画デモから読み比べる研修用サンプルです。Antigravityの画面コメントフィードバック（Visual Feedback）機能も直接体験できます。
-        </p>
-      </div>
-
-      <!-- Hero Image -->
-      <div class="hero-image-wrapper">
-        <img src="assets/workshop-hero.png" alt="AI Agent Learning Hub ヒーロー画像">
-      </div>
-    </header>
-
-    <!-- Section 01: Visual Feedback Mode Simulator -->
-    <section class="studio-section visual-feedback-section">
-      <div class="studio-section-header">
-        <div>
-          <div class="studio-eyebrow">01 / VISUAL FEEDBACK SIMULATOR</div>
-          <h2>💬 Visual Feedback (画面コメント指示)</h2>
-          <p>「画面の特定位置をクリックして直感的に修正指示コメントを残す」機能を体感できます。</p>
-        </div>
-        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity ↗</a>
-      </div>
-
-      <div id="feedback-canvas-box" class="feedback-canvas-box" title="キャンバス上の任意の場所をクリックして修正ピンを追加">
-        <span class="feedback-canvas-hint">📍 キャンバス領域の任意の場所をクリックして、修正指示コメント（例: Connect this to Google Calendar）ピンを追加してください</span>
-      </div>
-
-      <div class="feedback-controls-row">
-        <span style="font-size: 0.85rem; color: #C4B5FD;">🤖 Antigravity エージェントが画面位置指定コメントを自動解析し、コード修正・再生成を行います。</span>
-        <button type="button" id="btn-clear-pins" class="btn-clear-pins">ピン指定をリセット</button>
-      </div>
-    </section>
-
-    <!-- Section 02: Nano Banana AI Asset Simulator -->
-    <section class="studio-section nano-banana-section">
-      <div class="studio-section-header">
-        <div>
-          <div class="studio-eyebrow">02 / NANO BANANA ASSET GENERATOR</div>
-          <h2>🍌 Nano Banana AIアセット・デザインテーマシミュレーター</h2>
-          <p>Antigravityのマルチモデル画像/UIアセット生成モジュール「Nano Banana」によるカラー・デザインの即時調整をシミュレーションします。</p>
-        </div>
-        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity ↗</a>
-      </div>
-
-      <div class="nano-banana-controls">
-        <span style="font-size: 0.88rem; font-weight: 700; color: var(--brand-yellow);">Nano Banana プリセット切替:</span>
-        <button type="button" class="btn-nano-preset" data-nano-preset="banana-gold">🍌 バナナゴールド</button>
-        <button type="button" class="btn-nano-preset" data-nano-preset="cyber-neon">⚡ サイバーネオン</button>
-        <button type="button" class="btn-nano-preset" data-nano-preset="emerald-matrix">エメラルドマトリックス</button>
-        <button type="button" class="btn-nano-preset" data-nano-preset="sunset-flare">🌅 サンセットフレア</button>
-      </div>
-
-      <div id="nano-banana-status" class="nano-banana-status">
-        🍌 <strong>Nano Banana 状態:</strong> プリセットボタンを押すと、Nano Banana がリアルタイムでテーマカラーとアクセントスタイルを動的再適用します。
-      </div>
-    </section>
-
-    <!-- Section 03: Official Video Theater -->
-    <section class="studio-section video-theater-section">
-      <div class="studio-section-header">
-        <div>
-          <div class="studio-eyebrow">03 / OFFICIAL DEMO THEATER</div>
-          <h2>🎥 公式動画・ライブデモシアター</h2>
-          <p>開発元公式の製品発表デモやキーノート動画をサイト上で直接視聴・リンク確認できます。</p>
-        </div>
-        <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link" style="padding: 6px 14px; font-weight: 700;">Google Antigravity 公式サイト ↗</a>
-      </div>
-
-      <div class="video-card-grid">
-        <!-- 1. Antigravity Video Card -->
-        <div class="video-card">
-          <div class="video-card-header">
-            <div class="video-title">Google Antigravity</div>
-            <span class="video-tag">公式解説動画</span>
-          </div>
-          <p class="video-desc">Google Antigravity & Visual Feedback の解説動画 (YouTube: SVCBA-pBgt0)</p>
-          <button type="button" class="btn-watch-video" data-video-title="Google Antigravity 公式動画" data-video-embed="https://www.youtube-nocookie.com/embed/SVCBA-pBgt0" data-video-url="https://www.youtube.com/watch?v=SVCBA-pBgt0">▶ サイト上で動画再生</button>
-        </div>
-
-        <!-- 2. Claude Code Video Card -->
-        <div class="video-card">
-          <div class="video-card-header">
-            <div class="video-title">Claude Code</div>
-            <span class="video-tag">開発実演デモ</span>
-          </div>
-          <p class="video-desc">ターミナル自律操作、Git連携、複数ファイルリファクタリングのライブ操作。</p>
-          <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="btn-watch-video">▶ 公式実演動画を見る ↗</a>
-        </div>
-
-        <!-- 3. Devin Video Card -->
-        <div class="video-card">
-          <div class="video-card-header">
-            <div class="video-title">Devin (Cognition)</div>
-            <span class="video-tag">自律開発デモ</span>
-          </div>
-          <p class="video-desc">Issueから完全自律でコード変更、シェル実行、ブラウザテストを完遂する実演。</p>
-          <a href="https://cognition.ai/" target="_blank" rel="noopener" class="btn-watch-video">▶ 公式自律デモを見る ↗</a>
-        </div>
-
-        <!-- 4. Cursor Agent Video Card -->
-        <div class="video-card">
-          <div class="video-card-header">
-            <div class="video-title">Cursor Composer</div>
-            <span class="video-tag">IDE一括生成</span>
-          </div>
-          <p class="video-desc">Composerによる複数ファイル跨ぎのコード一括生成と高速補完フロー。</p>
-          <a href="https://cursor.com/" target="_blank" rel="noopener" class="btn-watch-video">▶ 公式Composerデモを見る ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 04: AI Agent Recommender Widget -->
-    <section class="studio-section recommender-section">
-      <div class="studio-section-header">
-        <div>
-          <div class="studio-eyebrow">04 / DECISION ENGINE</div>
-          <h2>🎯 リアルタイムAIエージェント診断シミュレーター</h2>
-          <p>あなたの課題・コスト選好・重視機能を選ぶと、全9製品から最適なAIエージェントを判定します。</p>
-        </div>
-      </div>
-
-      <div class="recommender-grid">
-        <div class="recommender-field">
-          <label for="rec-work">1. 主な用途・仕事</label>
-          <select id="rec-work" class="recommender-select">
-            <option value="web">Web開発・Visual Feedback＆ブラウザ自律検証</option>
-            <option value="multi">マルチファイル一括生成・コード編集</option>
-            <option value="spec">要件定義・設計分解からの仕様駆動開発</option>
-            <option value="autonomous">GitHub Issue指定による完全自律修正</option>
-            <option value="knowledge">調査・資料作成・ナレッジワーク</option>
-          </select>
-        </div>
-
-        <div class="recommender-field">
-          <label for="rec-cost">2. 予算・コスト構造</label>
-          <select id="rec-cost" class="recommender-select">
-            <option value="free">無料枠・OAuth試用クォータ優先</option>
-            <option value="flat">月$15〜$20 定額個人プラン</option>
-            <option value="power">定額 ＋ ACU/Token 従量上限OK</option>
-            <option value="team">Team / Business 組織アカウント</option>
-          </select>
-        </div>
-
-        <div class="recommender-field">
-          <label for="rec-feature">3. 重視する決定機能</label>
-          <select id="rec-feature" class="recommender-select">
-            <option value="browser">画面コメント指示 ＆ リアルタイムArtifact</option>
-            <option value="ide">IDE統合Fast Tab補完 ＆ Composer</option>
-            <option value="github">GitHub Issue-to-PR 直結フロー</option>
-            <option value="fast">Cascadeフロー超高速リファクタリング</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="recommender-result" class="recommender-result"></div>
-    </section>
-
-    <!-- Controls (Search Bar & Filter Toolbar) -->
-    <section class="controls-wrapper">
-      <div class="search-and-filters">
-        <div class="search-box">
-          <input type="text" id="search-input" placeholder="🔍 キーワードでリアルタイム検索 (例: Feedback, Comment, Banana, 制限, 補完)..." aria-label="リアルタイムキーワード検索">
-        </div>
-
-        <div class="filter-group" role="toolbar" aria-label="製品フィルター">
-          <span class="filter-label">用途で絞り込み:</span>
-          <button type="button" class="btn-filter" data-filter="すべて" aria-pressed="true">
-            すべて <span class="filter-count-badge">9</span>
-          </button>
-          <button type="button" class="btn-filter" data-filter="開発" aria-pressed="false">
-            開発 <span class="filter-count-badge">8</span>
-          </button>
-          <button type="button" class="btn-filter" data-filter="ナレッジワーク" aria-pressed="false">
-            ナレッジワーク <span class="filter-count-badge">1</span>
-          </button>
-          <button type="button" class="btn-filter" data-filter="計画・自動化" aria-pressed="false">
-            計画・自動化 <span class="filter-count-badge">9</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Limit Alert Toast -->
-      <div id="limit-warning-toast" class="limit-warning-toast" role="alert" aria-live="assertive"></div>
-    </section>
-
-    <!-- Section 05: Product Directory (9 Products) -->
-    <main>
-      <div class="studio-eyebrow" style="margin-bottom: 12px;">05 / PRODUCT DIRECTORY (9 PRODUCTS)</div>
-      <div class="product-grid" id="product-grid">
-
-        <!-- 1. Codex -->
-        <article class="product-card" id="product-codex" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Codex</h2>
-                <a href="https://developers.openai.com/codex" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Codexを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">コードベース理解、実装、修正、テスト、レビュー</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">AGENTS.md、Skills、Plugins、MCP、local/cloud、sandbox</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Free / Pro ($20/月) / Enterprise (カスタム)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Free: 1日10回リクエスト制限 | Pro: 1日200回 + 優先アクセス</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">小さな不具合の原因調査から修正、テストまで依頼する</p>
-          </div>
-        </article>
-
-        <!-- 2. Claude Code -->
-        <article class="product-card" id="product-claude-code" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Claude Code</h2>
-                <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-                <a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Claude Codeを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">複数ファイルの開発、Git操作、反復作業の自動化</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">CLAUDE.md、auto memory、Skills、Hooks、MCP、subagents</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Pro ($20/月) / Max ($100/月) / API Tokens 従量</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Pro: 5hあたり45〜450通 | Max: Proの5倍クォータ上限</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">未テストの機能へテストを追加し、失敗を修正する</p>
-          </div>
-        </article>
-
-        <!-- 3. Claude Cowork -->
-        <article class="product-card" id="product-claude-cowork" data-tags="ナレッジワーク, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Claude Cowork</h2>
-                <a href="https://www.anthropic.com/claude" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">ナレッジワーク</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Claude Coworkを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">調査、資料作成、表計算、ファイル整理、定期レポート</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Projects、Skills、Connectors、scheduled tasks、live artifacts</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Team ($30/人/月) / Enterprise (カスタム)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Team: Proの2倍共有クォータ (最小5席〜) | SSO統合</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">複数資料から要点を整理し、レビュー可能な文書を作る</p>
-          </div>
-        </article>
-
-        <!-- 4. Kiro -->
-        <article class="product-card" id="product-kiro" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Kiro</h2>
-                <a href="https://kiro.dev/docs" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Kiroを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">要件・設計・タスクを明確にして進める仕様駆動開発</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Specs、Steering、Hooks、Agent Skills、Powers、MCP</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Free (試用枠) / Pro ($20/月) / Power Units 従量</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Free: 月500 PU | Pro: 月3,000 PU (Power Units算定)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">新機能をrequirements、design、tasksへ分解する</p>
-          </div>
-        </article>
-
-        <!-- 5. Antigravity -->
-        <article class="product-card" id="product-antigravity" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Antigravity</h2>
-                <a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link">公式サイト ↗</a>
-                <button type="button" class="btn-watch-video official-video-btn" data-video-title="Google Antigravity 公式動画" data-video-embed="https://www.youtube-nocookie.com/embed/SVCBA-pBgt0" data-video-url="https://www.youtube.com/watch?v=SVCBA-pBgt0">🎬 公式動画再生</button>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Antigravityを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">計画、実装、ブラウザ検証をArtifactで確認するWeb開発</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Artifacts、Planning、Browser、Rules、Skills、MCP、Visual Feedback、Nano Banana</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">OAuth無料試用 / Pro ($20/月) / Ultra ($200/月)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Free: 1日100回 | Pro: 1日1,000回 | Ultra: 1日1万回・優先</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">1ページサイトを作り、desktopとmobileで確認する</p>
-          </div>
-        </article>
-
-        <!-- 6. Devin (Cognition) -->
-        <article class="product-card" id="product-devin" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Devin</h2>
-                <a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-                <a href="https://cognition.ai/" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Devinを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">自律的なソフトウェア開発、バグ修正、Issue自動化</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">ACU (Agent Compute Units)、Devin Desktop、Shell、Browser</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Free / Pro ($20/月) / Max ($200/月) / Teams ($80+$40/席)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Free: 月15 ACU | Pro: 月250 ACU | Max: 月3,000 ACU</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">Issueを指定し、完全自律での修正・テスト完了を依頼する</p>
-          </div>
-        </article>
-
-        <!-- 7. Cursor Agent -->
-        <article class="product-card" id="product-cursor-agent" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Cursor Agent</h2>
-                <a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-                <a href="https://cursor.com/" target="_blank" rel="noopener" class="official-video-btn">🎬 公式動画 ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Cursor Agentを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">IDE統合型のマルチファイル自動生成、高速コード補完</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Composer、Fast Tab Completion、Context Indexing、.cursorrules</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Hobby (Free) / Pro ($20/月) / Pro+ ($60/月) / Ultra ($200/月)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Hobby: 月50回 | Pro: 月500回 | Pro+: 月2千回 | Ultra: 月8千回</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">Composerを起動し、複数ファイル跨ぎの実装を一括生成する</p>
-          </div>
-        </article>
-
-        <!-- 8. Windsurf (Cascade) -->
-        <article class="product-card" id="product-windsurf" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Windsurf</h2>
-                <a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Windsurfを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">Cascadeフローによる超高速マルチファイルリファクタリング</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Cascade Flow、Supercomplete、Deep Context Indexing、.windsurfrules</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Free / Pro ($15/月) / Pro+ ($45/月) / Teams ($30/席)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Free: 月50回Cascade | Pro: 月500回 | Pro+: 月2,000回Cascade</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">Cascadeパネルを開き、「プロジェクト全体のリファクタリング」を指示する</p>
-          </div>
-        </article>
-
-        <!-- 9. GitHub Copilot Workspace -->
-        <article class="product-card" id="product-copilot-workspace" data-tags="開発, 計画・自動化">
-          <div class="card-header">
-            <div class="header-left">
-              <div class="product-title-row">
-                <h2 class="product-name">Copilot Workspace</h2>
-                <a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="official-doc-link">公式ドキュメント ↗</a>
-              </div>
-              <div class="tag-list">
-                <span class="tag-badge">開発</span>
-                <span class="tag-badge">計画・自動化</span>
-              </div>
-            </div>
-            <button type="button" class="btn-compare" aria-pressed="false" aria-label="Copilot Workspaceを比較に追加">比較に追加</button>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-work">🎯 向いている仕事</span>
-            <p class="card-text card-text-work">GitHub Issueからの仕様策定、タスク分解、自動PR起草</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-features">⚙️ 主な機能</span>
-            <p class="card-text">Issue-to-PR Flow、Task Plan Specs、Copilot Extensions、Code Review</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-price">💳 全料金プラン (2026)</span>
-            <p class="card-text card-text-price">Individual ($10/月) / Business ($19/席) / Enterprise ($39/席)</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-quota">⏱️ クォータ・制限詳細</span>
-            <p class="card-text card-text-quota">Individual: 月300回Agentセッション | SSO & 組織データ統合</p>
-          </div>
-
-          <div class="card-section">
-            <span class="section-label label-first">🚀 最初に試すこと</span>
-            <p class="card-text">Issueを開き「Copilot Workspaceで解決案を作成」をクリックする</p>
-          </div>
-        </article>
-
-      </div>
-    </main>
-
-    <!-- Section 06: Capability & Pricing Matrix -->
-    <section class="studio-section matrix-section">
-      <div class="matrix-header-row">
-        <div class="matrix-header">
-          <div class="studio-eyebrow">06 / CAPABILITY & PRICING MATRIX</div>
-          <h2>⚡ 9大AIエージェント機能・全料金・クォータ網羅マトリックス</h2>
-          <p>公式ドキュメントリンク・料金プラン（Max/Pro+/Ultra等）・具体的クォータ制限の比較一覧 (2026年要約)</p>
-        </div>
-
-        <div class="export-actions">
-          <button type="button" id="btn-export-csv" class="btn-export">📥 CSVエクスポート</button>
-          <button type="button" id="btn-export-json" class="btn-export">📥 JSONエクスポート</button>
-        </div>
-      </div>
-
-      <div class="table-responsive-wrapper">
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th class="col-feature">機能 / 料金・制限</th>
-              <th><a href="https://developers.openai.com/codex" target="_blank" rel="noopener" class="official-doc-link">Codex ↗</a></th>
-              <th><a href="https://code.claude.com/docs" target="_blank" rel="noopener" class="official-doc-link">Claude Code ↗</a></th>
-              <th><a href="https://www.anthropic.com/claude" target="_blank" rel="noopener" class="official-doc-link">Claude Cowork ↗</a></th>
-              <th><a href="https://kiro.dev/docs" target="_blank" rel="noopener" class="official-doc-link">Kiro ↗</a></th>
-              <th><a href="https://antigravity.google/" target="_blank" rel="noopener" class="official-doc-link">Antigravity ↗</a></th>
-              <th><a href="https://cognition.ai/pricing" target="_blank" rel="noopener" class="official-doc-link">Devin ↗</a></th>
-              <th><a href="https://cursor.com/pricing" target="_blank" rel="noopener" class="official-doc-link">Cursor Agent ↗</a></th>
-              <th><a href="https://codeium.com/windsurf" target="_blank" rel="noopener" class="official-doc-link">Windsurf ↗</a></th>
-              <th><a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="official-doc-link">Copilot WS ↗</a></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="cell-feature">全料金プラン (2026)</td>
-              <td class="cell-price">Free / Pro ($20)</td>
-              <td class="cell-price">Pro ($20) / Max ($100)</td>
-              <td class="cell-price">Team ($30/人)</td>
-              <td class="cell-price">Free / Pro ($20)</td>
-              <td class="cell-price">Free / Pro / Ultra ($200)</td>
-              <td class="cell-price">Free / Pro / Max ($200)</td>
-              <td class="cell-price">Free / Pro / Pro+ / Ultra</td>
-              <td class="cell-price">Free / Pro ($15) / Pro+</td>
-              <td class="cell-price">Individual ($10) / Biz</td>
-            </tr>
-            <tr>
-              <td class="cell-feature">具体的クォータ制限</td>
-              <td class="cell-quota">1日200回</td>
-              <td class="cell-quota">5hあたり45〜450通</td>
-              <td class="cell-quota">Proの2倍共有</td>
-              <td class="cell-quota">月3,000 PU</td>
-              <td class="cell-quota">1日1万回 (Ultra)</td>
-              <td class="cell-quota">月3,000 ACU (Max)</td>
-              <td class="cell-quota">月8千回 (Ultra)</td>
-              <td class="cell-quota">月2千回 (Pro+)</td>
-              <td class="cell-quota">月300セッション</td>
-            </tr>
-            <tr>
-              <td class="cell-feature">指示ファイル / コンテキスト定義</td>
-              <td>AGENTS.md</td>
-              <td>CLAUDE.md</td>
-              <td>Projects</td>
-              <td>Steering</td>
-              <td>Rules</td>
-              <td>Desktop Shell</td>
-              <td>.cursorrules</td>
-              <td>.windsurfrules</td>
-              <td>Task Plan Specs</td>
-            </tr>
-            <tr>
-              <td class="cell-feature">Agent Skills / プラグイン拡張</td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓ (Extensions)</span></td>
-            </tr>
-            <tr>
-              <td class="cell-feature">MCP (Model Context Protocol) 連携</td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓ (Connectors)</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-            </tr>
-            <tr>
-              <td class="cell-feature">並列サブエージェント (Subagents)</td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓ (Powers)</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓ (Composer)</span></td>
-              <td><span class="check-icon">✓ (Cascade)</span></td>
-              <td><span class="check-icon">✓ (Workspace)</span></td>
-            </tr>
-            <tr>
-              <td class="cell-feature">画面直接フィードバック指示 (Visual Feedback)</td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-            </tr>
-            <tr>
-              <td class="cell-feature">ブラウザ自律検証 / 自動表示</td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="check-icon">✓</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-              <td><span class="dash-icon">-</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Sticky Bottom Comparison Summary Bar -->
-    <aside id="comparison-summary" class="comparison-bar" aria-live="polite" aria-label="選択製品の比較サマリー">
-      <div class="summary-header">
-        <div class="summary-title">
-          <span>⚖️ 比較サマリー</span>
-          <span id="summary-count-badge" class="summary-count-badge">0 / 2</span>
-        </div>
-        <div class="summary-actions">
-          <button type="button" id="btn-open-modal" class="btn-open-modal">詳しく比べる 🔍</button>
-          <button type="button" id="btn-clear-selection" class="btn-clear-selection" style="display: none;">選択をクリア</button>
-        </div>
-      </div>
-
-      <div id="summary-content-box" class="summary-content">
-        <div class="summary-empty-msg">
-          「比較に追加」ボタンを押すと、最大2製品の比較サマリーがここに表示されます。
-        </div>
-      </div>
-    </aside>
-
-    <!-- Modal Dialog for Detailed Side-by-Side Comparison -->
-    <div id="modal-overlay" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
-      <div class="modal-box">
-        <div class="modal-header">
-          <h3>選択製品の詳細比較 (全料金プラン & クォータ制限)</h3>
-          <button type="button" id="btn-close-modal" class="btn-close-modal" aria-label="閉じる">&times;</button>
-        </div>
-        <div id="modal-body-grid" class="modal-body-grid">
-          <!-- Dynamically populated by app.js -->
-        </div>
-      </div>
+  <a class="skip-link" href="#products">製品比較へ移動</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="AI Agent Decision Guide トップ">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>AI Agent Decision Guide</span>
+      </a>
+      <nav aria-label="ページ内ナビゲーション">
+        <a href="#products">製品</a>
+        <a href="#compare">詳細比較</a>
+        <a href="#sources">公式根拠</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Modal Dialog for Official Video Player -->
-    <div id="video-modal-overlay" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
-      <div class="modal-box" style="max-width: 800px;">
-        <div class="modal-header">
-          <h3 id="video-modal-title">▶ 公式動画再生</h3>
-          <button type="button" id="btn-close-video-modal" class="btn-close-modal" aria-label="閉じる">&times;</button>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">OFFICIAL SOURCE VERIFIED / 2026-08-13 JST</p>
+          <h1 id="hero-title">AIエージェントを<br>仕事から選ぶ。</h1>
+          <p class="hero-lead">5製品の強みを並べるだけではなく、操作面、委任の粒度、証拠、権限、拡張方法、最新更新まで追い、実務で「どれを使うか」を判断できる比較です。</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#products">製品を比較する</a>
+            <a class="secondary-action" href="#method">比較方法を見る</a>
+          </div>
         </div>
-        <div id="video-frame-container" style="padding: 10px 0;">
-          <!-- Dynamically populated by app.js -->
+
+        <aside class="freshness-panel" aria-label="更新確認サマリー">
+          <div class="freshness-heading">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>公式更新を確認済み</span>
+          </div>
+          <dl>
+            <div><dt>確認日</dt><dd>2026-08-13 JST</dd></div>
+            <div><dt>対象</dt><dd>5製品</dd></div>
+            <div><dt>一次情報</dt><dd id="source-count">20+</dd></div>
+            <div><dt>自己レビュー</dt><dd>10回</dd></div>
+          </dl>
+          <p>版番号を公開していないSaaSは「公開版番号なし」と表示し、モデル名を製品版として扱いません。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="decision-strip" aria-labelledby="decision-title">
+      <div class="section-inner">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">START WITH THE JOB</p>
+            <h2 id="decision-title">やりたい仕事から候補を絞る</h2>
+          </div>
+          <p>ボタンを押すと、該当製品だけを残し、推奨理由を表示します。</p>
+        </div>
+        <div class="scenario-controls" role="group" aria-label="業務シナリオ">
+          <button type="button" class="scenario-button is-active" data-scenario="all" aria-pressed="true">すべて</button>
+          <button type="button" class="scenario-button" data-scenario="code" aria-pressed="false">コード実装</button>
+          <button type="button" class="scenario-button" data-scenario="knowledge" aria-pressed="false">ナレッジワーク</button>
+          <button type="button" class="scenario-button" data-scenario="spec" aria-pressed="false">仕様駆動</button>
+          <button type="button" class="scenario-button" data-scenario="browser" aria-pressed="false">Web・画面検証</button>
+          <button type="button" class="scenario-button" data-scenario="automation" aria-pressed="false">自動化・SDK</button>
+        </div>
+        <p id="scenario-result" class="scenario-result" aria-live="polite">5製品を表示しています。カードから最大2製品を詳細比較できます。</p>
+      </div>
+    </section>
+
+    <section id="products" class="products-section" aria-labelledby="products-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FIVE PRODUCT PROFILES</p>
+            <h2 id="products-title">選定に必要な事実を1枚で読む</h2>
+          </div>
+          <div class="search-wrap">
+            <label for="product-search">製品・機能を検索</label>
+            <input id="product-search" type="search" placeholder="例: MCP、資料作成、SDK">
+          </div>
+        </div>
+        <div id="product-grid" class="product-grid"></div>
+        <p id="empty-state" class="empty-state" hidden>該当する製品がありません。検索語またはシナリオを変更してください。</p>
+      </div>
+    </section>
+
+    <section id="compare" class="compare-section" aria-labelledby="compare-title">
+      <div class="section-inner">
+        <div class="compare-heading">
+          <div>
+            <p class="eyebrow">SIDE-BY-SIDE DECISION</p>
+            <h2 id="compare-title">詳細比較 <span id="selection-count">0</span>/2</h2>
+          </div>
+          <button id="clear-comparison" class="text-button" type="button" disabled>選択を解除</button>
+        </div>
+        <p id="compare-status" class="compare-status" aria-live="polite">各カードの「比較に追加」から、判断に迷う2製品を選んでください。</p>
+        <div id="comparison-empty" class="comparison-empty">
+          <strong>比較候補を2つ選ぶと、13の実務軸で差が見えます。</strong>
+          <span>優劣の点数化ではなく、仕事・権限・証拠・運用の違いを確認します。</span>
+        </div>
+        <div id="comparison-table-wrap" class="comparison-table-wrap" hidden>
+          <table id="comparison-table">
+            <caption>選択したAIエージェントの実務比較</caption>
+            <thead id="comparison-head"></thead>
+            <tbody id="comparison-body"></tbody>
+          </table>
         </div>
       </div>
+    </section>
+
+    <section id="method" class="method-section" aria-labelledby="method-title">
+      <div class="section-inner method-layout">
+        <div>
+          <p class="eyebrow">HOW TO READ</p>
+          <h2 id="method-title">「最新」と「向いている」を分けて考える</h2>
+        </div>
+        <ol class="method-list">
+          <li><span>01</span><div><strong>更新の新しさ</strong><p>版、更新日、Changelogを確認する。新しいこと自体を優劣にはしません。</p></div></li>
+          <li><span>02</span><div><strong>仕事との一致</strong><p>コード、知識作業、仕様駆動、ブラウザ検証のどこが主戦場かを決めます。</p></div></li>
+          <li><span>03</span><div><strong>証拠の形</strong><p>テスト、差分、Artifact、生成ファイルなど、成功を何で確認するかを先に決めます。</p></div></li>
+          <li><span>04</span><div><strong>権限と運用</strong><p>読み取りから開始し、外部書き込み・公開・送信は承認点を置きます。</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="sources" class="sources-section" aria-labelledby="sources-title">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EVIDENCE LEDGER</p>
+            <h2 id="sources-title">公式サイトを確認した証拠</h2>
+          </div>
+          <p>製品ごとにDocs、Changelog、料金、動画、ブログを直接開けます。</p>
+        </div>
+        <div id="source-ledger" class="source-ledger"></div>
+        <div class="source-note">
+          <strong>情報の扱い</strong>
+          <p>2026年8月13日JST時点の公式公開情報です。料金は地域・税・契約形態で変わり、利用枠はモデルと作業量で変動します。購入や全社導入の前にリンク先で再確認してください。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="section-inner footer-inner">
+      <div>
+        <strong>AI Agent Decision Guide</strong>
+        <p>研修用デモ成果物 / SYNTHETIC_DATA_ONLY</p>
+      </div>
+      <a href="#top">ページ上部へ</a>
     </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-      <p>AI Agent Learning Hub &copy; 2026 (2026年8月9日時点の公式情報を要約 / 選択内容は送信・保存されません)</p>
-      <p>SYNTHETIC_DATA_ONLY - 研修用の公開可能な概要サンプル</p>
-    </footer>
-
-  </div>
-
+  <script src="product-data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
