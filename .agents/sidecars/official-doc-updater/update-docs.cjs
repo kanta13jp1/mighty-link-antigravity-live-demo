@@ -8,7 +8,7 @@ const path = require('path');
 const https = require('https');
 
 const SOURCES = [
-  { name: 'Codex', url: 'https://developers.openai.com/codex' },
+  { name: 'Codex', url: 'https://learn.chatgpt.com/docs' },
   { name: 'Claude Code', url: 'https://code.claude.com/docs' },
   { name: 'Claude Cowork', url: 'https://claude.com/product/cowork' },
   { name: 'Google Antigravity', url: 'https://antigravity.google/docs' },

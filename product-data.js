@@ -48,7 +48,7 @@ window.PRODUCT_DATA = [
       "導入時の注意": "広い権限を渡す前にAGENTS.md、sandbox、ネットワーク、承認条件を決める"
     },
     "sources": [
-      {"label": "公式ドキュメント", "url": "https://developers.openai.com/codex"},
+      {"label": "公式ドキュメント", "url": "https://learn.chatgpt.com/docs"},
       {"label": "公式更新履歴", "url": "https://learn.chatgpt.com/docs/changelog"},
       {"label": "公式料金", "url": "https://chatgpt.com/pricing/"},
       {"label": "公式動画一覧", "url": "https://learn.chatgpt.com/videos"}

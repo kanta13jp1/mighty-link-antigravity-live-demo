@@ -1,35 +1,35 @@
 {
-  "lastRun": "2026-08-13T04:44:09.687Z",
+  "lastRun": "2026-08-13T04:53:41.294Z",
   "results": [
     {
       "name": "Codex",
-      "url": "https://developers.openai.com/codex",
-      "statusCode": 308,
-      "timestamp": "2026-08-13T04:44:08.603Z"
+      "url": "https://learn.chatgpt.com/docs",
+      "statusCode": 200,
+      "timestamp": "2026-08-13T04:53:39.998Z"
     },
     {
       "name": "Claude Code",
       "url": "https://code.claude.com/docs",
       "statusCode": 200,
-      "timestamp": "2026-08-13T04:44:09.051Z"
+      "timestamp": "2026-08-13T04:53:40.842Z"
     },
     {
       "name": "Claude Cowork",
       "url": "https://claude.com/product/cowork",
       "statusCode": 200,
-      "timestamp": "2026-08-13T04:44:09.177Z"
+      "timestamp": "2026-08-13T04:53:40.959Z"
     },
     {
       "name": "Google Antigravity",
       "url": "https://antigravity.google/docs",
       "statusCode": 200,
-      "timestamp": "2026-08-13T04:44:09.415Z"
+      "timestamp": "2026-08-13T04:53:41.046Z"
     },
     {
       "name": "Kiro",
       "url": "https://kiro.dev/docs/",
       "statusCode": 200,
-      "timestamp": "2026-08-13T04:44:09.685Z"
+      "timestamp": "2026-08-13T04:53:41.293Z"
     }
   ]
 }
