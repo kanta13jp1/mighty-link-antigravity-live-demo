@@ -176,6 +176,21 @@ ArtifactsはAntigravityが生成する構造化された成果物です。Implem
 | **Interact with Chrome** | `[x]` 網羅 | Chrome DevTools プラグイン、Autonomous Browser Research 及び E2E インタラクション |
 | **Create artifacts / implementation plans** | `[x]` 網羅 | `implementation_plan.md`, `walkthrough.md` などの計画・検証アーティファクト作成 |
 
+### 3. Getting Started Page (https://antigravity.google/docs/getting-started) 網羅チェック表
+
+| 公式ドキュメント機能・カテゴリ | 詳細項目・コマンド | 本デモ網羅状況 | デモでの具体的実施・実演内容 |
+| --- | --- | :---: | --- |
+| **Starting an Agent** | **Local Mode & Worktree Mode** | `[x]` 網羅 | リポジトリローカルフォルダでの直接実行・ブランチ操作の実戦実演 |
+| **Basic Navigation** | **`Ctrl + K` (Open Conversation Picker)** | `[x]` 網羅 | トランスクリプト `transcript.jsonl` / 会話履歴ログのコンテキストナビゲーション解説 |
+| | **`Ctrl + P` (Open File Search)** | `[x]` 網羅 | ファイルパス検索・精密ファイル閲覧 (`view_file`) |
+| | **`Ctrl + L` (Focus Input)** | `[x]` 網羅 | エージェントチャットプロンプト入力フォーカス |
+| | **`Ctrl + N` (New Conversation)** | `[x]` 網羅 | 新規スレッド会話切り替え |
+| | **`Alt + Up / Down` (Next/Previous Conversation)** | `[x]` 網羅 | 前後の会話スレッド移動 |
+| **Slash Commands** | **`/goal`** | `[x]` 網羅 | 長時間ゴール達成モードの解説・ユーザーへの推薦 |
+| | **`/grill-me`** | `[x]` 網羅 | 実装前アライメントインタビューの解説・推薦 |
+| | **`/schedule`** | `[x]` 網羅 | `schedule` ツールによる定時タイマー/Cron タスクの実装・登録実演 |
+| | **`/browser`** | `[x]` 網羅 | `browser_subagent` による明示的ブラウザ自動化テスト・WebP 録画 |
+
 ---
 
 ## Google Antigravity 公式ドキュメント全機能項目一覧と本デモ網羅状況 (https://antigravity.google/docs)
