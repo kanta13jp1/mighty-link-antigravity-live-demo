@@ -1061,7 +1061,21 @@ html, body {
 .card-brand-title {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+.brand-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: var(--bg-surface-elevated, #f3f4f6);
+  border: 1px solid var(--border-color, #e5e7eb);
+  padding: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .brand-icon {
@@ -1069,6 +1083,7 @@ html, body {
   height: 22px;
   object-fit: contain;
   flex-shrink: 0;
+  display: block;
 }
 
 .brand-icon-sm {
@@ -1076,6 +1091,7 @@ html, body {
   height: 18px;
   object-fit: contain;
   flex-shrink: 0;
+  display: block;
 }
 
 .card-title-badge-row {
@@ -1229,6 +1245,134 @@ html, body {
   color: var(--color-text-dim);
 }
 
+/* Resource Links Chips (Videos & Blogs) */
+.resources-info-group {
+  background-color: var(--bg-surface-elevated, rgba(243, 244, 246, 0.5));
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  margin-top: 6px;
+}
+
+.resource-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.resource-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  line-height: 1.3;
+}
+
+.video-chip {
+  background-color: rgba(239, 68, 68, 0.08);
+  color: #c53030;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.video-chip:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #9b2c2c;
+}
+
+.blog-chip {
+  background-color: rgba(59, 130, 246, 0.08);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.blog-chip:hover {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #1e40af;
+}
+
+.resource-chip-more {
+  font-size: 0.72rem;
+  color: var(--color-text-dim, #6b7280);
+  margin-top: 2px;
+}
+
+/* 10-Stage Self Review Section */
+.review-log-section {
+  margin-top: 48px;
+  padding: 24px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.review-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.review-badge {
+  background-color: #10b981;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.review-card {
+  background-color: var(--bg-surface-elevated, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.review-card-step {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-primary, #3b82f6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.review-card-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.review-card-desc {
+  font-size: 0.78rem;
+  color: var(--color-text-dim);
+  line-height: 1.4;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 900px) {
   .hero-container {
@@ -1256,3 +1400,4 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+

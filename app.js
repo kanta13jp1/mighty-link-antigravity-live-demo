@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="selected-ver-tag">${item.version}</span>
           </div>
           <div class="selected-product-title-group">
-            ${item.icon ? `<img src="${item.icon}" alt="${item.agent} 公式ロゴ" class="brand-icon-sm" width="18" height="18" onerror="this.style.display='none'">` : ''}
+            ${item.icon ? `<span class="brand-icon-badge"><img src="${item.icon}" alt="${item.agent} 公式ロゴ" class="brand-icon-sm" width="18" height="18" onerror="this.onerror=null; this.src='assets/icons/antigravity-icon.svg';"></span>` : ''}
             <h4 class="selected-product-name">${item.agent}</h4>
           </div>
         </div>

@@ -248,7 +248,7 @@ describe('AI Agent Learning Hub E2E / DOM Test Suite (Based on TEST_SPECIFICATIO
       selectedIcons.forEach(iconImg => {
         const src = iconImg.getAttribute('src');
         assert.ok(src && src.startsWith('assets/icons/'), `Selected icon src ${src} should point to assets/icons/`);
-        assert.equal(iconImg.getAttribute('onerror'), "this.style.display='none'", 'Icon img should have onerror fallback handler');
+        assert.ok(iconImg.getAttribute('onerror'), 'Icon img should have onerror fallback handler');
       });
     });
 
@@ -283,6 +283,25 @@ describe('AI Agent Learning Hub E2E / DOM Test Suite (Based on TEST_SPECIFICATIO
         assert.equal(link.getAttribute('rel'), 'noopener noreferrer');
         assert.ok(link.getAttribute('href').startsWith('https://'));
       });
+    });
+  });
+
+  describe('カテゴリ 7: 10段階自己レビュー ＆ メディアリソース検証 (10-Stage Self-Review Log & Media Resources)', () => {
+    test('TS-07-01: 10段階の自己レビューログセクションと10個のレビューカードが存在すること', () => {
+      const reviewSection = document.querySelector('.review-log-section');
+      assert.ok(reviewSection, 'Review log section should be present on page');
+
+      const reviewCards = [...document.querySelectorAll('.review-card')];
+      assert.equal(reviewCards.length, 10, 'There must be exactly 10 self-review log cards');
+    });
+
+    test('TS-07-02: 最新動画・ブログリソースセクションおよびカード内チップリンクが存在すること', () => {
+      const mediaSection = document.querySelector('.resources-media-section');
+      assert.ok(mediaSection, 'Media resources section should be present');
+
+      const codexCard = document.querySelector('.agent-card[data-agent="Codex"]');
+      const resourceChips = [...codexCard.querySelectorAll('.resource-chip')];
+      assert.ok(resourceChips.length >= 2, 'Codex card should contain video/blog resource chips');
     });
   });
 });
