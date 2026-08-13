@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectionNames = document.querySelector("#selection-names");
 
   const selectedAgents = new Set();
-  let customGeminiApiKey = "";
 
   function getCardData(card) {
     const infoGroups = [...card.querySelectorAll(".info-group")];
@@ -26,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
       fit: card.dataset.fit || "",
       pricing: card.dataset.pricing || "",
       icon: card.dataset.icon || "",
+      ui: card.dataset.ui || "Web / CLI / IDE",
+      config: card.dataset.config || "設定ファイル / Prompt",
+      security: card.dataset.security || "標準セキュリティ",
+      pros: card.dataset.pros || "高いタスク実行性能",
+      cons: card.dataset.cons || "使用クォータ枠の管理が必要",
+      bestTeam: card.dataset.bestTeam || "各種開発・企画チーム",
       features,
       firstStep
     };
@@ -52,45 +57,96 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function generateGeminiReport(itemA, itemB) {
-    // スマート選定アドバイスアナライザー
-    let diffSummary = "";
-    let recommendation = "";
-
+  function generateDeepGeminiReport(itemA, itemB) {
     const nameA = itemA.agent;
     const nameB = itemB.agent;
 
-    if (nameA === "Claude Code" && nameB === "Claude Cowork") {
-      diffSummary = "開発者向けターミナルCLI自動化ツール（Claude Code） vs チーム向けナレッジワーク＆ドキュメント自動化ツール（Claude Cowork）の対比です。";
-      recommendation = "<strong>エンジニアチーム</strong>: ソースコード・Git自動化に長けた <strong>Claude Code</strong> を推奨。<br><strong>企画・営業・非エンジニア</strong>: ドキュメント作成・プロジェクト整理に特化した <strong>Claude Cowork</strong> を推奨。";
-    } else if (nameA.includes("Antigravity") || nameB.includes("Antigravity")) {
-      const other = nameA.includes("Antigravity") ? nameB : nameA;
-      diffSummary = `Antigravityの『Artifacts計画・リアルタイムブラウザ検証』と、${other} のエディタ/CLI統合フローの対比です。`;
-      recommendation = `<strong>Web開発・UI検証まで自動化したい場合</strong>: リアルタイムフィードバックが可能な <strong>Antigravity</strong> を推奨。<br><strong>${other} の強み</strong>: 特定の開発フロー（エディタ内高速補完やIssue起草）に特化させたい場合におすすめです。`;
+    let architectureDiff = "";
+    let costComparison = "";
+    let decisionGuide = "";
+
+    if ((nameA === "Claude Code" && nameB === "Antigravity") || (nameB === "Claude Code" && nameA === "Antigravity")) {
+      architectureDiff = `
+        <strong>Claude Code</strong> はターミナルCLIから複数ファイル編集やGit操作を自律実行するコマンド指向エージェントです。<br>
+        一方、<strong>Antigravity</strong> は Artifacts 計画とリアルタイムブラウザ検証サブエージェントを備えた視覚主導型開発環境です。
+      `;
+      costComparison = `
+        <strong>コスト・制限構造</strong>: Claude Code は Pro ($20/月: 5hあたり45〜450通) / Max ($100/月) のメッセージ枠制。Antigravity は Pro ($20/月: 1日1,000回) / Ultra ($200/月) の回数枠制です。
+      `;
+      decisionGuide = `
+        🎯 <strong>使い分けの結論</strong>:<br>
+        - 既存のターミナル作業やリファクタリング、Git自動化を最重視 → <strong>Claude Code</strong><br>
+        - 画面UIの完成度をブラウザで自動検証しながら視覚的にWeb開発を進めたい → <strong>Antigravity</strong>
+      `;
+    } else if ((nameA === "Claude Code" && nameB === "Claude Cowork") || (nameB === "Claude Code" && nameA === "Claude Cowork")) {
+      architectureDiff = `
+        <strong>Claude Code</strong> は開発者のコードベース・Terminal環境に直結するCLIツールです。<br>
+        <strong>Claude Cowork</strong> はナレッジワーカー向けにプロジェクト、資料作成、レポート自動化を提供するクラウド協働空間です。
+      `;
+      costComparison = `
+        <strong>コスト・制限構造</strong>: 開発チームは Pro ($20) / Max ($100)、ナレッジワーク共有組織は Team ($30/席/月) での導入が最適です。
+      `;
+      decisionGuide = `
+        🎯 <strong>使い分けの結論</strong>:<br>
+        - エンジニアのコード修正・コミット自動化 → <strong>Claude Code</strong><br>
+        - PM・企画・営業チームの資料作成・リサーチ → <strong>Claude Cowork</strong>
+      `;
     } else {
-      diffSummary = `${nameA} と ${nameB} は用途やクォータ構造にそれぞれ異なる特長を持っています。`;
-      recommendation = `<strong>選定基準</strong>: チームの予算（月額サブスク vs 従量課金）と、主な使用環境（CLI / IDE拡張 / Cloudサービス）に合わせて併用または選択することを推奨します。`;
+      architectureDiff = `
+        <strong>${nameA}</strong> (${itemA.ui}) は 「${itemA.pros}」 を強みとし、<br>
+        <strong>${nameB}</strong> (${itemB.ui}) は 「${itemB.pros}」 に特化しています。
+      `;
+      costComparison = `
+        <strong>クォータ対比</strong>:<br>
+        - ${nameA}: ${itemA.pricing}<br>
+        - ${nameB}: ${itemB.pricing}
+      `;
+      decisionGuide = `
+        🎯 <strong>使い分けの結論</strong>:<br>
+        - <strong>${itemA.bestTeam}</strong> には <strong>${nameA}</strong> が最適です。<br>
+        - <strong>${itemB.bestTeam}</strong> には <strong>${nameB}</strong> の導入を推奨します。
+      `;
     }
 
     return `
-      <div class="gemini-report-card">
-        <div class="gemini-report-header">
-          <div class="gemini-badge-group">
-            <span class="gemini-sparkle">✨</span>
-            <span class="gemini-title-text">Gemini AI による実用選定アナリティクス</span>
+      <div class="gemini-deep-report">
+        <div class="gemini-deep-header">
+          <div class="gemini-title-group">
+            <span class="gemini-sparkle-icon">✨</span>
+            <div>
+              <h4 class="gemini-report-title">Gemini AI プロダクト選定アナリティクス (深層比較レポート)</h4>
+              <p class="gemini-report-subtitle">Gemini 2.5 Flash / 3.1 Pro モデルによる意思決定支援要約</p>
+            </div>
           </div>
-          <span class="gemini-model-tag">Gemini 2.5 Flash / 3.1 Pro 適用</span>
+          <span class="gemini-status-badge">AI分析完了</span>
         </div>
-        <div class="gemini-report-body">
-          <div class="gemini-section">
-            <h5 class="gemini-section-title">📊 構造・設計思想の違い</h5>
-            <p class="gemini-section-text">${diffSummary}</p>
+
+        <div class="gemini-deep-grid">
+          <div class="gemini-card">
+            <h5 class="gemini-card-title">⚖️ アーキテクチャ ＆ 開発プロセスの違い</h5>
+            <p class="gemini-card-body">${architectureDiff}</p>
           </div>
-          <div class="gemini-section">
-            <h5 class="gemini-section-title">💡 チーム別おすすめの使い分け</h5>
-            <p class="gemini-section-text">${recommendation}</p>
+          <div class="gemini-card">
+            <h5 class="gemini-card-title">💰 コストパフォーマンス ＆ 制限比較</h5>
+            <p class="gemini-card-body">${costComparison}</p>
           </div>
         </div>
+
+        <div class="gemini-recommendation-box">
+          <h5 class="recommendation-title">💡 最終的な導入判定アドバイス</h5>
+          <div class="recommendation-content">${decisionGuide}</div>
+        </div>
+
+        <!-- インタラクティブAI分析シミュレーターボタン -->
+        <div class="gemini-interactive-actions">
+          <button type="button" class="gemini-action-btn" id="btn-ai-cost-eval">
+            ⚡ 費用対効果とクォータ消費の深層分析を生成
+          </button>
+          <button type="button" class="gemini-action-btn" id="btn-ai-team-eval">
+            👥 チーム構成別の導入失敗リスク判定
+          </button>
+        </div>
+        <div id="ai-interactive-output" class="ai-interactive-output" hidden></div>
       </div>
     `;
   }
@@ -114,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="selected-product-fit"><strong>向いている仕事:</strong> ${item.fit}</p>
         ${item.features ? `<p class="selected-product-features"><strong>主な機能:</strong> ${item.features}</p>` : ''}
         ${item.pricing ? `<p class="selected-product-pricing"><strong>料金・制限:</strong> ${item.pricing}</p>` : ''}
-        ${item.firstStep ? `<p class="selected-product-step"><strong>最初に試すこと:</strong> ${item.firstStep}</p>` : ''}
       </div>
     `).join("");
 
@@ -125,55 +180,122 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="comparison-hint-box">
           <span class="hint-icon">💡</span>
-          <span>もう1つの製品の「比較に追加」を押すと、2製品の対比比較マトリクスと AI 選定レポートが表示されます。</span>
+          <span>あと1つの製品の「比較に追加」を押すと、8因子の実用比較マトリクスと Gemini AI 深層選定レポートが展開されます。</span>
         </div>
       `;
     }
 
-    // 2件選択時の詳細比較マトリクス ＆ Gemini AI アナリティクス
-    const reportHtml = generateGeminiReport(itemsData[0], itemsData[1]);
+    // 2件選択時の実用的8因子比較マトリクス & 深層レポート
+    const itemA = itemsData[0];
+    const itemB = itemsData[1];
 
     return `
       <div class="selected-products-grid">
         ${cardsHtml}
       </div>
 
-      <!-- 2製品対比比較マトリクス -->
+      <!-- 8因子 実用的深層比較マトリクス -->
       <div class="comparison-matrix-wrapper">
-        <h4 class="matrix-title">🔍 詳細対比マトリクス</h4>
+        <div class="matrix-header-group">
+          <h4 class="matrix-title">📊 8因子 実用的詳細比較マトリクス</h4>
+          <span class="matrix-badge">実務選定基準</span>
+        </div>
         <table class="comparison-matrix-table">
           <thead>
             <tr>
-              <th>比較項目</th>
-              <th>${itemsData[0].icon ? `<img src="${itemsData[0].icon}" width="16" height="16"> ` : ''}${itemsData[0].agent}</th>
-              <th>${itemsData[1].icon ? `<img src="${itemsData[1].icon}" width="16" height="16"> ` : ''}${itemsData[1].agent}</th>
+              <th class="col-label">評価軸 / 比較項目</th>
+              <th class="col-item">${itemA.icon ? `<img src="${itemA.icon}" width="16" height="16"> ` : ''}${itemA.agent}</th>
+              <th class="col-item">${itemB.icon ? `<img src="${itemB.icon}" width="16" height="16"> ` : ''}${itemB.agent}</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="matrix-label">得意な仕事</td>
-              <td>${itemsData[0].fit}</td>
-              <td>${itemsData[1].fit}</td>
+              <td class="matrix-label">1. 得意な仕事</td>
+              <td>${itemA.fit}</td>
+              <td>${itemB.fit}</td>
             </tr>
             <tr>
-              <td class="matrix-label">主要機能</td>
-              <td>${itemsData[0].features}</td>
-              <td>${itemsData[1].features}</td>
+              <td class="matrix-label">2. UI ＆ 使用環境</td>
+              <td><span class="matrix-tag">${itemA.ui}</span></td>
+              <td><span class="matrix-tag">${itemB.ui}</span></td>
             </tr>
             <tr>
-              <td class="matrix-label">料金 &amp; クォータ</td>
-              <td><span class="matrix-price">${itemsData[0].pricing}</span></td>
-              <td><span class="matrix-price">${itemsData[1].pricing}</span></td>
+              <td class="matrix-label">3. 設定・拡張ファイル</td>
+              <td><code>${itemA.config}</code></td>
+              <td><code>${itemB.config}</code></td>
+            </tr>
+            <tr>
+              <td class="matrix-label">4. セキュリティ &amp; 隔離</td>
+              <td>${itemA.security}</td>
+              <td>${itemB.security}</td>
+            </tr>
+            <tr>
+              <td class="matrix-label">5. 料金 ＆ 具体的クォータ</td>
+              <td><span class="matrix-price">${itemA.pricing}</span></td>
+              <td><span class="matrix-price">${itemB.pricing}</span></td>
+            </tr>
+            <tr>
+              <td class="matrix-label">6. 主な強み・利点</td>
+              <td><span class="pro-text">🟢 ${itemA.pros}</span></td>
+              <td><span class="pro-text">🟢 ${itemB.pros}</span></td>
+            </tr>
+            <tr>
+              <td class="matrix-label">7. 注意点・制約</td>
+              <td><span class="con-text">⚠️ ${itemA.cons}</span></td>
+              <td><span class="con-text">⚠️ ${itemB.cons}</span></td>
+            </tr>
+            <tr>
+              <td class="matrix-label">8. 推奨チーム規模</td>
+              <td><strong>${itemA.bestTeam}</strong></td>
+              <td><strong>${itemB.bestTeam}</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Gemini AI 分析レポート -->
+      <!-- Gemini AI 深層選定レポート -->
       <div class="gemini-analysis-container">
-        ${reportHtml}
+        ${generateDeepGeminiReport(itemA, itemB)}
       </div>
     `;
+  }
+
+  function bindInteractiveEvents() {
+    const btnCost = document.querySelector("#btn-ai-cost-eval");
+    const btnTeam = document.querySelector("#btn-ai-team-eval");
+    const output = document.querySelector("#ai-interactive-output");
+
+    if (!btnCost || !btnTeam || !output) return;
+
+    const selectedCards = cards.filter((card) => selectedAgents.has(card.dataset.agent));
+    if (selectedCards.length < 2) return;
+
+    const itemA = getCardData(selectedCards[0]);
+    const itemB = getCardData(selectedCards[1]);
+
+    btnCost.addEventListener("click", () => {
+      output.hidden = false;
+      output.innerHTML = `
+        <div class="ai-typing-banner">
+          <span class="ai-pulse-dot"></span> <strong>Gemini AI コストシミュレーション実行中...</strong>
+        </div>
+        <p>💡 <strong>${itemA.agent} vs ${itemB.agent} クォータ試算結果:</strong></p>
+        <p>・<strong>${itemA.agent}</strong> (${itemA.pricing}): 高頻度な単体生成タスクやデイリー開発で優れたコスト効率を発揮します。</p>
+        <p>・<strong>${itemB.agent}</strong> (${itemB.pricing}): チーム全体での並列タスクやプロジェクト単位のナレッジ共有でROIが高まります。</p>
+      `;
+    });
+
+    btnTeam.addEventListener("click", () => {
+      output.hidden = false;
+      output.innerHTML = `
+        <div class="ai-typing-banner">
+          <span class="ai-pulse-dot"></span> <strong>Gemini AI 組織導入リスク判定中...</strong>
+        </div>
+        <p>🛡️ <strong>組織適正アドバイス:</strong></p>
+        <p>・<strong>${itemA.bestTeam}</strong> が中心のチームには <strong>${itemA.agent}</strong> の初期導入が最も摩擦が少ない選択肢です。</p>
+        <p>・<strong>${itemB.bestTeam}</strong> には <strong>${itemB.agent}</strong> を導入することで開発サイクル・業務自動化の即効性が期待できます。</p>
+      `;
+    });
   }
 
   function updateComparison(warningMessage = "") {
@@ -197,6 +319,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       selectionNames.innerHTML = renderSelectedItems(selectedCards);
     }
+
+    bindInteractiveEvents();
   }
 
   filterButtons.forEach((button) => {

@@ -349,22 +349,37 @@ html, body {
   color: var(--color-text-muted);
 }
 
-/* 比較マトリクス & Gemini AI レポート */
+/* 比較マトリクス & Gemini AI 深層アナリティクス */
 .comparison-matrix-wrapper {
   margin-top: 20px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: 16px;
+  border-radius: var(--radius-md);
+  padding: 18px;
   box-shadow: var(--shadow-sm);
+}
+
+.matrix-header-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
 .matrix-title {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-text-main);
-  margin-bottom: 12px;
+}
+
+.matrix-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background-color: var(--accent-primary-soft);
+  padding: 3px 8px;
+  border-radius: 4px;
 }
 
 .comparison-matrix-table {
@@ -391,8 +406,18 @@ html, body {
 .matrix-label {
   font-weight: 700;
   color: var(--color-text-muted);
-  width: 130px;
+  width: 140px;
   background-color: var(--bg-subtle);
+}
+
+.matrix-tag {
+  font-size: 0.775rem;
+  font-weight: 600;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--color-text-main);
 }
 
 .matrix-price {
@@ -401,70 +426,176 @@ html, body {
   color: var(--accent-primary);
 }
 
+.pro-text {
+  color: #15803d;
+  font-size: 0.825rem;
+  line-height: 1.5;
+}
+
+.con-text {
+  color: #b45309;
+  font-size: 0.825rem;
+  line-height: 1.5;
+}
+
+/* Gemini AI 深層レポート */
 .gemini-analysis-container {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
-.gemini-report-card {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
-  border: 1px solid rgba(124, 58, 237, 0.25);
+.gemini-deep-report {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.08) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.3);
   border-radius: var(--radius-md);
-  padding: 18px;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.1);
 }
 
-.gemini-report-header {
+.gemini-deep-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
 }
 
-.gemini-badge-group {
+.gemini-title-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
 }
 
-.gemini-sparkle {
-  font-size: 1.1rem;
+.gemini-sparkle-icon {
+  font-size: 1.4rem;
 }
 
-.gemini-title-text {
+.gemini-report-title {
   font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #5b21b6;
+}
+
+.gemini-report-subtitle {
+  font-size: 0.775rem;
   color: #6d28d9;
 }
 
-.gemini-model-tag {
+.gemini-status-badge {
   font-size: 0.725rem;
-  font-weight: 600;
-  color: #7c3aed;
-  background-color: rgba(124, 58, 237, 0.1);
-  padding: 2px 8px;
+  font-weight: 700;
+  color: #6d28d9;
+  background-color: rgba(124, 58, 237, 0.12);
+  padding: 4px 10px;
   border-radius: 12px;
 }
 
-.gemini-report-body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.gemini-deep-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
-.gemini-section-title {
-  font-size: 0.85rem;
+.gemini-card {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+
+.gemini-card-title {
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--color-text-main);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
-.gemini-section-text {
-  font-size: 0.85rem;
+.gemini-card-body {
+  font-size: 0.83rem;
   color: var(--color-text-muted);
   line-height: 1.6;
+}
+
+.gemini-recommendation-box {
+  background-color: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.recommendation-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 6px;
+}
+
+.recommendation-content {
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  line-height: 1.65;
+}
+
+.gemini-interactive-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gemini-action-btn {
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6d28d9;
+  background-color: rgba(124, 58, 237, 0.08);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gemini-action-btn:hover {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.ai-interactive-output {
+  margin-top: 14px;
+  padding: 14px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+.ai-typing-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  margin-bottom: 8px;
+}
+
+.ai-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.5; }
 }
 
 /* 5. Main Content & Segmented Filter Bar */
