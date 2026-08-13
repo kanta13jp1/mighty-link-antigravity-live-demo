@@ -8,4 +8,6 @@ credentials.json
 .venv-antigravity-sdk/
 __pycache__/
 node_modules/
+**/node_modules/
 .gemini/
+glass-towers/dist/

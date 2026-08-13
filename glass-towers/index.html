@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Glass Towers - Minimalist 3D Physics Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- 3D Canvas Container -->
+  <div id="canvas-container"></div>
+
+  <!-- HUD Overlay -->
+  <div id="ui-container">
+    <!-- Header / Brand -->
+    <header class="hud-header">
+      <div class="brand">
+        <span class="brand-icon">💎</span>
+        <h1 class="brand-title">GLASS TOWERS</h1>
+      </div>
+      <div class="header-actions">
+        <button id="btn-sound" class="icon-btn" title="Toggle Sound" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <button id="btn-restart" class="icon-btn" title="Restart Game (R)" aria-label="Restart Game">
+          <span>🔄</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Score Board -->
+    <div class="hud-scores">
+      <div class="score-card">
+        <span class="score-label">HEIGHT</span>
+        <div class="score-value-wrap">
+          <span id="score-height" class="score-number">0.0</span>
+          <span class="score-unit">m</span>
+        </div>
+      </div>
+      <div class="score-card">
+        <span class="score-label">PIECES</span>
+        <span id="score-count" class="score-number">0</span>
+      </div>
+      <div class="score-card accent">
+        <span class="score-label">BEST</span>
+        <div class="score-value-wrap">
+          <span id="score-best" class="score-number">0.0</span>
+          <span class="score-unit">m</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Piece Preview -->
+    <div id="next-piece-panel" class="next-panel">
+      <span class="panel-label">NEXT OBJECT</span>
+      <div id="next-preview-box" class="preview-box">
+        <div id="next-shape-icon" class="shape-icon">🧊</div>
+        <div class="shape-info">
+          <span id="next-shape-name" class="shape-name">Crystal Cube</span>
+          <span id="next-shape-mass" class="shape-mass">Mass: 2.0kg</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions / Guide -->
+    <div id="control-guide" class="guide-toast">
+      <div class="guide-keys">
+        <span class="key">A</span> / <span class="key">D</span> or <span class="key">←</span> <span class="key">→</span> or <span class="key">Mouse/Touch Drag</span>
+      </div>
+      <span class="guide-action">Move Piece &bull; Press <span class="key">SPACE</span> or <span class="key">CLICK / TAP</span> to Drop</span>
+    </div>
+
+    <!-- Start Overlay -->
+    <div id="overlay-start" class="overlay">
+      <div class="glass-card start-card">
+        <div class="hero-gem">💎</div>
+        <h2>GLASS TOWERS</h2>
+        <p class="tagline">Balance translucent crystal forms on a narrow pedestal.</p>
+        <div class="rule-list">
+          <div class="rule-item"><span>🎯</span> <strong>Goal:</strong> Build the tallest stable glass tower.</div>
+          <div class="rule-item"><span>↔️</span> <strong>Move:</strong> Drag mouse/touch or use Arrow Keys / A-D.</div>
+          <div class="rule-item"><span>👇</span> <strong>Drop:</strong> Click, Tap, or Press Space.</div>
+          <div class="rule-item"><span>⚠️</span> <strong>Fail:</strong> Don't let any piece slip off the pedestal!</div>
+        </div>
+        <button id="btn-start" class="primary-btn">START STACKING</button>
+      </div>
+    </div>
+
+    <!-- Game Over Overlay -->
+    <div id="overlay-gameover" class="overlay hidden">
+      <div class="glass-card gameover-card">
+        <div class="shatter-icon">💥</div>
+        <h2>TOWER COLLAPSED</h2>
+        <p class="fail-reason">A glass piece fell off the pedestal!</p>
+        
+        <div class="final-stats">
+          <div class="stat-row">
+            <span>Final Height:</span>
+            <strong id="final-height">0.0m</strong>
+          </div>
+          <div class="stat-row">
+            <span>Pieces Stacked:</span>
+            <strong id="final-count">0</strong>
+          </div>
+          <div class="stat-row highlight">
+            <span>Personal Best:</span>
+            <strong id="final-best">0.0m</strong>
+          </div>
+        </div>
+
+        <button id="btn-play-again" class="primary-btn">TRY AGAIN (R)</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
