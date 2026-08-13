@@ -1,11 +1,15 @@
-Prompt 5 / MCPで公開先を読み取り確認する
+Prompt 5 / MCPとGoogle Cloud Data Agent Kitで読み取り接続確認する
 
-Antigravity IDEのMCP Servers画面でGitHub MCPの接続状態だけを確認してください。Antigravity CLIを使う場合は`/mcp`を開いてください。
+Antigravity IDEのMCP Servers画面で GitHub MCP および Google Cloud Data Agent Kit (data-agent-kit) の接続状態を確認してください。Antigravity CLIを使う場合は `/mcp` を開いてください。
 
-GitHub MCPが接続済みの場合、読み取り専用で次を確認してください。
-- リポジトリ: kanta13jp1/mighty-link-antigravity-live-demo
-- default branchがmain
-- 最新commitのSHAと件名
-- GitHub Pagesの公開URLまたは直近deployment状態
+1. **GitHub MCP 接続確認 (接続済みの場合)**
+   - リポジトリ: kanta13jp1/mighty-link-antigravity-live-demo
+   - default branchがmain
+   - 最新commitのSHAと件名
+   - GitHub Pagesの公開URLまたは直近deployment状態
 
-Issue作成、設定変更、認証追加、ファイル変更、commit、pushは行わないでください。GitHub MCPが未接続または情報を取得できない場合は、接続や認証を会場で開始せず「MCP確認は省略、gitと公開URL確認へ継続」と1行で報告してください。
+2. **Google Cloud Data Agent Kit 接続確認 (data-agent-kit)**
+   - `get_active_gcp_connection` ツールを安全な読み取り専用で呼び出し、アクティブな GCP Project ID、デフォルト Region、BigQuery Location を確認して報告してください。
+
+Issue作成、データリソース変更、設定変更、認証追加、ファイル変更、commit、pushは行わないでください。MCPが未接続または情報を取得できない場合は、接続や認証を会場で開始せず「MCP確認は省略、gitと公開URL確認へ継続」と1行で報告してください。
+

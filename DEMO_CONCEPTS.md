@@ -90,11 +90,15 @@ Kiro公式ドキュメントは、Powerを次の構成として説明してい�
 
 Powersは2026年8月9日時点でKiro IDE向けです。Antigravity、Codex、Claude Code、Claude Coworkの機能名として扱いません。
 
-## MCP
+## MCP と Google Cloud Data Agent Kit
 
 Model Context Protocolは、AIエージェントをローカルツール、データ、外部APIへ接続する標準です。接続によって読取りだけでなく書込みToolも利用可能になり得るため、接続済みであることと、実行してよい操作は別に判断します。
 
-今回のデモではGitHub MCPを読み取り専用で使用し、専用リポジトリのbranch、最新commit、Pages deploymentを確認します。未接続なら会場で認証を始めず、`git`と公開URL確認へ進みます。
+今回のデモでは以下の 2 つの MCP / 外部連携を活用します：
+
+1. **GitHub MCP**: 読み取り専用で使用し、専用リポジトリの branch、最新 commit、Pages deployment 状態を確認します。未接続なら会場で認証を始めず、`git` と公開 URL 確認へ進みます。
+2. **Google Cloud Data Agent Kit (`data-agent-kit`)**: Antigravity IDE がアクティブな Google Cloud 接続コンテキスト（Project ID、デフォルト Region、BigQuery Location、Billing Quota Project）を自動検出する MCP 連携です。`get_active_gcp_connection` ツールを実行し、安全な読み取り専用で現在のワークスペースの GCP 接続状態を取得・実演します。
+
 
 ## Antigravity Artifacts
 

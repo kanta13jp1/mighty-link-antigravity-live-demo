@@ -13,6 +13,7 @@ The canonical acceptance criteria are in `TEST_SPEC.md`. This file remains as th
 | Comparison | One or two products, never three | Node interaction test and browser test |
 | Sources | At least 40 rendered evidence links | Node DOM and Python allowlist tests |
 | Accessibility | ARIA state, live status, skip link, visible focus | Static contract and browser keyboard test |
+| GCP / MCP Integration | Google Cloud Data Agent Kit & GitHub MCP read-only verification | `get_active_gcp_connection` read-only check and MCP fallback assertion |
 | Responsive layout | No page overflow at 320-1440px | Chromium viewport checks |
 | Review | Ten independent review passes | Python document test |
 
