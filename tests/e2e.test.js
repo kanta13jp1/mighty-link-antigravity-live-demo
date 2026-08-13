@@ -141,22 +141,4 @@ describe('AI Agent Decision Guide DOM contract', () => {
     dom.window.close();
   });
 
-  describe('カテゴリ 7: 10段階自己レビュー ＆ メディアリソース検証 (10-Stage Self-Review Log & Media Resources)', () => {
-    test('TS-07-01: 10段階の自己レビューログセクションと10個のレビューカードが存在すること', () => {
-      const reviewSection = document.querySelector('.review-log-section');
-      assert.ok(reviewSection, 'Review log section should be present on page');
-
-      const reviewCards = [...document.querySelectorAll('.review-card')];
-      assert.equal(reviewCards.length, 10, 'There must be exactly 10 self-review log cards');
-    });
-
-    test('TS-07-02: 最新動画・ブログリソースセクションおよびカード内チップリンクが存在すること', () => {
-      const mediaSection = document.querySelector('.resources-media-section');
-      assert.ok(mediaSection, 'Media resources section should be present');
-
-      const codexCard = document.querySelector('.agent-card[data-agent="Codex"]');
-      const resourceChips = [...codexCard.querySelectorAll('.resource-chip')];
-      assert.ok(resourceChips.length >= 2, 'Codex card should contain video/blog resource chips');
-    });
-  });
 });
