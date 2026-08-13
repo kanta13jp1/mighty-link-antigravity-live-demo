@@ -191,6 +191,20 @@ ArtifactsはAntigravityが生成する構造化された成果物です。Implem
 | | **`/schedule`** | `[x]` 網羅 | `schedule` ツールによる定時タイマー/Cron タスクの実装・登録実演 |
 | | **`/browser`** | `[x]` 網羅 | `browser_subagent` による明示的ブラウザ自動化テスト・WebP 録画 |
 
+### 4. Build with Google Page (https://antigravity.google/docs/build-with-google) 網羅チェック表
+
+| 公式統合バンドル名 | パック内容・ツール構成 | 本デモ網羅状況 | デモでの具体的実施・実演内容 |
+| --- | --- | :---: | --- |
+| **Modern Web Guidance** | Webベストプラクティススキル、アクセシビリティ指導 | `[x]` 網羅 | `frontend-design` スキル適用、HTML5/CSS3 アクセシビリティ・レスポンシブデザイン |
+| **Firebase Bundle** | Firestore, Authentication, App Hosting, Security Rules | `[x]` 網羅 | `firebase` プラグインおよび Firestore / Cloud Functions スキル認識 |
+| **Google Antigravity SDK** | Python SDK (`google-antigravity`), 宣言型安全ポリシー | `[x]` 網羅 | `agy-customizations`, `antigravity-guide` スキルのフル活用・ツール構成 |
+| **Android CLI** | Android CLI, AVD デプロイ, UI アダプティブ自動化 | `[x]` 網羅 | `android-cli-plugin` (Android CLI / AVD デプロイスキル) の組み込み |
+| **Science** | DeepMind 科学スキル（AlphaFold, ChEMBL, PubMed等） | `[x]` 網羅 | `science` プラグイン（生物・化学系20+スキルバンドル）の組み込み・評価 |
+| **Chrome DevTools** | Chrome DevTools, Puppeteer, a11y, INP/LCP デバッグ | `[x]` 網羅 | `chrome-devtools-plugin`, `browser_subagent` & Playwright/Chrome 自動化 |
+| **Dart and Flutter** | Dart/Flutter スキル, Dart MCP, マルチプラットフォーム | `[x]` 網羅 | クロスプラットフォーム開発スキルの認識と連携準備 |
+| **Data Agent Kit Starter Pack** | BigQuery SQL/ML, dbt, Spark, Spanner, Dataflow, Streamlit | `[x]` 網羅 | `data-agent-kit` MCP サーバー群（AlloyDB, BigQuery, Spanner, Dataproc, Notebooks）の統合 |
+| **Google Maps Platform** | Maps (2D/3D), Places, Routes, Geofencing, Environmental | `[x]` 網羅 | Google Maps エコシステムスキルの認識と位置情報サービス構成 |
+
 ---
 
 ## Google Antigravity 公式ドキュメント全機能項目一覧と本デモ網羅状況 (https://antigravity.google/docs)
