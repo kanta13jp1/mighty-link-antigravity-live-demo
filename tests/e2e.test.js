@@ -153,6 +153,10 @@ describe('AI Agent Decision Guide DOM contract', () => {
     assert.ok(openAiLink, 'OpenAI Academy link should exist');
     assert.equal(openAiLink.getAttribute('href'), 'https://openai.com/academy/');
 
+    const anthropicLink = document.querySelector('.module-card[data-module-id="mod-3"] .module-link-btn');
+    assert.ok(anthropicLink, 'Anthropic Academy link should exist');
+    assert.equal(anthropicLink.getAttribute('href'), 'https://www.anthropic.com/learn');
+
     const chk1 = document.querySelector('#chk-mod-1');
     const chk2 = document.querySelector('#chk-mod-2');
     const percentBadge = document.querySelector('#progress-percent-badge');
