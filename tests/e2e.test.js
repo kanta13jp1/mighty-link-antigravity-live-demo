@@ -223,4 +223,66 @@ describe('AI Agent Learning Hub E2E / DOM Test Suite (Based on TEST_SPECIFICATIO
       assert.equal(selectionNames.getAttribute('aria-live'), 'polite');
     });
   });
+
+  describe('カテゴリ 6: 公式アイコン取得 ＆ 公式一次情報根拠検証 (Official Icons & Primary Source Evidence)', () => {
+    test('TS-06-01: 全製品に公式ブランドアイコン(SVG/img)が正しく設定・表示されること', () => {
+      const cards = [...document.querySelectorAll('.agent-card')];
+      cards.forEach(card => {
+        const img = card.querySelector('.brand-icon');
+        assert.ok(img, `Card ${card.dataset.agent} should have brand icon element`);
+        const src = img.getAttribute('src');
+        assert.ok(src && src.startsWith('assets/icons/'), `Src ${src} should be in assets/icons/`);
+        assert.ok(src.endsWith('.svg'), `Src ${src} should be a valid SVG icon`);
+      });
+
+      // 2製品選択時の比較サマリー・マトリクスヘッダーにおけるアイコン表示チェック
+      const codexBtn = document.querySelector('.agent-card[data-agent="Codex"] .select-button');
+      const antigravityBtn = document.querySelector('.agent-card[data-agent="Antigravity"] .select-button');
+
+      codexBtn.click();
+      antigravityBtn.click();
+
+      const selectedIcons = [...document.querySelectorAll('.selected-product-item .brand-icon-sm')];
+      assert.equal(selectedIcons.length, 2, 'Selected product headers must contain 2 brand icons');
+
+      selectedIcons.forEach(iconImg => {
+        const src = iconImg.getAttribute('src');
+        assert.ok(src && src.startsWith('assets/icons/'), `Selected icon src ${src} should point to assets/icons/`);
+        assert.equal(iconImg.getAttribute('onerror'), "this.style.display='none'", 'Icon img should have onerror fallback handler');
+      });
+    });
+
+    test('TS-06-02: すべての比較データに公式ドキュメント等の一次情報根拠(data-evidence)およびバージョン表記が存在すること', () => {
+      const cards = [...document.querySelectorAll('.agent-card')];
+      cards.forEach(card => {
+        const agent = card.dataset.agent;
+        const evidence = card.dataset.evidence;
+        const version = card.dataset.version;
+
+        assert.ok(evidence && evidence.startsWith('https://'), `Product ${agent} must have valid HTTPS primary evidence URL (actual: ${evidence})`);
+        assert.ok(version && version.length > 0, `Product ${agent} must have non-empty version string (actual: ${version})`);
+
+        // Claude Cowork は「公開版番号なし」と正しく明記されていることを確認 (数字の捏造禁止)
+        if (agent === 'Claude Cowork') {
+          assert.ok(version.includes('公開版番号なし'), 'Claude Cowork version must state 公開版番号なし');
+        }
+      });
+
+      // 比較マトリクスの第10行「一次情報根拠 ＆ 出典」に公式直リンクがレンダリングされることのチェック
+      const codexBtn = document.querySelector('.agent-card[data-agent="Codex"] .select-button');
+      const antigravityBtn = document.querySelector('.agent-card[data-agent="Antigravity"] .select-button');
+
+      codexBtn.click();
+      antigravityBtn.click();
+
+      const evidenceLinks = [...document.querySelectorAll('.comparison-matrix-table .update-detail-text a')];
+      assert.equal(evidenceLinks.length, 2, 'Matrix row 10 must contain 2 primary evidence source links');
+
+      evidenceLinks.forEach(link => {
+        assert.equal(link.getAttribute('target'), '_blank');
+        assert.equal(link.getAttribute('rel'), 'noopener noreferrer');
+        assert.ok(link.getAttribute('href').startsWith('https://'));
+      });
+    });
+  });
 });
