@@ -501,32 +501,258 @@ html, body {
   background-color: var(--bg-subtle);
 }
 
-.matrix-tag {
-  font-size: 0.775rem;
+.version-badge {
+  font-size: 0.725rem;
   font-weight: 600;
+  color: var(--color-text-muted);
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-color);
   padding: 2px 6px;
   border-radius: 4px;
-  color: var(--color-text-main);
 }
 
-.matrix-price {
-  font-size: 0.8rem;
+.highlight-ver {
+  color: var(--accent-primary);
+  background-color: var(--accent-primary-soft);
+  border-color: rgba(37, 99, 235, 0.3);
+  font-weight: 700;
+}
+
+.card-version-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.selected-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selected-ver-tag {
+  font-size: 0.725rem;
   font-weight: 600;
   color: var(--accent-primary);
 }
 
-.pro-text {
-  color: #15803d;
-  font-size: 0.825rem;
-  line-height: 1.5;
+.version-tag {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  background-color: var(--accent-primary-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
-.con-text {
-  color: #b45309;
+.update-detail-text {
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* 🎬 公式最新動画 ＆ メディア・サポート情報セクション */
+.resources-media-section {
+  padding: 48px 0;
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-color);
+}
+
+.media-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.media-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.media-icon {
+  font-size: 1.8rem;
+}
+
+.media-section-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+
+.media-section-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.media-update-badge {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #166534;
+  background-color: #dcfce7;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.media-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.media-category-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.media-cat-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-primary-soft);
+}
+
+.media-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.media-link-item {
+  display: block;
+  padding: 12px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.media-link-item:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-surface);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.media-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.media-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.video-tag {
+  color: #991b1b;
+  background-color: #fee2e2;
+}
+
+.blog-tag {
+  color: #1e40af;
+  background-color: #dbeafe;
+}
+
+.media-date {
+  font-size: 0.725rem;
+  color: var(--color-text-muted);
+}
+
+.media-item-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.4;
+}
+
+.media-item-desc {
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+.media-footer-btn {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.btn-all-media {
+  display: inline-block;
   font-size: 0.825rem;
-  line-height: 1.5;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-all-media:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+.support-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.support-card-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.support-card-btn:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-surface);
+  transform: translateY(-2px);
+}
+
+.support-icon {
+  font-size: 1.2rem;
+}
+
+.support-title {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.support-desc {
+  font-size: 0.725rem;
+  color: var(--color-text-muted);
+  line-height: 1.3;
 }
 
 /* Gemini AI 深層レポート */

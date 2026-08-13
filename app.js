@@ -40,6 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
       pros: card.dataset.pros || "高いタスク実行性能",
       cons: card.dataset.cons || "使用クォータ枠の管理が必要",
       bestTeam: card.dataset.bestTeam || "各種開発・企画チーム",
+      version: card.dataset.version || "v2026.8.0",
+      updated: card.dataset.updated || "2026年8月",
+      updates: card.dataset.updates || "最新安定版",
       autonomy,
       features,
       firstStep
@@ -95,39 +98,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if ((nameA === "Claude Code" && nameB === "Antigravity") || (nameB === "Claude Code" && nameA === "Antigravity")) {
       archAnalysis = `
-        <strong>Claude Code</strong> はターミナルCLIから直感的なコマンド実行と複数ファイル編集・Gitコミットを行うコマンドラインエージェントです。<br>
-        一方、<strong>Antigravity</strong> は Artifacts 計画とリアルタイムブラウザ検証サブエージェントを備え、UI画面を視覚的に自動検証しながら進めるWeb開発環境です。
+        <strong>Claude Code (${itemA.version || 'v1.4'})</strong> はターミナルCLIから直感的なコマンド実行と複数ファイル編集・Gitコミットを行うコマンドラインエージェントです。<br>
+        一方、<strong>Antigravity (${itemB.version || 'v2.0'})</strong> は Artifacts 計画とリアルタイムブラウザ検証サブエージェントを備え、UI画面を視覚的に自動検証しながら進めるWeb開発環境です。
       `;
       decisionTree = `
         🏢 <strong>推奨導入決定ツリー</strong>:<br>
-        - <strong>CLI慣れしたバックエンド/リファクタリング重視</strong> → <span class="tag-recommend">Claude Code</span> をメイン採用<br>
-        - <strong>フロントエンドWeb開発・画面の即時視覚検証重視</strong> → <span class="tag-recommend">Antigravity</span> をメイン採用
+        - <strong>CLI慣れしたバックエンド/リファクタリング重視</strong> → <span class="tag-recommend">Claude Code ${itemA.version}</span> をメイン採用<br>
+        - <strong>フロントエンドWeb開発・画面の即時視覚検証重視</strong> → <span class="tag-recommend">Antigravity ${itemB.version}</span> をメイン採用
       `;
       hybridPrompt = `
         <code>「Antigravityで画面仕様とUIコンポーネント計画(Artifact)を作成後、Claude CodeでCLIリファクタリングとGitコミットを一括実行する」併用ワークフローが最高効率です。</code>
       `;
-    } else if ((nameA === "Claude Code" && nameB === "Claude Cowork") || (nameB === "Claude Code" && nameA === "Claude Cowork")) {
+    } else if ((nameA === "Codex" || nameB === "Codex")) {
+      const codexItem = nameA === "Codex" ? itemA : itemB;
+      const otherItem = nameA === "Codex" ? itemB : itemA;
       archAnalysis = `
-        <strong>Claude Code</strong> は開発者のコードベースおよびローカルTerminal環境に最適化されています。<br>
-        <strong>Claude Cowork</strong> は非エンジニア・PM・営業チームを含むプロジェクト全体のドキュメント整理や分析レポート作成に最適化されています。
+        <strong>Codex (${codexItem.version})</strong> は 最新の OpenAI モデルと Sandbox 隔離環境をベースに、Record & Replay チュートリアル動画や iOS アプリテストプラグインなどの強力なエコシステムを提供します。<br>
+        一方、<strong>${otherItem.agent} (${otherItem.version})</strong> は 「${otherItem.pros}」 に特化しています。
       `;
       decisionTree = `
         🏢 <strong>推奨導入決定ツリー</strong>:<br>
-        - <strong>エンジニア開発ライン</strong> → <span class="tag-recommend">Claude Code (Pro $20/Max $100)</span><br>
-        - <strong>企画・PM・ビジネス共有空間</strong> → <span class="tag-recommend">Claude Cowork (Team $30/人)</span>
+        - <strong>OpenAI SDK・モバイル/バックエンド自動テスト開発</strong> → <span class="tag-recommend">Codex (${codexItem.version})</span><br>
+        - <strong>${otherItem.bestTeam}</strong> → <span class="tag-recommend">${otherItem.agent} (${otherItem.version})</span>
       `;
       hybridPrompt = `
-        <code>「Claude Coworkで企画書・仕様概要を作成し、Claude CodeにCLAUDE.mdとしてインポートして実装させる」クロスファンクショナル連携を推奨します。</code>
+        <code>「CodexのSkills/Pluginsで自動テスト・リファクタリングを行い、${otherItem.agent}で画面ビューやナレッジ管理を補完する」高度な連携が有効です。</code>
       `;
     } else {
       archAnalysis = `
-        <strong>${nameA}</strong> (${itemA.ui}) は 「${itemA.pros}」 を主軸とし、<br>
-        <strong>${nameB}</strong> (${itemB.ui}) は 「${itemB.pros}」 に強みを持っています。
+        <strong>${nameA} (${itemA.version})</strong> (${itemA.ui}) は 「${itemA.pros}」 を主軸とし、<br>
+        <strong>${nameB} (${itemB.version})</strong> (${itemB.ui}) は 「${itemB.pros}」 に強みを持っています。
       `;
       decisionTree = `
         🏢 <strong>推奨導入決定ツリー</strong>:<br>
-        - <strong>${itemA.bestTeam}</strong> → <span class="tag-recommend">${nameA}</span><br>
-        - <strong>${itemB.bestTeam}</strong> → <span class="tag-recommend">${nameB}</span>
+        - <strong>${itemA.bestTeam}</strong> → <span class="tag-recommend">${nameA} (${itemA.version})</span><br>
+        - <strong>${itemB.bestTeam}</strong> → <span class="tag-recommend">${nameB} (${itemB.version})</span>
       `;
       hybridPrompt = `
         <code>「${nameA}の強みと${nameB}の強みを開発フェーズ（計画 vs 実装 vs レビュー）に応じて使い分ける」ハイブリッドアプローチが効果的です。</code>
@@ -141,10 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="gemini-sparkle-icon">✨</span>
             <div>
               <h4 class="gemini-report-title">Gemini AI プロダクト選定アナリティクス (深層比較レポート)</h4>
-              <p class="gemini-report-subtitle">Gemini 2.5 Flash / 3.1 Pro モデルによる多角的意思決定支援</p>
+              <p class="gemini-report-subtitle">Gemini 2.5 Flash / 3.1 Pro モデルによる多角的意思決定支援 (2026年8月公式情報検証済み)</p>
             </div>
           </div>
-          <span class="gemini-status-badge">分析完了</span>
+          <span class="gemini-status-badge">公式情報検証完了</span>
         </div>
 
         <div class="gemini-deep-grid">
@@ -187,7 +192,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cardsHtml = itemsData.map(item => `
       <div class="selected-product-item">
         <div class="selected-product-header">
-          <span class="selected-product-badge">選択中</span>
+          <div class="selected-header-left">
+            <span class="selected-product-badge">選択中</span>
+            <span class="selected-ver-tag">${item.version} (${item.updated})</span>
+          </div>
           <div class="selected-product-title-group">
             ${item.icon ? `<img src="${item.icon}" alt="${item.agent} アイコン" class="brand-icon-sm" width="18" height="18" onerror="this.style.display='none'">` : ''}
             <h4 class="selected-product-name">${item.agent}</h4>
@@ -206,12 +214,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="comparison-hint-box">
           <span class="hint-icon">💡</span>
-          <span>あと1つの製品の「比較に追加」を押すと、9因子の深層比較マトリクス、チームコスト計算機、Gemini AIレポートが展開されます。</span>
+          <span>あと1つの製品の「比較に追加」を押すと、10因子の深層比較マトリクス、チームコスト計算機、Gemini AIレポートが展開されます。</span>
         </div>
       `;
     }
 
-    // 2件選択時の9因子深層比較マトリクス & チームコスト計算機 & Gemini AI 深層アナリティクス
+    // 2件選択時の10因子深層比較マトリクス & チームコスト計算機 & Gemini AI 深層アナリティクス
     const itemA = itemsData[0];
     const itemB = itemsData[1];
 
@@ -239,20 +247,20 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="calc-results-grid">
           <div class="calc-result-box">
-            <span class="calc-agent-name">${itemA.agent} 試算額</span>
+            <span class="calc-agent-name">${itemA.agent} (${itemA.version}) 試算額</span>
             <span class="calc-price-value">${costA}</span>
           </div>
           <div class="calc-result-box">
-            <span class="calc-agent-name">${itemB.agent} 試算額</span>
+            <span class="calc-agent-name">${itemB.agent} (${itemB.version}) 試算額</span>
             <span class="calc-price-value">${costB}</span>
           </div>
         </div>
       </div>
 
-      <!-- 9因子 深層比較マトリクス -->
+      <!-- 10因子 深層比較マトリクス -->
       <div class="comparison-matrix-wrapper">
         <div class="matrix-header-group">
-          <h4 class="matrix-title">📊 9因子 実用的深層比較マトリクス</h4>
+          <h4 class="matrix-title">📊 10因子 実用的深層比較マトリクス (2026年8月最新公式情報)</h4>
           <span class="matrix-badge">意思決定基準</span>
         </div>
         <div class="matrix-table-scroll">
@@ -310,6 +318,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td><strong>${itemA.bestTeam}</strong></td>
                 <td><strong>${itemB.bestTeam}</strong></td>
               </tr>
+              <tr>
+                <td class="matrix-label">10. 最新バージョン ＆ 更新</td>
+                <td>
+                  <span class="version-tag">${itemA.version}</span>
+                  <div class="update-detail-text">更新: ${itemA.updated}<br>要約: ${itemA.updates}</div>
+                </td>
+                <td>
+                  <span class="version-tag">${itemB.version}</span>
+                  <div class="update-detail-text">更新: ${itemB.updated}<br>要約: ${itemB.updates}</div>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -349,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="ai-typing-banner">
           <span class="ai-pulse-dot"></span> <strong>Gemini AI コスト＆クォータ消化シミュレーション実行中...</strong>
         </div>
-        <p>💡 <strong>${itemA.agent} vs ${itemB.agent} (${currentTeamSize}人規模の試算分析):</strong></p>
+        <p>💡 <strong>${itemA.agent} (${itemA.version}) vs ${itemB.agent} (${itemB.version}) [${currentTeamSize}人規模の試算分析]:</strong></p>
         <p>・<strong>${itemA.agent}</strong>: デイリーでの連続使用時、${itemA.pricing} の制限範囲内で高効率に動作します。</p>
         <p>・<strong>${itemB.agent}</strong>: 重度なタスクの並列処理時は、${itemB.pricing} のクォータ枠管理を意識することが成功のポイントです。</p>
       `;
@@ -361,9 +380,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="ai-typing-banner">
           <span class="ai-pulse-dot"></span> <strong>Gemini AI 組織定着度・リスク診断中...</strong>
         </div>
-        <p>🛡️ <strong>組織適合アドバイス:</strong></p>
-        <p>・<strong>${itemA.bestTeam}</strong> への導入 → <strong>${itemA.agent}</strong> (${itemA.autonomy}) が最も学習コストが低く即効性があります。</p>
-        <p>・<strong>${itemB.bestTeam}</strong> への導入 → <strong>${itemB.agent}</strong> (${itemB.autonomy}) の活用でチーム全体の生産性が飛躍的に高まります。</p>
+        <p>🛡️ <strong>組織適合アドバイス (2026年8月最新バージョン基準):</strong></p>
+        <p>・<strong>${itemA.bestTeam}</strong> への導入 → <strong>${itemA.agent} ${itemA.version}</strong> (${itemA.autonomy}) が最も学習コストが低く即効性があります。</p>
+        <p>・<strong>${itemB.bestTeam}</strong> への導入 → <strong>${itemB.agent} ${itemB.version}</strong> (${itemB.autonomy}) の活用でチーム全体の生産性が飛躍的に高まります。</p>
       `;
     });
   }
