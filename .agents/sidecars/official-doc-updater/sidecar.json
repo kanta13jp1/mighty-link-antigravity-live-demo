@@ -1,0 +1,11 @@
+{
+  "name": "official-doc-updater",
+  "description": "Periodically fetches and verifies latest AI agent official docs and release notes for AI Agent Learning Hub",
+  "schedule": "0 9 * * *",
+  "command": "node .agents/sidecars/official-doc-updater/update-docs.cjs",
+  "restartPolicy": "on-failure",
+  "enabled": true,
+  "env": {
+    "TARGET_HUB": "c:/Users/kanta/GitHub/mighty-link-antigravity-live-demo"
+  }
+}

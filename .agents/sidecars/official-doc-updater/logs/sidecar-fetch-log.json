@@ -1,0 +1,35 @@
+{
+  "lastRun": "2026-08-13T04:44:09.687Z",
+  "results": [
+    {
+      "name": "Codex",
+      "url": "https://developers.openai.com/codex",
+      "statusCode": 308,
+      "timestamp": "2026-08-13T04:44:08.603Z"
+    },
+    {
+      "name": "Claude Code",
+      "url": "https://code.claude.com/docs",
+      "statusCode": 200,
+      "timestamp": "2026-08-13T04:44:09.051Z"
+    },
+    {
+      "name": "Claude Cowork",
+      "url": "https://claude.com/product/cowork",
+      "statusCode": 200,
+      "timestamp": "2026-08-13T04:44:09.177Z"
+    },
+    {
+      "name": "Google Antigravity",
+      "url": "https://antigravity.google/docs",
+      "statusCode": 200,
+      "timestamp": "2026-08-13T04:44:09.415Z"
+    },
+    {
+      "name": "Kiro",
+      "url": "https://kiro.dev/docs/",
+      "statusCode": 200,
+      "timestamp": "2026-08-13T04:44:09.685Z"
+    }
+  ]
+}
