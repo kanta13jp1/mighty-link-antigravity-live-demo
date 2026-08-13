@@ -2,7 +2,7 @@ import test, { describe } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole } from 'jsdom';
 
 describe('AI Agent Learning Hub E2E / DOM Test Suite (Based on TEST_SPECIFICATION.md)', () => {
   let dom;
@@ -15,9 +15,12 @@ describe('AI Agent Learning Hub E2E / DOM Test Suite (Based on TEST_SPECIFICATIO
     const htmlContent = fs.readFileSync(htmlPath, 'utf8');
     const appJsContent = fs.readFileSync(appJsPath, 'utf8');
 
+    const virtualConsole = new VirtualConsole();
+    virtualConsole.on('jsdomError', () => {}); // 外部リソース未取得警告ログの出力を抑制
+
     dom = new JSDOM(htmlContent, {
       runScripts: 'dangerously',
-      resources: 'usable',
+      virtualConsole,
       url: 'http://localhost/'
     });
 
