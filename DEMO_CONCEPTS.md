@@ -143,3 +143,28 @@ ArtifactsはAntigravityが生成する構造化された成果物です。Implem
 - [frontend-design Skill](https://skills.sh/anthropics/skills/frontend-design)
 - [Anthropic skills repository](https://github.com/anthropics/skills/tree/main/skills/frontend-design)
 - [GitHub Pages publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+
+---
+
+## Google Antigravity 公式ドキュメント項目一覧と本デモ網羅状況 (https://antigravity.google/docs)
+
+| ドキュメント大項目 | 公式機能・詳細項目 | 本デモでの網羅状況 | デモでの具体的実施内容 |
+| --- | --- | :---: | --- |
+| **Core Architecture & UI** | Planning Mode & Implementation Plan | `[x]` 網羅 | `implementation_plan.md` アーティファクトの生成、人間の承認待ちフロー |
+| | Walkthrough & Visual Verification | `[x]` 網羅 | `walkthrough.md` アーティファクト、スクリーンショット・テスト検証結果の提示 |
+| | Artifacts System (Markdown / Diff / Mermaid) | `[x]` 網羅 | リッチテキスト・比較テーブル・Alert・Diff・Mermaid を含む Artifact 生成 |
+| | Interactive User Questions (`ask_question`) | `[x]` 網羅 | 多肢選択モーダルによる要件確認・意図補正 |
+| **Customizations & Steering** | Agent Skills (`.agents/skills/`) | `[x]` 網羅 | `frontend-design`, `webapp-testing`, `e2e-testing-patterns` の読み込みと適用 |
+| | Rules & Governance (`GEMINI.md`, `user_global`) | `[x]` 網羅 | データ損失防止ルール・テスト検証義務・一次情報根拠維持の徹底 |
+| | Plugins (`.gemini/config/plugins/`) | `[x]` 網羅 | プラグイン同梱のスキル（science / android 等）および MCP 構成の統合 |
+| | Model Context Protocol (MCP) | `[x]` 網羅 | BigQuery, Spanner, Notebooks, Visualization ツール群の認識 |
+| **Automation & Runtime** | Sidecars Configuration (`sidecar.json`) | `[x]` 網羅 | `.agents/sidecars/official-doc-updater/sidecar.json` および `update-docs.cjs` の設定 |
+| | Scheduler & Cron Tasks (`schedule`) | `[x]` 網羅 | `0 9 * * *` (毎日午前9時) 実行のバックグラウンド Cron デーモン (`task-240`) 登録 |
+| | Background Tasks & Reactive Messaging | `[x]` 網羅 | 非同期コマンド実行、`manage_task` による監視と完了通知ハンドリング |
+| | Agent API & Subagents (`agentapi`) | `[x]` 網羅 | サブエージェント自動連携とコマンド生成 |
+| **Quality Assurance & Testing** | Browser Subagent (`browser_subagent`) | `[x]` 網羅 | 自動ブラウザテスト、WebP 動画録画記録 |
+| | Web Application E2E Testing (`webapp-testing`) | `[x]` 網羅 | `node:test` + `jsdom` による全21項目 E2E テストの完全グリーン化 |
+| **Integrations & CLI** | Slash Commands (`/goal`, `/schedule`, `/learn`) | `[x]` 網羅 | ユーザー向けスラッシュコマンドの推薦と運用ガイダンス |
+| | Knowledge Items (KI System) | `[x]` 網羅 | リポジトリ固有ナレッジ (`metadata.json`, `artifacts/`) の優先照合 |
+| | Conversation Transcripts (`transcript.jsonl`) | `[x]` 網羅 | ステップログおよびサブエージェント対話履歴の追跡 |
+
