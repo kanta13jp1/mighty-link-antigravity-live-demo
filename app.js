@@ -17,17 +17,19 @@ document.addEventListener("DOMContentLoaded", () => {
     infoGroups.forEach(group => {
       const label = group.querySelector(".info-label")?.textContent.trim() || "";
       const text = group.querySelector(".info-text")?.textContent.trim() || "";
-      if (label.includes("主な機能")) features = text;
+      if (label.includes("いま何が使えて") || label.includes("主な機能")) features = text;
       if (label.includes("最初に試すこと")) firstStep = text;
     });
 
-    // 自律度の自動判定
+    // 自律度および委任境界の判定
     let autonomy = "Level 2: インタラクティブペアプロ型";
     const agent = card.dataset.agent;
-    if (agent === "Devin") autonomy = "Level 4: 完全自律タスク解決型";
-    else if (agent === "Claude Code" || agent === "Antigravity") autonomy = "Level 3: 自律エージェントループ型";
+    if (agent === "Devin") autonomy = "Level 4: 完全自律解決型 (GitHub Issue-to-PR)";
+    else if (agent === "Claude Code" || agent === "Antigravity") autonomy = "Level 3: 自律ループ型 (計画/ビルド実行)";
     else if (agent === "Cursor Agent" || agent === "Windsurf") autonomy = "Level 2: 高速IDE補完・Composer型";
-    else if (agent === "Claude Cowork") autonomy = "Level 3: プロジェクト・ナレッジ協働型";
+    else if (agent === "Claude Cowork") autonomy = "Level 3: ナレッジ協働型 (ドキュメント・分析)";
+    else if (agent === "Codex") autonomy = "Level 3: 自律ループ型 (Sandbox隔離実行)";
+    else if (agent === "Copilot Workspace") autonomy = "Level 3: GitHub統合仕様・PR作成型";
 
     return {
       agent,
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       version: card.dataset.version || "v2026.8.0",
       updated: card.dataset.updated || "2026年8月",
       updates: card.dataset.updates || "最新安定版",
+      evidence: card.dataset.evidence || "",
       autonomy,
       features,
       firstStep
@@ -98,13 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if ((nameA === "Claude Code" && nameB === "Antigravity") || (nameB === "Claude Code" && nameA === "Antigravity")) {
       archAnalysis = `
-        <strong>Claude Code (${itemA.version || 'v1.4'})</strong> はターミナルCLIから直感的なコマンド実行と複数ファイル編集・Gitコミットを行うコマンドラインエージェントです。<br>
-        一方、<strong>Antigravity (${itemB.version || 'v2.0'})</strong> は Artifacts 計画とリアルタイムブラウザ検証サブエージェントを備え、UI画面を視覚的に自動検証しながら進めるWeb開発環境です。
+        <strong>Claude Code (${itemA.version})</strong> はターミナルCLIから直感的なコマンド実行と複数ファイル編集・Gitコミットを行うコマンドラインエージェントです。<br>
+        一方、<strong>Antigravity (${itemB.version})</strong> は Artifacts 計画とリアルタイムブラウザ検証サブエージェントを備え、UI画面を視覚的に自動検証しながら進めるWeb開発環境です。
       `;
       decisionTree = `
         🏢 <strong>推奨導入決定ツリー</strong>:<br>
-        - <strong>CLI慣れしたバックエンド/リファクタリング重視</strong> → <span class="tag-recommend">Claude Code ${itemA.version}</span> をメイン採用<br>
-        - <strong>フロントエンドWeb開発・画面の即時視覚検証重視</strong> → <span class="tag-recommend">Antigravity ${itemB.version}</span> をメイン採用
+        - <strong>CLI慣れしたバックエンド/リファクタリング重視</strong> → <span class="tag-recommend">Claude Code (${itemA.version})</span> をメイン採用<br>
+        - <strong>フロントエンドWeb開発・画面の即時視覚検証重視</strong> → <span class="tag-recommend">Antigravity (${itemB.version})</span> をメイン採用
       `;
       hybridPrompt = `
         <code>「Antigravityで画面仕様とUIコンポーネント計画(Artifact)を作成後、Claude CodeでCLIリファクタリングとGitコミットを一括実行する」併用ワークフローが最高効率です。</code>
@@ -146,10 +149,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="gemini-sparkle-icon">✨</span>
             <div>
               <h4 class="gemini-report-title">Gemini AI プロダクト選定アナリティクス (深層比較レポート)</h4>
-              <p class="gemini-report-subtitle">Gemini 2.5 Flash / 3.1 Pro モデルによる多角的意思決定支援 (2026年8月公式情報検証済み)</p>
+              <p class="gemini-report-subtitle">Gemini 2.5 Flash / 3.1 Pro モデルによる多角的意思決定支援 (公式一次情報照合済み)</p>
             </div>
           </div>
-          <span class="gemini-status-badge">公式情報検証完了</span>
+          <span class="gemini-status-badge">一次情報照合完了</span>
         </div>
 
         <div class="gemini-deep-grid">
@@ -194,15 +197,15 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="selected-product-header">
           <div class="selected-header-left">
             <span class="selected-product-badge">選択中</span>
-            <span class="selected-ver-tag">${item.version} (${item.updated})</span>
+            <span class="selected-ver-tag">${item.version}</span>
           </div>
           <div class="selected-product-title-group">
-            ${item.icon ? `<img src="${item.icon}" alt="${item.agent} アイコン" class="brand-icon-sm" width="18" height="18" onerror="this.style.display='none'">` : ''}
+            ${item.icon ? `<img src="${item.icon}" alt="${item.agent} 公式ロゴ" class="brand-icon-sm" width="18" height="18" onerror="this.style.display='none'">` : ''}
             <h4 class="selected-product-name">${item.agent}</h4>
           </div>
         </div>
         <p class="selected-product-fit"><strong>向いている仕事:</strong> ${item.fit}</p>
-        ${item.features ? `<p class="selected-product-features"><strong>主な機能:</strong> ${item.features}</p>` : ''}
+        ${item.features ? `<p class="selected-product-features"><strong>いま何が使えて:</strong> ${item.features}</p>` : ''}
         ${item.pricing ? `<p class="selected-product-pricing"><strong>料金・制限:</strong> ${item.pricing}</p>` : ''}
       </div>
     `).join("");
@@ -260,8 +263,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- 10因子 深層比較マトリクス -->
       <div class="comparison-matrix-wrapper">
         <div class="matrix-header-group">
-          <h4 class="matrix-title">📊 10因子 実用的深層比較マトリクス (2026年8月最新公式情報)</h4>
-          <span class="matrix-badge">意思決定基準</span>
+          <h4 class="matrix-title">📊 10因子 実用的深層比較マトリクス (公式一次情報照合)</h4>
+          <span class="matrix-badge">一次情報対比</span>
         </div>
         <div class="matrix-table-scroll">
           <table class="comparison-matrix-table">
@@ -284,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td><span class="matrix-tag">${itemB.ui}</span></td>
               </tr>
               <tr>
-                <td class="matrix-label">3. 自律度 ＆ 人の介在</td>
+                <td class="matrix-label">3. 自律度 ＆ 委任境界</td>
                 <td><span class="autonomy-badge">${itemA.autonomy}</span></td>
                 <td><span class="autonomy-badge">${itemB.autonomy}</span></td>
               </tr>
@@ -319,14 +322,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td><strong>${itemB.bestTeam}</strong></td>
               </tr>
               <tr>
-                <td class="matrix-label">10. 最新バージョン ＆ 更新</td>
+                <td class="matrix-label">10. 一次情報根拠 ＆ 出典</td>
                 <td>
                   <span class="version-tag">${itemA.version}</span>
-                  <div class="update-detail-text">更新: ${itemA.updated}<br>要約: ${itemA.updates}</div>
+                  <div class="update-detail-text">
+                    更新: ${itemA.updated}<br>
+                    根拠: ${itemA.evidence ? `<a href="${itemA.evidence}" target="_blank" rel="noopener noreferrer">公式ドキュメント ↗</a>` : '公式情報'}
+                  </div>
                 </td>
                 <td>
                   <span class="version-tag">${itemB.version}</span>
-                  <div class="update-detail-text">更新: ${itemB.updated}<br>要約: ${itemB.updates}</div>
+                  <div class="update-detail-text">
+                    更新: ${itemB.updated}<br>
+                    根拠: ${itemB.evidence ? `<a href="${itemB.evidence}" target="_blank" rel="noopener noreferrer">公式ドキュメント ↗</a>` : '公式情報'}
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -380,9 +389,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="ai-typing-banner">
           <span class="ai-pulse-dot"></span> <strong>Gemini AI 組織定着度・リスク診断中...</strong>
         </div>
-        <p>🛡️ <strong>組織適合アドバイス (2026年8月最新バージョン基準):</strong></p>
-        <p>・<strong>${itemA.bestTeam}</strong> への導入 → <strong>${itemA.agent} ${itemA.version}</strong> (${itemA.autonomy}) が最も学習コストが低く即効性があります。</p>
-        <p>・<strong>${itemB.bestTeam}</strong> への導入 → <strong>${itemB.agent} ${itemB.version}</strong> (${itemB.autonomy}) の活用でチーム全体の生産性が飛躍的に高まります。</p>
+        <p>🛡️ <strong>組織適合アドバイス (公式一次情報基準):</strong></p>
+        <p>・<strong>${itemA.bestTeam}</strong> への導入 → <strong>${itemA.agent} (${itemA.version})</strong> [${itemA.autonomy}] が最も学習コストが低く即効性があります。</p>
+        <p>・<strong>${itemB.bestTeam}</strong> への導入 → <strong>${itemB.agent} (${itemB.version})</strong> [${itemB.autonomy}] の活用でチーム全体の生産性が飛躍的に高まります。</p>
       `;
     });
   }
