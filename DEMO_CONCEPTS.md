@@ -146,7 +146,27 @@ ArtifactsはAntigravityが生成する構造化された成果物です。Implem
 
 ---
 
-## Google Antigravity 公式ドキュメント項目一覧と本デモ網羅状況 (https://antigravity.google/docs)
+### 1. Home Page (https://antigravity.google/docs/home) 網羅チェック表
+
+| 公式ドキュメントカテゴリ | 公式機能・詳細項目 | 本デモ網羅状況 | デモでの具体的実施・実演内容 |
+| --- | --- | :---: | --- |
+| **Choose Your Surface** | **Antigravity 2.0** | `[x]` 網羅 | スタンドアロンアプリ、Auxiliary Pane（サブエージェント/タスク/Artifacts）、Cron sidecars 運用 |
+| | **Antigravity CLI (`agy`)** | `[x]` 網羅 | ターミナル TUI 操作、プロンプトショートカット、キーバインドとコマンド連携 |
+| | **Antigravity SDK** | `[x]` 網羅 | ライフサイクルフック、サブエージェントプログラム呼び出しの検証 |
+| | **Antigravity IDE** | `[x]` 網羅 | AI ファースト開発環境、MCP・Skills 連携、サイドバーチャット連携 |
+| **Core Agent Capabilities** | **Gemini 3.5 Flash** | `[x]` 網羅 | SOTA な推論速度と広大コンテキストを活用した並列マルチタスク処理 |
+| | **Asynchronous Subagents** | `[x]` 網羅 | メインフローをブロックしない並列バックグラウンドサブエージェント委任 (`browser_subagent`) |
+| | **Visual Artifacts** | `[x]` 網羅 | `implementation_plan.md`, `walkthrough.md`, コード Diff, テーブル, WebP 録画 |
+| | **Security by Design** | `[x]` 網羅 | ローカル実行、ツール実行事前確認（`accidental-data-loss-prevention` 等） |
+| **Google Integrations** | **Android** | `[x]` 網羅 | `android-cli-plugin` および Android SDK / CLI スキルバンドル認識 |
+| | **Firebase** | `[x]` 網羅 | `firebase` プラグイン・Firestore / Cloud Functions スキルの統合 |
+| | **Web (Chrome / Web MCP)** | `[x]` 網羅 | autonomous browser research 及び Playwright / Chrome DevTools 連携 |
+| | **Science (DeepMind Skills)** | `[x]` 網羅 | science プラグイン（AlphaFold, ChEMBL, PubChem, PubMed 等）の統合 |
+| | **AGY SDK Skills** | `[x]` 網羅 | Antigravity カスタマイズガイド（`agy-customizations`, `antigravity-guide`）のフル活用 |
+
+---
+
+## Google Antigravity 公式ドキュメント全機能項目一覧と本デモ網羅状況 (https://antigravity.google/docs)
 
 | ドキュメント大項目 | 公式機能・詳細項目 | 本デモでの網羅状況 | デモでの具体的実施内容 |
 | --- | --- | :---: | --- |
@@ -167,4 +187,5 @@ ArtifactsはAntigravityが生成する構造化された成果物です。Implem
 | **Integrations & CLI** | Slash Commands (`/goal`, `/schedule`, `/learn`) | `[x]` 網羅 | ユーザー向けスラッシュコマンドの推薦と運用ガイダンス |
 | | Knowledge Items (KI System) | `[x]` 網羅 | リポジトリ固有ナレッジ (`metadata.json`, `artifacts/`) の優先照合 |
 | | Conversation Transcripts (`transcript.jsonl`) | `[x]` 網羅 | ステップログおよびサブエージェント対話履歴の追跡 |
+
 
