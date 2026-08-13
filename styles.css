@@ -1081,3 +1081,237 @@ footer {
   }
 }
 
+/* 🎓 AI Agent Academy & Learning Progress Tracker */
+.academy-tracker-section {
+  margin-top: 48px;
+  padding: 28px;
+  background-color: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+
+.tracker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tracker-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tracker-icon {
+  font-size: 1.8rem;
+}
+
+.tracker-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-main, #111827);
+}
+
+.tracker-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-dim, #6b7280);
+  margin-top: 2px;
+}
+
+.tracker-dashboard {
+  background-color: var(--bg-surface-elevated, #f9fafb);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.progress-text-main {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main, #111827);
+}
+
+.progress-percent-badge {
+  background-color: #10b981;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: var(--border-color, #e5e7eb);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.tracker-actions-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-reset-tracker {
+  background-color: transparent;
+  border: 1px solid var(--border-color, #d1d5db);
+  color: var(--color-text-dim, #6b7280);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-reset-tracker:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+
+.academy-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.module-card {
+  background-color: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  padding: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+}
+
+.module-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  border-color: var(--accent-primary, #3b82f6);
+}
+
+.module-card.is-completed {
+  background-color: rgba(16, 185, 129, 0.04);
+  border-color: #10b981;
+}
+
+.module-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.module-checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.module-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #10b981;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.module-title-group {
+  flex: 1;
+}
+
+.module-provider-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-primary, #3b82f6);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.module-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-text-main, #111827);
+  line-height: 1.35;
+}
+
+.module-card.is-completed .module-title {
+  text-decoration: line-through;
+  color: var(--color-text-dim, #6b7280);
+}
+
+.module-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color, #f3f4f6);
+}
+
+.module-meta-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.module-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background-color: var(--bg-surface-elevated, #f3f4f6);
+  color: var(--color-text-main, #111827);
+}
+
+.module-duration {
+  font-size: 0.72rem;
+  color: var(--color-text-dim, #6b7280);
+}
+
+.module-link-btn {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--accent-primary, #3b82f6);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.module-link-btn:hover {
+  text-decoration: underline;
+}
+
+

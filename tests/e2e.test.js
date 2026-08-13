@@ -141,4 +141,28 @@ describe('AI Agent Decision Guide DOM contract', () => {
     dom.window.close();
   });
 
+  test('TS-08-01: OpenAI Academy等の学習サイトリンクおよび進捗トラッカーが正常動作すること', () => {
+    const { dom, document } = loadApp();
+    const trackerSection = document.querySelector('.academy-tracker-section');
+    assert.ok(trackerSection, 'Academy tracker section should be present');
+
+    const moduleCards = [...document.querySelectorAll('.module-card')];
+    assert.equal(moduleCards.length, 8, 'There should be 8 learning module cards');
+
+    const openAiLink = document.querySelector('.module-card[data-module-id="mod-1"] .module-link-btn');
+    assert.ok(openAiLink, 'OpenAI Academy link should exist');
+    assert.equal(openAiLink.getAttribute('href'), 'https://openai.com/academy/');
+
+    const chk1 = document.querySelector('#chk-mod-1');
+    const chk2 = document.querySelector('#chk-mod-2');
+    const percentBadge = document.querySelector('#progress-percent-badge');
+    const progressBarFill = document.querySelector('#progress-bar-fill');
+
+    chk1.click();
+    chk2.click();
+
+    assert.equal(percentBadge.textContent, '25% 完了');
+    assert.equal(progressBarFill.style.width, '25%');
+    dom.window.close();
+  });
 });

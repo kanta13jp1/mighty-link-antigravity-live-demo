@@ -320,7 +320,95 @@
     updateSelectionUi();
   });
 
+  // 🎓 AI Agent Academy & Learning Progress Tracker Logic
+  function initAcademyTracker() {
+    const checkboxes = [...document.querySelectorAll(".module-checkbox")];
+    const progressCountText = document.querySelector("#progress-count-text");
+    const progressPercentBadge = document.querySelector("#progress-percent-badge");
+    const progressBarFill = document.querySelector("#progress-bar-fill");
+    const btnResetTracker = document.querySelector("#btn-reset-tracker");
+
+    if (checkboxes.length === 0) return;
+
+    const STORAGE_KEY = "ai_agent_learning_progress";
+
+    function loadSavedProgress() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveProgress(completedIds) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(completedIds));
+      } catch (e) {
+        // Fallback if localStorage is disabled
+      }
+    }
+
+    function updateTrackerUI() {
+      const total = checkboxes.length;
+      const completed = checkboxes.filter(chk => chk.checked);
+      const completedCount = completed.length;
+      const percent = Math.round((completedCount / total) * 100);
+
+      if (progressCountText) {
+        progressCountText.textContent = `${completedCount} / ${total} モジュール完了`;
+      }
+      if (progressPercentBadge) {
+        progressPercentBadge.textContent = `${percent}% 完了`;
+      }
+      if (progressBarFill) {
+        progressBarFill.style.width = `${percent}%`;
+        const barContainer = progressBarFill.parentElement;
+        if (barContainer) {
+          barContainer.setAttribute("aria-valuenow", String(percent));
+        }
+      }
+
+      checkboxes.forEach(chk => {
+        const card = chk.closest(".module-card");
+        if (card) {
+          card.classList.toggle("is-completed", chk.checked);
+        }
+      });
+    }
+
+    // Restore saved state
+    const savedCompletedIds = loadSavedProgress();
+    checkboxes.forEach(chk => {
+      const modId = chk.dataset.moduleId;
+      if (savedCompletedIds.includes(modId)) {
+        chk.checked = true;
+      }
+    });
+    updateTrackerUI();
+
+    // Event handlers
+    checkboxes.forEach(chk => {
+      chk.addEventListener("change", () => {
+        const currentCompleted = checkboxes.filter(c => c.checked).map(c => c.dataset.moduleId);
+        saveProgress(currentCompleted);
+        updateTrackerUI();
+      });
+    });
+
+    if (btnResetTracker) {
+      btnResetTracker.addEventListener("click", () => {
+        if (confirm("すべての学習進捗をリセットしてもよろしいですか？")) {
+          checkboxes.forEach(chk => { chk.checked = false; });
+          saveProgress([]);
+          updateTrackerUI();
+        }
+      });
+    }
+  }
+
   renderProducts();
   renderSourceLedger();
   updateSelectionUi();
+  initAcademyTracker();
 })();

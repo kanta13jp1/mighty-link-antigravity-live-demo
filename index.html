@@ -145,6 +145,214 @@
           <p>2026年8月13日JST時点の公式公開情報です。料金は地域・税・契約形態で変わり、利用枠はモデルと作業量で変動します。購入や全社導入の前にリンク先で再確認してください。</p>
         </div>
       </div>
+    <!-- 🎓 AI Agent アカデミー ＆ 学習進捗トラッカー -->
+    <section class="academy-tracker-section" aria-labelledby="tracker-section-title">
+      <div class="section-inner">
+        <div class="tracker-header">
+          <div class="tracker-title-group">
+            <span class="tracker-icon">🎓</span>
+            <div>
+              <h2 id="tracker-section-title" class="tracker-title">AI Agent アカデミー ＆ 公式学習進捗トラッカー</h2>
+              <p class="tracker-subtitle">OpenAI Academyをはじめとする各社公式学習サイトの受講進捗をこの画面で一元管理・保存</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 進捗ダッシュボード -->
+        <div class="tracker-dashboard" aria-live="polite">
+          <div class="progress-info-row">
+            <span class="progress-text-main">全体の学習達成度: <span id="progress-count-text">0 / 8 モジュール完了</span></span>
+            <span id="progress-percent-badge" class="progress-percent-badge">0% 完了</span>
+          </div>
+          <div class="progress-bar-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="学習進捗率">
+            <div id="progress-bar-fill" class="progress-bar-fill"></div>
+          </div>
+          <div class="tracker-actions-row">
+            <button type="button" id="btn-reset-tracker" class="btn-reset-tracker" aria-label="進捗記録をクリア">
+              🔄 学習進捗をリセット
+            </button>
+          </div>
+        </div>
+
+        <!-- 学習モジュールグリッド -->
+        <div class="academy-modules-grid" id="academy-modules-grid">
+          <!-- 1. OpenAI Academy Foundations -->
+          <article class="module-card" data-module-id="mod-1">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-1">
+                <input type="checkbox" id="chk-mod-1" class="module-checkbox" data-module-id="mod-1">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">OpenAI Academy</span>
+                <h3 class="module-title">Codex AI Agent Foundation &amp; Architecture</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Codex</span>
+                <span class="module-duration">⏱️ 約20分</span>
+              </div>
+              <a href="https://openai.com/academy/" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 2. OpenAI Academy Skills & Plugins -->
+          <article class="module-card" data-module-id="mod-2">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-2">
+                <input type="checkbox" id="chk-mod-2" class="module-checkbox" data-module-id="mod-2">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">OpenAI Academy</span>
+                <h3 class="module-title">Building Custom Agent Skills &amp; Plugins with SDK</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Codex / SDK</span>
+                <span class="module-duration">⏱️ 約30分</span>
+              </div>
+              <a href="https://openai.com/academy/" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 3. Anthropic Claude Code Subagents -->
+          <article class="module-card" data-module-id="mod-3">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-3">
+                <input type="checkbox" id="chk-mod-3" class="module-checkbox" data-module-id="mod-3">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">Anthropic Claude</span>
+                <h3 class="module-title">Mastering Claude Code Subagents &amp; CLI Workflows</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Claude Code</span>
+                <span class="module-duration">⏱️ 約25分</span>
+              </div>
+              <a href="https://support.claude.com/" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 4. Anthropic Claude Cowork & Projects -->
+          <article class="module-card" data-module-id="mod-4">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-4">
+                <input type="checkbox" id="chk-mod-4" class="module-checkbox" data-module-id="mod-4">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">Anthropic Claude</span>
+                <h3 class="module-title">Team Projects &amp; Knowledge Collaboration in Cowork</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Claude Cowork</span>
+                <span class="module-duration">⏱️ 約15分</span>
+              </div>
+              <a href="https://claude.com/product/cowork" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 5. Google Antigravity Browser & Artifacts -->
+          <article class="module-card" data-module-id="mod-5">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-5">
+                <input type="checkbox" id="chk-mod-5" class="module-checkbox" data-module-id="mod-5">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">Google Antigravity</span>
+                <h3 class="module-title">Browser Subagent Automated Testing &amp; Artifacts</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Antigravity</span>
+                <span class="module-duration">⏱️ 約20分</span>
+              </div>
+              <a href="https://antigravity.google/docs" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 6. Kiro Specs & Steering -->
+          <article class="module-card" data-module-id="mod-6">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-6">
+                <input type="checkbox" id="chk-mod-6" class="module-checkbox" data-module-id="mod-6">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">Kiro Academy</span>
+                <h3 class="module-title">Spec-Driven Development &amp; Steering Governance</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Kiro</span>
+                <span class="module-duration">⏱️ 約20分</span>
+              </div>
+              <a href="https://kiro.dev/docs/" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 7. OpenAI Academy Advanced -->
+          <article class="module-card" data-module-id="mod-7">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-7">
+                <input type="checkbox" id="chk-mod-7" class="module-checkbox" data-module-id="mod-7">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">OpenAI Academy</span>
+                <h3 class="module-title">Advanced Agent Architecture &amp; Multi-Loop Workflows</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">OpenAI</span>
+                <span class="module-duration">⏱️ 約25分</span>
+              </div>
+              <a href="https://openai.com/academy/" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+
+          <!-- 8. AI Agent Mastery E2E -->
+          <article class="module-card" data-module-id="mod-8">
+            <div class="module-card-header">
+              <label class="module-checkbox-label" for="chk-mod-8">
+                <input type="checkbox" id="chk-mod-8" class="module-checkbox" data-module-id="mod-8">
+              </label>
+              <div class="module-title-group">
+                <span class="module-provider-tag">Agent Mastery</span>
+                <h3 class="module-title">E2E Automated Testing &amp; Continuous Integration</h3>
+              </div>
+            </div>
+            <div class="module-card-footer">
+              <div class="module-meta-group">
+                <span class="module-tag">Testing</span>
+                <span class="module-duration">⏱️ 約15分</span>
+              </div>
+              <a href="https://openai.com/academy/" target="_blank" rel="noopener noreferrer" class="module-link-btn">
+                公式受講ページ ↗
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
   </main>
 
