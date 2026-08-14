@@ -6,10 +6,10 @@
     <meta name="theme-color" content="#eceef2" />
     <meta name="description" content="Glass Towers, a minimalist balancing game." />
     <title>Glass Towers</title>
-    <script type="module" crossorigin src="/mighty-link-antigravity-live-demo/glass-towers/assets/index-ge6cupRX.js"></script>
-    <link rel="modulepreload" crossorigin href="/mighty-link-antigravity-live-demo/glass-towers/assets/rendering-Cp3IETtR.js">
-    <link rel="modulepreload" crossorigin href="/mighty-link-antigravity-live-demo/glass-towers/assets/physics-1O_q51R2.js">
-    <link rel="stylesheet" crossorigin href="/mighty-link-antigravity-live-demo/glass-towers/assets/index-DzXdqhNp.css">
+    <script type="module" crossorigin src="/mighty-link-antigravity-live-demo/glass-towers/assets/index-51ZZltlY.js"></script>
+    <link rel="modulepreload" crossorigin href="/mighty-link-antigravity-live-demo/glass-towers/assets/rendering-DJ1PiSz7.js">
+    <link rel="modulepreload" crossorigin href="/mighty-link-antigravity-live-demo/glass-towers/assets/physics-wasm-CmCQmZC_.js">
+    <link rel="stylesheet" crossorigin href="/mighty-link-antigravity-live-demo/glass-towers/assets/index-hciGRvCa.css">
   </head>
   <body>
     <main class="game-shell">
@@ -17,7 +17,7 @@
 
       <header class="topbar">
         <div class="brand-block">
-          <p class="eyebrow">BALANCE STUDY / 01</p>
+          <p class="eyebrow">BALANCE STUDY / <span id="engine-label">INITIALIZING</span></p>
           <h1>Glass Towers</h1>
         </div>
 
@@ -67,6 +67,8 @@
         <p class="result-line"><span id="final-score">0</span> pieces / <span id="final-height">0.0</span> m</p>
         <button id="play-again-button" type="button">Build again <span aria-hidden="true">↗</span></button>
       </section>
+
+      <div id="loading-state" class="loading-state" role="status">INITIALIZING ENGINE</div>
 
       <p id="sr-status" class="sr-only" aria-live="assertive"></p>
     </main>
