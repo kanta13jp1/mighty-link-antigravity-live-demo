@@ -216,10 +216,98 @@
     renderComparison();
   }
 
+  const costCalculatorWrap = document.getElementById("cost-calculator-wrap");
+  const teamSizeSelect = document.getElementById("team-size-select");
+  const calcResultsGrid = document.getElementById("calc-results-grid");
+
+  const productPrices = {
+    codex: {
+      name: "Codex",
+      pricePerUser: 20,
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (1日200回枠 / Sandbox隔離環境)`
+    },
+    "claude-code": {
+      name: "Claude Code",
+      pricePerUser: 20,
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (5時間枠) / Max $100/月`
+    },
+    "claude-cowork": {
+      name: "Claude Cowork",
+      pricePerUser: 30,
+      quotaInfo: (size) => `Team $30/月 × ${size}名 (${size < 5 ? "※最低5席契約が必要" : "チームアクセス権限＋ナレッジ検索特化"})`
+    },
+    kiro: {
+      name: "Kiro",
+      pricePerUser: 20,
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (月間Power Units枠 / Freeプランあり)`
+    },
+    antigravity: {
+      name: "Antigravity",
+      pricePerUser: 20,
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (Pro定額自律枠 / 無料プランあり)`
+    }
+  };
+
+  function renderCostCalculator(selectedProducts) {
+    if (!costCalculatorWrap || !calcResultsGrid) return;
+
+    if (selectedProducts.length === 0) {
+      costCalculatorWrap.hidden = true;
+      calcResultsGrid.replaceChildren();
+      return;
+    }
+
+    costCalculatorWrap.hidden = false;
+    const teamSize = parseInt(teamSizeSelect ? teamSizeSelect.value : "5", 10);
+    const jpyRate = 155; // 1 USD = 155 JPY 換算
+
+    const boxes = selectedProducts.map((product) => {
+      const priceMeta = productPrices[product.id] || {
+        name: product.name,
+        pricePerUser: 20,
+        quotaInfo: (size) => `Pro $20/月 × ${size}名`
+      };
+
+      const totalUsd = priceMeta.pricePerUser * teamSize;
+      const totalJpy = Math.round(totalUsd * jpyRate);
+
+      const box = element("div", "calc-result-box");
+      const head = element("div", "calc-box-head");
+      head.append(
+        element("strong", "calc-product-name", `${product.name} 試算額`),
+        element("span", "calc-team-label", `${teamSize}名 利用時`)
+      );
+
+      const priceDisplay = element("div", "calc-price-display");
+      priceDisplay.append(
+        element("span", "calc-usd", `$${totalUsd.toLocaleString()} / 月`),
+        element("span", "calc-jpy", `(約 ${totalJpy.toLocaleString()} 円 / 月)`)
+      );
+
+      const quotaDetail = element("p", "calc-quota-text", priceMeta.quotaInfo(teamSize));
+
+      box.append(head, priceDisplay, quotaDetail);
+      return box;
+    });
+
+    calcResultsGrid.replaceChildren(...boxes);
+  }
+
+  if (teamSizeSelect) {
+    teamSizeSelect.addEventListener("change", () => {
+      const selected = [...selectedIds]
+        .map((id) => products.find((product) => product.id === id))
+        .filter(Boolean);
+      renderCostCalculator(selected);
+    });
+  }
+
   function renderComparison() {
     const selected = [...selectedIds]
       .map((id) => products.find((product) => product.id === id))
       .filter(Boolean);
+
+    renderCostCalculator(selected);
 
     if (selected.length === 0) {
       comparisonEmpty.hidden = false;

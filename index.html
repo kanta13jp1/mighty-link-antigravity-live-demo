@@ -105,6 +105,26 @@
           <strong>比較候補を2つ選ぶと、13の実務軸で差が見えます。</strong>
           <span>優劣の点数化ではなく、仕事・権限・証拠・運用の違いを確認します。</span>
         </div>
+        <div id="cost-calculator-wrap" class="cost-calculator-wrap" hidden>
+          <div class="calc-card">
+            <div class="calc-header">
+              <div class="calc-title-group">
+                <span class="calc-badge">経営者・経理向けシミュレーター</span>
+                <h3 class="calc-title">🧮 チーム規模別 コスト＆クォータ試算</h3>
+              </div>
+              <div class="team-size-selector">
+                <label for="team-size-select" class="calc-label">対象メンバー数:</label>
+                <select id="team-size-select" class="calc-select" aria-label="対象メンバー数を選択">
+                  <option value="1">1人 (個人・試用)</option>
+                  <option value="5" selected>5人 (チーム)</option>
+                  <option value="20">20人 (部・課)</option>
+                  <option value="50">50人 (事業部・全社)</option>
+                </select>
+              </div>
+            </div>
+            <div id="calc-results-grid" class="calc-results-grid"></div>
+          </div>
+        </div>
         <div id="comparison-table-wrap" class="comparison-table-wrap" hidden>
           <table id="comparison-table">
             <caption>選択したAIエージェントの実務比較</caption>
