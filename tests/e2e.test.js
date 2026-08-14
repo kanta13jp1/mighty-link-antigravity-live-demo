@@ -97,14 +97,14 @@ describe('AI Agent Decision Guide DOM contract', () => {
     dom.window.close();
   });
 
-  test('renders thirteen comparison rows and refuses a third product', () => {
+  test('renders fourteen comparison rows and refuses a third product', () => {
     const { dom, document } = loadApp();
     const buttons = [...document.querySelectorAll('.compare-button')];
     buttons[0].click();
     buttons[4].click();
 
     assert.equal(document.querySelector('#selection-count').textContent, '2');
-    assert.equal(document.querySelectorAll('#comparison-body tr').length, 13);
+    assert.equal(document.querySelectorAll('#comparison-body tr').length, 14);
     assert.equal(document.querySelector('#comparison-table-wrap').hidden, false);
 
     buttons[2].click();

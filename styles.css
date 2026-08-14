@@ -1450,5 +1450,42 @@ footer {
   border-top: 1px dashed var(--line, #e2e8f0);
 }
 
+.calc-model-badge-block {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+}
+
+.calc-model-label {
+  color: #475569;
+  font-weight: 700;
+}
+
+.calc-model-name {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.calc-value-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #15803d;
+  background: #dcfce7;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.calc-seat-note {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b45309;
+  margin: 4px 0 8px 0;
+}
+
+
 
 

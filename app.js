@@ -224,27 +224,42 @@
     codex: {
       name: "Codex",
       pricePerUser: 20,
-      quotaInfo: (size) => `Pro $20/月 × ${size}名 (1日200回枠 / Sandbox隔離環境)`
+      baseModel: "OpenAI GPT-4o / Codex Models (128K Context)",
+      minSeatsNote: "1名から契約可能",
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (1日200回枠 / Sandbox隔離環境)`,
+      valueBadge: "1枠約3.3円相当 (1日200回枠)"
     },
     "claude-code": {
       name: "Claude Code",
       pricePerUser: 20,
-      quotaInfo: (size) => `Pro $20/月 × ${size}名 (5時間枠) / Max $100/月`
+      baseModel: "Anthropic Claude 3.5 / 3.7 Sonnet (200K Context)",
+      minSeatsNote: "1名から契約可能 (Max $100/月)",
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (5時間枠制限) / Max $100/月`,
+      valueBadge: "高度コード編集特化 (5h制限あり)"
     },
     "claude-cowork": {
       name: "Claude Cowork",
       pricePerUser: 30,
-      quotaInfo: (size) => `Team $30/月 × ${size}名 (${size < 5 ? "※最低5席契約が必要" : "チームアクセス権限＋ナレッジ検索特化"})`
+      baseModel: "Anthropic Claude 3.5 Sonnet (200K Context)",
+      minSeatsNote: "※最低5席からの契約が必要 (最低月$150〜)",
+      quotaInfo: (size) => `Team $30/月 × ${size < 5 ? 5 : size}名 (${size < 5 ? "※最低5席契約の最低額適用" : "チーム共有アクセス"})`,
+      valueBadge: "ナレッジ・ドキュメント自動化特化"
     },
     kiro: {
       name: "Kiro",
       pricePerUser: 20,
-      quotaInfo: (size) => `Pro $20/月 × ${size}名 (月間Power Units枠 / Freeプランあり)`
+      baseModel: "Anthropic Claude 3.5 Sonnet / Opus 5 (Bedrock)",
+      minSeatsNote: "1名から契約可能 (Free 500 PUあり)",
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (月間Power Units枠 / Freeプランあり)`,
+      valueBadge: "仕様駆動開発 (Specs) 特化"
     },
     antigravity: {
       name: "Antigravity",
       pricePerUser: 20,
-      quotaInfo: (size) => `Pro $20/月 × ${size}名 (Pro定額自律枠 / 無料プランあり)`
+      baseModel: "Google Gemini 2.5 Pro / Flash (1M~2M Token Context)",
+      minSeatsNote: "1名から契約可能 (無料プランあり)",
+      quotaInfo: (size) => `Pro $20/月 × ${size}名 (Pro定額自律枠 / 無料プランあり)`,
+      valueBadge: "🟢 1枠約0.66円相当 (他社の5倍枠・最高コスパ)"
     }
   };
 
@@ -265,28 +280,41 @@
       const priceMeta = productPrices[product.id] || {
         name: product.name,
         pricePerUser: 20,
-        quotaInfo: (size) => `Pro $20/月 × ${size}名`
+        baseModel: product.comparison["基盤モデル"] || "最新AIモデル",
+        minSeatsNote: "1名から契約可能",
+        quotaInfo: (size) => `Pro $20/月 × ${size}名`,
+        valueBadge: "標準プラン"
       };
 
-      const totalUsd = priceMeta.pricePerUser * teamSize;
+      // Claude Cowork は最低5席契約ルールを反映
+      const effectiveUsers = (product.id === "claude-cowork" && teamSize < 5) ? 5 : teamSize;
+      const totalUsd = priceMeta.pricePerUser * effectiveUsers;
       const totalJpy = Math.round(totalUsd * jpyRate);
 
       const box = element("div", "calc-result-box");
       const head = element("div", "calc-box-head");
       head.append(
         element("strong", "calc-product-name", `${product.name} 試算額`),
-        element("span", "calc-team-label", `${teamSize}名 利用時`)
+        element("span", "calc-team-label", `${effectiveUsers}名分 適用`)
+      );
+
+      const modelBlock = element("div", "calc-model-badge-block");
+      modelBlock.append(
+        element("span", "calc-model-label", "🧠 基盤モデル: "),
+        element("strong", "calc-model-name", priceMeta.baseModel)
       );
 
       const priceDisplay = element("div", "calc-price-display");
       priceDisplay.append(
         element("span", "calc-usd", `$${totalUsd.toLocaleString()} / 月`),
-        element("span", "calc-jpy", `(約 ${totalJpy.toLocaleString()} 円 / 月)`)
+        element("span", "calc-jpy", `(約 ${totalJpy.toLocaleString()} 円 / 月)`),
+        element("span", "calc-value-badge", priceMeta.valueBadge)
       );
 
+      const seatNote = element("p", "calc-seat-note", priceMeta.minSeatsNote);
       const quotaDetail = element("p", "calc-quota-text", priceMeta.quotaInfo(teamSize));
 
-      box.append(head, priceDisplay, quotaDetail);
+      box.append(head, modelBlock, priceDisplay, seatNote, quotaDetail);
       return box;
     });
 

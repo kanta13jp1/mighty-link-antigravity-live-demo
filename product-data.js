@@ -34,6 +34,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "コード理解、実装、修正、テスト、PRレビュー、移行、公開",
+      "基盤モデル": "OpenAI GPT-4o / Codex Models (128K Context, コード特化・Sandbox実行)",
       "操作面": "Codex app、CLI、IDE拡張、クラウド、GitHub、SDK",
       "進め方": "コードベースを探索し、計画・編集・コマンド・検証を一つのタスクとして継続",
       "持続指示": "AGENTS.md、Rules、設定プロファイル",
@@ -89,6 +90,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "複数ファイル開発、デバッグ、Git、コードレビュー、移行、反復作業",
+      "基盤モデル": "Anthropic Claude 3.5 Sonnet / 3.7 Sonnet (200K Context, Extended Thinking, Auto Mode)",
       "操作面": "CLI、VS Code、JetBrains、Desktop、Web、Slack",
       "進め方": "ターミナルとコードを往復し、plan・tool call・編集・テストを会話内で反復",
       "持続指示": "CLAUDE.md、auto memory、settings",
@@ -144,6 +146,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "調査、文書、表計算、プレゼン、ファイル整理、定期レポート、業務オペレーション",
+      "基盤モデル": "Anthropic Claude 3.5 Sonnet (200K Context, ドキュメント・Web・ナレッジ連携)",
       "操作面": "Desktop、Web、Mobile、Chrome side panel",
       "進め方": "完了条件と参照先を渡し、接続した業務ツールを横断して成果物まで委任",
       "持続指示": "Projects、organization instructions、memory",
@@ -199,6 +202,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "仕様駆動開発、要件分析、設計、タスク分解、実装、バグ修正",
+      "基盤モデル": "Anthropic Claude 3.5 Sonnet / Claude Opus 5 (Bedrock/Kiro API, Specs連動)",
       "操作面": "IDE、CLI、Web、Mobile、Crew",
       "進め方": "Requirements -> Design -> Tasks -> Implementationを承認点付きで進める",
       "持続指示": "Steering、custom agents、workspace settings",
@@ -254,6 +258,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "Web開発、UI改善、ブラウザ検証、マルチモーダル制作、デモ、長時間タスク",
+      "基盤モデル": "Google Gemini 2.5 Pro / Gemini 2.5 Flash (1M~2M Token Context, DeepMind Multi-Agent)",
       "操作面": "Antigravity 2.0 IDE、CLI、SDK",
       "進め方": "Planning、実装、Browser操作、Artifact確認を同じworkspaceで反復",
       "持続指示": "Rules、Workflows、workspace settings",
