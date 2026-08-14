@@ -258,7 +258,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "Web開発、UI改善、ブラウザ検証、マルチモーダル制作、デモ、長時間タスク",
-      "基盤モデル": "Google Gemini 3.1 Pro (100万トークン窓, ARC-AGI-2最適化) / Gemini 3.5 Flash",
+      "基盤モデル": "Google Gemini 3.7 Flash (思考モード・高速自律実行) / Gemini 3.1 Pro (100万トークン窓)",
       "操作面": "Antigravity 2.0 IDE、CLI、SDK",
       "進め方": "Planning、実装、Browser操作、Artifact確認を同じworkspaceで反復",
       "持続指示": "Rules、Workflows、workspace settings",
@@ -273,10 +273,10 @@ window.PRODUCT_DATA = [
       "導入時の注意": "Artifactが成功していても、本番公開・外部書き込みは人が明示承認する"
     },
     "sources": [
+      {"label": "公式モデル一覧", "url": "https://antigravity.google/docs/models"},
       {"label": "公式ドキュメント", "url": "https://antigravity.google/docs/features?app=antigravity"},
       {"label": "公式Changelog", "url": "https://antigravity.google/changelog?app=antigravity"},
-      {"label": "公式料金更新", "url": "https://antigravity.google/blog/changes-to-antigravity-plans"},
-      {"label": "公式ブログ", "url": "https://antigravity.google/blog"}
+      {"label": "公式料金更新", "url": "https://antigravity.google/blog/changes-to-antigravity-plans"}
     ]
   }
 ];

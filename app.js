@@ -256,7 +256,7 @@
     antigravity: {
       name: "Antigravity",
       pricePerUser: 20,
-      baseModel: "Google Gemini 3.1 Pro (100万トークン窓) / Gemini 3.5 Flash",
+      baseModel: "Google Gemini 3.7 Flash (思考モード) / Gemini 3.1 Pro (100万トークン窓)",
       minSeatsNote: "1名から契約可能 (無料プランあり)",
       quotaInfo: (size) => `Pro $20/月 × ${size}名 (Pro定額自律枠 / 無料プランあり)`,
       valueBadge: "🟢 1枠約0.66円相当 (他社の5倍枠・最高コスパ)"
