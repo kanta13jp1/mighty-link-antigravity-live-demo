@@ -34,7 +34,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "コード理解、実装、修正、テスト、PRレビュー、移行、公開",
-      "基盤モデル": "OpenAI GPT-4o / Codex Models (128K Context, コード特化・Sandbox実行)",
+      "基盤モデル": "OpenAI GPT-5.6 (Sol / Terra / Luna) (自律エージェント型モデル群, MCP統合)",
       "操作面": "Codex app、CLI、IDE拡張、クラウド、GitHub、SDK",
       "進め方": "コードベースを探索し、計画・編集・コマンド・検証を一つのタスクとして継続",
       "持続指示": "AGENTS.md、Rules、設定プロファイル",
@@ -49,8 +49,8 @@ window.PRODUCT_DATA = [
       "導入時の注意": "広い権限を渡す前にAGENTS.md、sandbox、ネットワーク、承認条件を決める"
     },
     "sources": [
-      {"label": "公式ドキュメント", "url": "https://learn.chatgpt.com/docs"},
-      {"label": "公式更新履歴", "url": "https://learn.chatgpt.com/docs/changelog"},
+      {"label": "公式ドキュメント", "url": "https://chatgpt.com/codex/install"},
+      {"label": "公式更新履歴", "url": "https://chatgpt.com/codex/changelog"},
       {"label": "公式料金", "url": "https://chatgpt.com/pricing/"},
       {"label": "公式動画一覧", "url": "https://learn.chatgpt.com/videos"}
     ]
@@ -90,7 +90,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "複数ファイル開発、デバッグ、Git、コードレビュー、移行、反復作業",
-      "基盤モデル": "Anthropic Claude 3.5 Sonnet / 3.7 Sonnet (200K Context, Extended Thinking, Auto Mode)",
+      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (2026年7月最新フラグシップ, Extended Thinking)",
       "操作面": "CLI、VS Code、JetBrains、Desktop、Web、Slack",
       "進め方": "ターミナルとコードを往復し、plan・tool call・編集・テストを会話内で反復",
       "持続指示": "CLAUDE.md、auto memory、settings",
@@ -108,7 +108,7 @@ window.PRODUCT_DATA = [
       {"label": "公式ドキュメント", "url": "https://code.claude.com/docs/en/overview"},
       {"label": "公式リリース", "url": "https://github.com/anthropics/claude-code/releases"},
       {"label": "公式料金", "url": "https://claude.com/pricing"},
-      {"label": "公式ブログ", "url": "https://claude.com/blog-category/claude-code"}
+      {"label": "公式ブログ", "url": "https://claude.com/blog/opus-5"}
     ]
   },
   {
@@ -146,7 +146,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "調査、文書、表計算、プレゼン、ファイル整理、定期レポート、業務オペレーション",
-      "基盤モデル": "Anthropic Claude 3.5 Sonnet (200K Context, ドキュメント・Web・ナレッジ連携)",
+      "基盤モデル": "Anthropic Claude Fable 5 / Claude Sonnet 5 (2026年6月最新マルチエージェント基盤)",
       "操作面": "Desktop、Web、Mobile、Chrome side panel",
       "進め方": "完了条件と参照先を渡し、接続した業務ツールを横断して成果物まで委任",
       "持続指示": "Projects、organization instructions、memory",
@@ -202,7 +202,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "仕様駆動開発、要件分析、設計、タスク分解、実装、バグ修正",
-      "基盤モデル": "Anthropic Claude 3.5 Sonnet / Claude Opus 5 (Bedrock/Kiro API, Specs連動)",
+      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (Amazon Bedrock / Kiro API連動)",
       "操作面": "IDE、CLI、Web、Mobile、Crew",
       "進め方": "Requirements -> Design -> Tasks -> Implementationを承認点付きで進める",
       "持続指示": "Steering、custom agents、workspace settings",
@@ -220,7 +220,7 @@ window.PRODUCT_DATA = [
       {"label": "公式ドキュメント", "url": "https://kiro.dev/docs/"},
       {"label": "公式Changelog", "url": "https://kiro.dev/changelog/ide/"},
       {"label": "公式料金", "url": "https://kiro.dev/pricing/"},
-      {"label": "公式ブログ", "url": "https://kiro.dev/blog/"}
+      {"label": "公式ブログ", "url": "https://kiro.dev/blog/opus-5/"}
     ]
   },
   {
@@ -258,7 +258,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "Web開発、UI改善、ブラウザ検証、マルチモーダル制作、デモ、長時間タスク",
-      "基盤モデル": "Google Gemini 2.5 Pro / Gemini 2.5 Flash (1M~2M Token Context, DeepMind Multi-Agent)",
+      "基盤モデル": "Google Gemini 3.1 Pro (100万トークン窓, ARC-AGI-2最適化) / Gemini 3.5 Flash",
       "操作面": "Antigravity 2.0 IDE、CLI、SDK",
       "進め方": "Planning、実装、Browser操作、Artifact確認を同じworkspaceで反復",
       "持続指示": "Rules、Workflows、workspace settings",
