@@ -523,8 +523,83 @@
     }
   }
 
+  function initModelRouterDiagnoser() {
+    const input = document.getElementById("router-test-input");
+    const btn = document.getElementById("router-diagnose-btn");
+    const resultCard = document.getElementById("router-result-card");
+    const resultContent = document.getElementById("router-result-content");
+    const presets = document.querySelectorAll(".preset-prompt-btn");
+
+    if (!input || !btn || !resultCard || !resultContent) return;
+
+    function diagnose(text) {
+      const q = (text || "").toLowerCase();
+      if (!q.trim()) {
+        resultCard.style.display = "none";
+        return;
+      }
+
+      let tier, title, models, subagent, badgeColor, rationale;
+
+      if (q.includes("脆弱性") || q.includes("セキュリティ") || q.includes("監査") || q.includes("oauth") || q.includes("認証") || q.includes("侵入") || q.includes("権限")) {
+        tier = "Tier 4: 🛡️ セキュリティ & 厳格監査";
+        title = "高精度防御・厳格セキュリティ検査";
+        models = "Claude Mythos 5 / GPT-5.6 Daybreak Blue / Gemini 3.1 Pro";
+        subagent = "Model: 'pro' + 実行前人間承認必須";
+        badgeColor = "#ef4444";
+        rationale = "認証・セキュリティに関わる操作のため、厳格な防御アライメントを持つ専用モデルおよび人手承認フローを適用します。";
+      } else if (q.includes("10万") || q.includes("大規模") || q.includes("全体設計") || q.includes("アーキテクチャ") || q.includes("リファクタリング") || q.includes("ログ") || q.includes("移行")) {
+        tier = "Tier 3: 🏰 大規模設計 & 深層推論";
+        title = "100万トークン長大コンテキスト＆最高峰推論";
+        models = "Google Gemini 3.1 Pro (100万〜200万Token窓) / Claude Opus 5 / GPT-5.6 Sol";
+        subagent = "Model: 'pro' (深層推論モード)";
+        badgeColor = "#8b5cf6";
+        rationale = "大量のコードベースやログを一度にコンテキストに展開する必要があるため、100万トークン超の超大容量窓と最高峰の推論モデルを選定します。";
+      } else if (q.includes("検索") || q.includes("ドキュメント") || q.includes("lint") || q.includes("エラー解消") || q.includes("軽微") || q.includes("型") || q.includes("単一")) {
+        tier = "Tier 1: ⚡ 超高速・軽量タスク";
+        title = "即応性・低トークン消費・高スループット";
+        models = "Google Gemini 3.7 Flash / Claude 3.5 Haiku / GPT-5.6 Luna";
+        subagent = "Model: 'flash' / 'flash_lite' (並列分散実行)";
+        badgeColor = "#10b981";
+        rationale = "単純な情報検索や軽微な修正タスクであるため、高速・低コストな軽量モデルにオフロードして応答速度を最大化します。";
+      } else {
+        tier = "Tier 2: 🛠️ 標準機能開発 & UI実装";
+        title = "思考ハイブリッド推論・ツール呼出・ブラウザ検証";
+        models = "Google Gemini 3.7 Flash (思考モード) / Claude Sonnet 5 / GPT-5.6 Terra";
+        subagent = "Model: 'inherit' (標準エージェント推論)";
+        badgeColor = "#3b82f6";
+        rationale = "コード実装とブラウザ操作・検証をバランスよく行うため、思考モード搭載の高速ハイブリッドモデルを推奨します。";
+      }
+
+      resultCard.style.display = "block";
+      resultCard.style.borderLeftColor = badgeColor;
+      resultContent.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+          <span style="font-weight: bold; color: ${badgeColor}; font-size: 1.05rem;">${tier}</span>
+          <span style="font-size: 0.8rem; padding: 3px 8px; border-radius: 12px; background: rgba(255,255,255,0.1); color: #fff;">自動ルーティング判定</span>
+        </div>
+        <div style="font-size: 0.95rem; margin-bottom: 8px;"><strong>推奨基盤モデル:</strong> <span style="color: #60a5fa;">${models}</span></div>
+        <div style="font-size: 0.9rem; margin-bottom: 8px; color: #cbd5e1;"><strong>サブエージェント設定:</strong> <code>${subagent}</code></div>
+        <p style="margin: 0; font-size: 0.88rem; color: #94a3b8;">${rationale}</p>
+      `;
+    }
+
+    btn.addEventListener("click", () => diagnose(input.value));
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") diagnose(input.value);
+    });
+
+    presets.forEach(p => {
+      p.addEventListener("click", () => {
+        input.value = p.dataset.prompt;
+        diagnose(input.value);
+      });
+    });
+  }
+
   renderProducts();
   renderSourceLedger();
   updateSelectionUi();
   initAcademyTracker();
+  initModelRouterDiagnoser();
 })();

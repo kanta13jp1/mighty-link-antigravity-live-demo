@@ -136,11 +136,37 @@
     </section>
 
     <section id="model-router-guide" class="method-section" aria-labelledby="router-title" style="background: var(--bg-surface-2, rgba(255, 255, 255, 0.03)); border-top: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));">
-      <div class="section-inner method-layout">
-        <div>
-          <p class="eyebrow">SMART WORKFLOW</p>
-          <h2 id="router-title">🤖 タスク自動判別 & 最適モデルルーティング</h2>
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SMART WORKFLOW</p>
+            <h2 id="router-title">🤖 タスク自動判別 & 最適モデルルーティング</h2>
+          </div>
+          <p>指示内容や要件から最適なAI基盤モデル（Flash / Pro / Opus / Mythos 等）を自動判定します。</p>
         </div>
+
+        <div class="router-interactive-box" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1)); border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+          <h3 style="margin-top: 0; margin-bottom: 12px; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+            <span>⚡</span> タスク指示・プロンプトから最適モデルをリアルタイム診断
+          </h3>
+          <p style="color: var(--text-muted, #94a3b8); margin-bottom: 16px; font-size: 0.9rem;">
+            やりたい作業を入力するか、プリセットをクリックすると、推奨されるモデル階層（Tier）と実行モードが即座に表示されます。
+          </p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+            <button type="button" class="preset-prompt-btn" data-prompt="API仕様書の高速検索とドキュメント参照" style="padding: 6px 12px; font-size: 0.82rem; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer;">🔍 ドキュメント高速検索</button>
+            <button type="button" class="preset-prompt-btn" data-prompt="Webアプリのボタンコンポーネント作成とブラウザ検証" style="padding: 6px 12px; font-size: 0.82rem; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer;">🛠️ UI実装＆ブラウザ検証</button>
+            <button type="button" class="preset-prompt-btn" data-prompt="10万行の過去ログ解析とマイクロサービス全体の大規模リファクタリング設計" style="padding: 6px 12px; font-size: 0.82rem; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer;">🏰 巨大ログ解析＆全体設計</button>
+            <button type="button" class="preset-prompt-btn" data-prompt="OAuth2認証脆弱性のペネトレーションテストとセキュリティ監査" style="padding: 6px 12px; font-size: 0.82rem; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer;">🛡️ 脆弱性診断＆監査</button>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <input type="text" id="router-test-input" placeholder="例: 新規Reactコンポーネントを作成してPlaywrightでE2Eテストを実行して" style="flex: 1; min-width: 280px; padding: 12px 16px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.95rem;">
+            <button type="button" id="router-diagnose-btn" style="padding: 12px 24px; border-radius: 8px; background: var(--color-accent, #3b82f6); border: none; color: #fff; font-weight: bold; cursor: pointer;">診断する</button>
+          </div>
+          <div id="router-result-card" style="margin-top: 20px; padding: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.05); border-left: 4px solid #3b82f6; display: none;">
+            <div id="router-result-content"></div>
+          </div>
+        </div>
+
         <ol class="method-list">
           <li><span>T1</span><div><strong>⚡ Tier 1: 超高速・軽量</strong><p>ドキュメント検索・単一ファイル修正・Lint解消 → <strong>Gemini 3.7 Flash / Claude 3.5 Haiku / GPT-5.6 Luna</strong> (低コスト・高速)</p></div></li>
           <li><span>T2</span><div><strong>🛠️ Tier 2: 標準UI & 機能開発</strong><p>Web画面実装・ブラウザ検証・E2Eテスト → <strong>Gemini 3.7 Flash (思考モード) / Claude Sonnet 5</strong></p></div></li>

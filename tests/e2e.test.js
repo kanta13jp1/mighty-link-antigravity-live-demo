@@ -169,4 +169,35 @@ describe('AI Agent Decision Guide DOM contract', () => {
     assert.equal(progressBarFill.style.width, '25%');
     dom.window.close();
   });
+
+  test('TS-10-01: Model Router 診断シミュレーターが各Tierのプロンプトを正常判別すること', () => {
+    const { dom, document } = loadApp();
+    const input = document.querySelector('#router-test-input');
+    const btn = document.querySelector('#router-diagnose-btn');
+    const resultCard = document.querySelector('#router-result-card');
+    const resultContent = document.querySelector('#router-result-content');
+
+    assert.ok(input && btn && resultCard, 'Model router tester elements should exist');
+
+    // Test Tier 1: Search & Lint
+    input.value = 'ドキュメント検索とAPI仕様チェック';
+    btn.click();
+    assert.equal(resultCard.style.display, 'block');
+    assert.ok(resultContent.textContent.includes('Tier 1'));
+    assert.ok(resultContent.textContent.includes('Gemini 3.7 Flash'));
+
+    // Test Tier 3: Large context log analysis
+    input.value = '10万行の巨大ログ解析とアーキテクチャ全体設計';
+    btn.click();
+    assert.ok(resultContent.textContent.includes('Tier 3'));
+    assert.ok(resultContent.textContent.includes('Gemini 3.1 Pro'));
+
+    // Test Tier 4: Security
+    input.value = 'OAuth2認証脆弱性とセキュリティ監査';
+    btn.click();
+    assert.ok(resultContent.textContent.includes('Tier 4'));
+    assert.ok(resultContent.textContent.includes('Claude Mythos 5'));
+
+    dom.window.close();
+  });
 });
