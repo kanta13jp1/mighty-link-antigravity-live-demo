@@ -50,9 +50,9 @@ window.PRODUCT_DATA = [
     },
     "sources": [
       {"label": "公式モデル一覧", "url": "https://learn.chatgpt.com/docs"},
-      {"label": "公式ドキュメント", "url": "https://chatgpt.com/codex/install"},
-      {"label": "公式更新履歴", "url": "https://chatgpt.com/codex/changelog"},
-      {"label": "公式料金", "url": "https://chatgpt.com/pricing/"}
+      {"label": "公式リリースノート", "url": "https://github.com/openai/codex/releases"},
+      {"label": "公式導入ガイド", "url": "https://openai.com/index/introducing-openai-codex/"},
+      {"label": "公式料金", "url": "https://openai.com/chatgpt/pricing/"}
     ]
   },
   {
@@ -90,7 +90,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "複数ファイル開発、デバッグ、Git、コードレビュー、移行、反復作業",
-      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (2026年7月最新フラグシップ, Auto Mode標準化)",
+      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (サブタスク: Claude 3.5 Haiku, セキュリティ特化: Mythos 5)",
       "操作面": "CLI、VS Code、JetBrains、Desktop、Web、Slack",
       "進め方": "ターミナルとコードを往復し、plan・tool call・編集・テストを会話内で反復",
       "持続指示": "CLAUDE.md、auto memory、settings",
@@ -105,10 +105,10 @@ window.PRODUCT_DATA = [
       "導入時の注意": "CLAUDE.mdを短く保ち、HooksとMCPの実行権限をレビューする"
     },
     "sources": [
-      {"label": "公式モデルリリース (Opus 5)", "url": "https://claude.com/blog/opus-5"},
+      {"label": "公式Haikuモデル仕様", "url": "https://www.anthropic.com/claude/haiku"},
+      {"label": "公式Mythosモデル概要", "url": "https://www.anthropic.com/claude/mythos"},
       {"label": "公式ドキュメント", "url": "https://code.claude.com/docs/en/overview"},
-      {"label": "公式リリース", "url": "https://github.com/anthropics/claude-code/releases"},
-      {"label": "公式料金", "url": "https://claude.com/pricing"}
+      {"label": "公式リリース", "url": "https://github.com/anthropics/claude-code/releases"}
     ]
   },
   {
@@ -146,7 +146,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "調査、文書、表計算、プレゼン、ファイル整理、定期レポート、業務オペレーション",
-      "基盤モデル": "Anthropic Claude Fable 5 / Claude Sonnet 5 (2026年6月最新マルチエージェント基盤)",
+      "基盤モデル": "Anthropic Claude Fable 5 (Mythos共通アーキテクチャ) / Claude Sonnet 5 / Claude 3.5 Haiku",
       "操作面": "Desktop、Web、Mobile、Chrome side panel",
       "進め方": "完了条件と参照先を渡し、接続した業務ツールを横断して成果物まで委任",
       "持続指示": "Projects、organization instructions、memory",
@@ -161,7 +161,7 @@ window.PRODUCT_DATA = [
       "導入時の注意": "メール送信や更新権限は最小化し、まず下書きと読み取りから始める"
     },
     "sources": [
-      {"label": "公式モデルリリース (Fable 5)", "url": "https://claude.com/blog/working-with-claude-fable-5-in-claude-cowork"},
+      {"label": "公式Fable 5モデルリリース", "url": "https://claude.com/blog/working-with-claude-fable-5-in-claude-cowork"},
       {"label": "公式製品ページ", "url": "https://claude.com/product/cowork"},
       {"label": "公式Release Notes", "url": "https://support.claude.com/en/articles/12138966-release-notes"},
       {"label": "公式料金", "url": "https://claude.com/pricing"}
