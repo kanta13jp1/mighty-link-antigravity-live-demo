@@ -16,9 +16,9 @@ window.PRODUCT_DATA = [
       "url": "https://github.com/openai/codex/releases/tag/rust-v0.147.0"
     },
     "latestUpdate": {
-      "title": "Agent Plugins、会話セクション、MCP 2026-07-28対応",
+      "title": "GPT-5.6 (Sol / Terra / Luna) 統合、Agent Plugins、会話セクション対応",
       "date": "2026-08-07",
-      "summary": "持ち運べるAgent Plugins、長い会話の整理、承認の自動レビュー、MCP更新、秘密情報のマスキング強化が追加されました。",
+      "summary": "最新エージェントモデルGPT-5.6 (Sol/Terra/Luna)の統合、持ち運べるAgent Plugins、長い会話の整理、承認の自動レビュー、MCP更新が追加されました。",
       "url": "https://github.com/openai/codex/releases/tag/rust-v0.147.0"
     },
     "latestVideo": {
@@ -49,10 +49,10 @@ window.PRODUCT_DATA = [
       "導入時の注意": "広い権限を渡す前にAGENTS.md、sandbox、ネットワーク、承認条件を決める"
     },
     "sources": [
+      {"label": "公式モデル一覧", "url": "https://learn.chatgpt.com/docs"},
       {"label": "公式ドキュメント", "url": "https://chatgpt.com/codex/install"},
       {"label": "公式更新履歴", "url": "https://chatgpt.com/codex/changelog"},
-      {"label": "公式料金", "url": "https://chatgpt.com/pricing/"},
-      {"label": "公式動画一覧", "url": "https://learn.chatgpt.com/videos"}
+      {"label": "公式料金", "url": "https://chatgpt.com/pricing/"}
     ]
   },
   {
@@ -90,7 +90,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "複数ファイル開発、デバッグ、Git、コードレビュー、移行、反復作業",
-      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (2026年7月最新フラグシップ, Extended Thinking)",
+      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (2026年7月最新フラグシップ, Auto Mode標準化)",
       "操作面": "CLI、VS Code、JetBrains、Desktop、Web、Slack",
       "進め方": "ターミナルとコードを往復し、plan・tool call・編集・テストを会話内で反復",
       "持続指示": "CLAUDE.md、auto memory、settings",
@@ -105,10 +105,10 @@ window.PRODUCT_DATA = [
       "導入時の注意": "CLAUDE.mdを短く保ち、HooksとMCPの実行権限をレビューする"
     },
     "sources": [
+      {"label": "公式モデルリリース (Opus 5)", "url": "https://claude.com/blog/opus-5"},
       {"label": "公式ドキュメント", "url": "https://code.claude.com/docs/en/overview"},
       {"label": "公式リリース", "url": "https://github.com/anthropics/claude-code/releases"},
-      {"label": "公式料金", "url": "https://claude.com/pricing"},
-      {"label": "公式ブログ", "url": "https://claude.com/blog/opus-5"}
+      {"label": "公式料金", "url": "https://claude.com/pricing"}
     ]
   },
   {
@@ -161,10 +161,10 @@ window.PRODUCT_DATA = [
       "導入時の注意": "メール送信や更新権限は最小化し、まず下書きと読み取りから始める"
     },
     "sources": [
+      {"label": "公式モデルリリース (Fable 5)", "url": "https://claude.com/blog/working-with-claude-fable-5-in-claude-cowork"},
       {"label": "公式製品ページ", "url": "https://claude.com/product/cowork"},
       {"label": "公式Release Notes", "url": "https://support.claude.com/en/articles/12138966-release-notes"},
-      {"label": "公式料金", "url": "https://claude.com/pricing"},
-      {"label": "公式利用ガイド", "url": "https://support.claude.com/en/collections/16163169-claude-cowork"}
+      {"label": "公式料金", "url": "https://claude.com/pricing"}
     ]
   },
   {
@@ -202,7 +202,7 @@ window.PRODUCT_DATA = [
     },
     "comparison": {
       "主な仕事": "仕様駆動開発、要件分析、設計、タスク分解、実装、バグ修正",
-      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 (Amazon Bedrock / Kiro API連動)",
+      "基盤モデル": "Anthropic Claude Opus 5 / Claude Sonnet 5 / GPT-5.6 (Bedrock/Kiro API連動)",
       "操作面": "IDE、CLI、Web、Mobile、Crew",
       "進め方": "Requirements -> Design -> Tasks -> Implementationを承認点付きで進める",
       "持続指示": "Steering、custom agents、workspace settings",
@@ -217,10 +217,10 @@ window.PRODUCT_DATA = [
       "導入時の注意": "SteeringとPowerはKiro固有名。仕様承認を飛ばす条件をチームで決める"
     },
     "sources": [
+      {"label": "公式モデル一覧", "url": "https://kiro.dev/docs/models/"},
       {"label": "公式ドキュメント", "url": "https://kiro.dev/docs/"},
       {"label": "公式Changelog", "url": "https://kiro.dev/changelog/ide/"},
-      {"label": "公式料金", "url": "https://kiro.dev/pricing/"},
-      {"label": "公式ブログ", "url": "https://kiro.dev/blog/opus-5/"}
+      {"label": "公式料金", "url": "https://kiro.dev/pricing/"}
     ]
   },
   {
@@ -232,7 +232,7 @@ window.PRODUCT_DATA = [
     "tags": ["development", "planning", "automation", "browser"],
     "oneLine": "IDE、Browser、Artifactを一画面でつなぎ、計画から画面検証まで見せながら進める開発エージェント。",
     "bestFor": "WebサイトやUIを、実装・ブラウザ操作・スクリーンショット証拠まで短時間で見せたい場面",
-    "notIdealFor": "画面確認が不要で、既存CIだけを最小コストで回す純粋なバックエンド自動化",
+    "notIdealFor": "画面確認が不要で、既存CIだけを最新コストで回す純粋なバックエンド自動化",
     "release": {
       "version": "2.8.0",
       "date": "2026-08-12",
@@ -280,3 +280,4 @@ window.PRODUCT_DATA = [
     ]
   }
 ];
+
