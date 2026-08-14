@@ -51,8 +51,8 @@ window.PRODUCT_DATA = [
     "sources": [
       {"label": "公式モデル一覧", "url": "https://learn.chatgpt.com/docs"},
       {"label": "公式リリースノート", "url": "https://github.com/openai/codex/releases"},
-      {"label": "公式導入ガイド", "url": "https://openai.com/index/introducing-openai-codex/"},
-      {"label": "公式料金", "url": "https://openai.com/chatgpt/pricing/"}
+      {"label": "公式ブログ", "url": "https://learn.chatgpt.com/blog/custom-code-review-rules-for-codex"},
+      {"label": "公式GitHubリポジトリ", "url": "https://github.com/openai/codex"}
     ]
   },
   {
